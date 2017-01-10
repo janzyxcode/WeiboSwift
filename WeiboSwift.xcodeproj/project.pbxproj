@@ -13,7 +13,6 @@
 		040F1F311E232DA2008BB5E8 /* WeiboSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040F1F301E232DA2008BB5E8 /* WeiboSwiftTests.swift */; };
 		040F1F3C1E232DA2008BB5E8 /* WeiboSwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040F1F3B1E232DA2008BB5E8 /* WeiboSwiftUITests.swift */; };
 		047F7DA91E2332B70042B2FF /* WBMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047F7DA81E2332B70042B2FF /* WBMainViewController.swift */; };
-		047F7DAB1E2332EB0042B2FF /* WBHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047F7DAA1E2332EB0042B2FF /* WBHomeViewController.swift */; };
 		047F7DAD1E2332F30042B2FF /* WBMeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047F7DAC1E2332F30042B2FF /* WBMeViewController.swift */; };
 		047F7DB11E2334740042B2FF /* NSObject+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047F7DAF1E2334740042B2FF /* NSObject+Extension.swift */; };
 		047F7DB21E2334740042B2FF /* Bundle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047F7DB01E2334740042B2FF /* Bundle+Extension.swift */; };
@@ -21,6 +20,12 @@
 		047F7DB91E2363910042B2FF /* WBMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047F7DB81E2363910042B2FF /* WBMessageViewController.swift */; };
 		047F7DBD1E23640D0042B2FF /* WBDiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047F7DBC1E23640D0042B2FF /* WBDiscoverViewController.swift */; };
 		047F7DBF1E2368ED0042B2FF /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047F7DBE1E2368ED0042B2FF /* UIImage+Extension.swift */; };
+		04EBC5001E24D4E8007A3E13 /* WBBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EBC4FF1E24D4E8007A3E13 /* WBBaseViewController.swift */; };
+		04EBC5021E24D938007A3E13 /* WBHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EBC5011E24D938007A3E13 /* WBHomeViewController.swift */; };
+		04EBC5051E24DCFB007A3E13 /* WBNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EBC5041E24DCFB007A3E13 /* WBNavigationViewController.swift */; };
+		04EBC5071E24DD1A007A3E13 /* WBDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EBC5061E24DD1A007A3E13 /* WBDemoViewController.swift */; };
+		04EBC5091E24DE88007A3E13 /* UIBarButtonItem+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EBC5081E24DE88007A3E13 /* UIBarButtonItem+Extension.swift */; };
+		04EBC50B1E24E7CC007A3E13 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EBC50A1E24E7CC007A3E13 /* UIColor+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,7 +58,6 @@
 		040F1F3B1E232DA2008BB5E8 /* WeiboSwiftUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeiboSwiftUITests.swift; sourceTree = "<group>"; };
 		040F1F3D1E232DA2008BB5E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		047F7DA81E2332B70042B2FF /* WBMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBMainViewController.swift; sourceTree = "<group>"; };
-		047F7DAA1E2332EB0042B2FF /* WBHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBHomeViewController.swift; sourceTree = "<group>"; };
 		047F7DAC1E2332F30042B2FF /* WBMeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBMeViewController.swift; sourceTree = "<group>"; };
 		047F7DAF1E2334740042B2FF /* NSObject+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+Extension.swift"; sourceTree = "<group>"; };
 		047F7DB01E2334740042B2FF /* Bundle+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+Extension.swift"; sourceTree = "<group>"; };
@@ -63,6 +67,12 @@
 		047F7DB81E2363910042B2FF /* WBMessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBMessageViewController.swift; sourceTree = "<group>"; };
 		047F7DBC1E23640D0042B2FF /* WBDiscoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBDiscoverViewController.swift; sourceTree = "<group>"; };
 		047F7DBE1E2368ED0042B2FF /* UIImage+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
+		04EBC4FF1E24D4E8007A3E13 /* WBBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBBaseViewController.swift; sourceTree = "<group>"; };
+		04EBC5011E24D938007A3E13 /* WBHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBHomeViewController.swift; sourceTree = "<group>"; };
+		04EBC5041E24DCFB007A3E13 /* WBNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBNavigationViewController.swift; sourceTree = "<group>"; };
+		04EBC5061E24DD1A007A3E13 /* WBDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBDemoViewController.swift; sourceTree = "<group>"; };
+		04EBC5081E24DE88007A3E13 /* UIBarButtonItem+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Extension.swift"; sourceTree = "<group>"; };
+		04EBC50A1E24E7CC007A3E13 /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,10 +125,13 @@
 			children = (
 				040F1F1B1E232DA1008BB5E8 /* AppDelegate.swift */,
 				047F7DA81E2332B70042B2FF /* WBMainViewController.swift */,
-				047F7DAA1E2332EB0042B2FF /* WBHomeViewController.swift */,
+				04EBC5011E24D938007A3E13 /* WBHomeViewController.swift */,
 				047F7DB81E2363910042B2FF /* WBMessageViewController.swift */,
 				047F7DBC1E23640D0042B2FF /* WBDiscoverViewController.swift */,
 				047F7DAC1E2332F30042B2FF /* WBMeViewController.swift */,
+				04EBC4FF1E24D4E8007A3E13 /* WBBaseViewController.swift */,
+				04EBC5041E24DCFB007A3E13 /* WBNavigationViewController.swift */,
+				04EBC5061E24DD1A007A3E13 /* WBDemoViewController.swift */,
 				047F7DB31E235D960042B2FF /* Addtions */,
 				047F7DAE1E2334640042B2FF /* Extension */,
 				040F1F221E232DA1008BB5E8 /* Assets.xcassets */,
@@ -149,9 +162,11 @@
 		047F7DAE1E2334640042B2FF /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				04EBC50A1E24E7CC007A3E13 /* UIColor+Extension.swift */,
 				047F7DAF1E2334740042B2FF /* NSObject+Extension.swift */,
 				047F7DB01E2334740042B2FF /* Bundle+Extension.swift */,
 				047F7DBE1E2368ED0042B2FF /* UIImage+Extension.swift */,
+				04EBC5081E24DE88007A3E13 /* UIBarButtonItem+Extension.swift */,
 			);
 			name = Extension;
 			sourceTree = "<group>";
@@ -176,6 +191,7 @@
 				040F1F141E232DA1008BB5E8 /* Sources */,
 				040F1F151E232DA1008BB5E8 /* Frameworks */,
 				040F1F161E232DA1008BB5E8 /* Resources */,
+				04EBC5031E24DAAB007A3E13 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -296,6 +312,22 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		04EBC5031E24DAAB007A3E13 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "TAGS=\"TODO:|FIXME:\"\necho \"searching ${SRCROOT} for ${TAGS}\"\nfind \"${SRCROOT}\" \\( -name \"*.swift\" \\) -print0 | xargs -0 egrep --with-filename --line-number --only-matching \"($TAGS).*\\$\" | perl -p -e \"s/($TAGS)/ warning: \\$1/\"";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		040F1F141E232DA1008BB5E8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -304,13 +336,18 @@
 				047F7DB11E2334740042B2FF /* NSObject+Extension.swift in Sources */,
 				047F7DB71E235DE70042B2FF /* UIView+YYAdd.m in Sources */,
 				047F7DBD1E23640D0042B2FF /* WBDiscoverViewController.swift in Sources */,
+				04EBC5021E24D938007A3E13 /* WBHomeViewController.swift in Sources */,
+				04EBC5071E24DD1A007A3E13 /* WBDemoViewController.swift in Sources */,
+				04EBC5001E24D4E8007A3E13 /* WBBaseViewController.swift in Sources */,
 				047F7DB21E2334740042B2FF /* Bundle+Extension.swift in Sources */,
 				040F1F1C1E232DA1008BB5E8 /* AppDelegate.swift in Sources */,
 				047F7DAD1E2332F30042B2FF /* WBMeViewController.swift in Sources */,
+				04EBC50B1E24E7CC007A3E13 /* UIColor+Extension.swift in Sources */,
 				047F7DB91E2363910042B2FF /* WBMessageViewController.swift in Sources */,
+				04EBC5091E24DE88007A3E13 /* UIBarButtonItem+Extension.swift in Sources */,
 				047F7DBF1E2368ED0042B2FF /* UIImage+Extension.swift in Sources */,
+				04EBC5051E24DCFB007A3E13 /* WBNavigationViewController.swift in Sources */,
 				047F7DA91E2332B70042B2FF /* WBMainViewController.swift in Sources */,
-				047F7DAB1E2332EB0042B2FF /* WBHomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

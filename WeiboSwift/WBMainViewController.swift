@@ -30,6 +30,7 @@ class WBMainViewController: UITabBarController {
     }
     
     
+    
     @objc private func composeStatus() {
     print("click")
     }
@@ -81,8 +82,19 @@ class WBMainViewController: UITabBarController {
         //        vc.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.orange], for: .highlighted)
         //        vc.tabBarItem.setTitleTextAttributes([NSFontAttributeName: UIFont.systemFont(ofSize: 18)], for: UIControlState(rawValue: 0))
         
-        let nav = UINavigationController(rootViewController: vc)
+        let nav = WBNavigationViewController(rootViewController: vc)
         return nav
-        
+    }
+    
+    
+    /*
+ portrait   :竖屏，肖像
+     landscape     :横屏，风景画
+     －代码控制设备的方向，可以再需要横屏的时候单独处理
+     －设置支持的方向后，当前的控制器及子控制权都会遵守这个方向
+     －视频播放通常是通过 modal 展现的
+ */
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .portrait
     }
 }
