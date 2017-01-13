@@ -47,35 +47,44 @@ class WBMainViewController: UITabBarController {
     }
     
     private func setupControllers() {
-        let array = [["className":"WBHomeViewController","title":"首页","imageName":"home"],
-                     ["className":"WBMessageViewController","title":"消息","imageName":"message_center"],
+        let array = [["className":"WBHomeViewController","title":"首页","imageName":"home",
+                      "visitorInfo":["imageName":"", "message": "关注一些人，回这里看看有什么惊喜"]],
+                     ["className":"WBMessageViewController","title":"消息","imageName":"message_center","visitorInfo":["imageName":"visitordiscover_image_message", "message": "登录后，别人评论你的微博，发给你的消息，都会在这里收到通知"]],
                      ["className":"UIViewController"],
-                     ["className":"WBDiscoverViewController","title":"发现","imageName":"discover"],
-                     ["className":"WBMeViewController","title":"我","imageName":"profile"],
+                     ["className":"WBDiscoverViewController","title":"发现","imageName":"discover",
+                      "visitorInfo":["imageName":"visitordiscover_image_message", "message": "登录后，最新、最热微博尽在掌握，不再会与实事潮流擦肩而过"]],
+                     ["className":"WBMeViewController","title":"我","imageName":"profile",
+                      "visitorInfo":["imageName":"visitordiscover_image_profile", "message": "登录后，你的微博、相册、个人资料会显示在这里，展示给别人"]],
                      ]
+        
+        (array as NSArray).write(toFile: "/Users/mac/Desktop/demo.plist", atomically: true)
         
         var arrayM = [UIViewController]()
         
         for dict in array {
-            arrayM.append(controller(dict: dict))
+            arrayM.append(controller(dict: dict as [String : AnyObject]))
         }
         
         viewControllers = arrayM
     }
     
-    private func controller(dict: [String: String]) -> UIViewController {
+    private func controller(dict: [String: AnyObject]) -> UIViewController {
         
-        guard let className = dict["className"],
-            let vcClass = ClassFromString(classString: className as NSString?) as? UIViewController.Type,
-            let title = dict["title"],
-            let imageName = dict["imageName"]
-            
+        guard let className = dict["className"] as? String,
+            let vcClass = ClassFromString(classString: className as NSString?) as? WBBaseViewController.Type,
+            let title = dict["title"] as? String,
+            let imageName = dict["imageName"] as? String,
+        let visitorDict = dict["visitorInfo"] as? [String: String]
+        
             else {
                 return UIViewController()
         }
         
         let vc = vcClass.init()
         vc.title = title
+        
+        vc.visitorInfoDictionary = visitorDict
+        
         vc.tabBarItem.image = UIImage(named: "tabbar_" + imageName)
         vc.tabBarItem.selectedImage = UIImage(named: "tabbar_" + imageName + "_selected")?.withRenderingMode(.alwaysOriginal)
         
