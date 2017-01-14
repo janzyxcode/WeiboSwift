@@ -16,8 +16,11 @@ class WBDemoViewController: WBBaseViewController {
         setUpViews()
         
         view.backgroundColor = UIColor.blue
-        title = "title" + "\(navigationController?.childViewControllers.count)"
         
+        guard let count = navigationController?.childViewControllers.count else {
+            return
+        }
+        title = "第" + "\(count)" + "个"
         
     }
     
@@ -37,8 +40,7 @@ extension WBDemoViewController {
     override func setUpViews() {
         super.setUpViews()
 
-        
-        navItem.rightBarButtonItem = UIBarButtonItem(title: "下一个", target: self, action: #selector(showNext))
+        navItem.rightBarButtonItems = UIBarButtonItem.fixtedSpace(title: "下一个", target: self, action: #selector(showNext))
     }
 }
 

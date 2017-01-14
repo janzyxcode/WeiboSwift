@@ -23,10 +23,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window?.makeKeyAndVisible()
         
+//        loadAppInfo()
+        
         return true
     }
+}
 
-  
 
+extension AppDelegate {
+    //FIXME:加上 private 就不能访问了
+    func loadAppInfo() {
+        
+//        DispatchQueue.global().async {
+//            
+//            let url = Bundle.main.url(forResource: "main.json", withExtension: nil)
+//            let data = NSData(contentsOf: url!)
+//            let docDict = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+//            let jsonPath = (docDict as NSString).appendingPathComponent("main.json")
+//            data?.write(toFile: jsonPath, atomically: true)
+//            print(jsonPath)
+//            
+//        }
+    }
+    
 }
 

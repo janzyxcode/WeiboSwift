@@ -41,6 +41,29 @@ class WBBaseViewController: UIViewController {
             navItem.title = title
         }
     }
+    
+    deinit {
+        print(self)
+    }
+}
+
+
+extension WBBaseViewController {
+    
+    //FIXME: 使用 private 其他 extension 就不能访问
+    @objc func login() {
+        print("login")
+    }
+    
+    @objc func register() {
+        print("register")
+    }
+    
+    // 加载数据 － 具体的实现由子类负责
+    @objc func loadData() {
+        // 如果子类不实现任何方法， 默认关闭
+        refreshControl?.endRefreshing()
+    }
 }
 
 
@@ -48,12 +71,11 @@ class WBBaseViewController: UIViewController {
 // 1. extension 中不能有属性
 // 1. extension 中不能重写父类方法！重写父类方法，是子类的职责，扩展是对类的扩展
 
-
 extension WBBaseViewController {
     
     func setUpViews() {
         
-        view.backgroundColor = UIColor.red
+        view.backgroundColor = UIColor.white
         
         // 取消自动缩进 - 如果隐藏了导航栏，会缩进 20 个点
         automaticallyAdjustsScrollViewInsets = false
@@ -80,33 +102,38 @@ extension WBBaseViewController {
     
     
     func setupVisitorView() {
+        
+        guard let visitorDict = visitorInfoDictionary else {
+            return
+        }
+        
         let visitorView = WBVisitorView(frame: view.bounds);
-        
         view.insertSubview(visitorView, belowSubview: navigationBar)
+        visitorView.visitorInfo = visitorDict
+     
         
-        visitorView.visitorInfo = visitorInfoDictionary
+        // 使用代理 传递消息是为了在控制器和视图之间解耦，让视图能够被多个控制器服用， 例如 UITableView
+        // 但是，如果视图仅仅只是为了封装代码，而从控制器中剥离出来的，并且能够确定该视图不会被其他控制器引用，则可以直接通过 addTarget 的方式为该视图中的按钮添加监听方法
+        // 这样做的代价是耦合度高，控制器和视图绑定在一起，但是会省略部分冗余代码
+        visitorView.loginButton.addTarget(self, action: #selector(login), for: .touchUpInside)
+        visitorView.registerButton.addTarget(self, action: #selector(register), for: .touchUpInside)
         
+        
+        
+        navItem.leftBarButtonItems = UIBarButtonItem.fixtedSpace(title: "注册", target: self, action: #selector(register))
+        navItem.rightBarButtonItems = UIBarButtonItem.fixtedSpace(title: "登录", target: self, action: #selector(login))
     }
     
     
     //FIXME: private为什么报错
     func setupNavigationBar() {
         
-        
         view.addSubview(navigationBar)
         navigationBar.items = [navItem]
        // 设置navBar的渲染颜色
         navigationBar.barTintColor = UIColor.ColorHex(hex: "F6F6F6")
         navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.darkGray]
-    }
-    
-    
-    // 加载数据 － 具体的实现由子类负责
-    @objc func loadData() {
-      
-        // 如果子类不实现任何方法， 默认关闭
-        refreshControl?.endRefreshing()
-        
+        navigationBar.tintColor = UIColor.orange
     }
 }
 
@@ -118,11 +145,13 @@ extension WBBaseViewController:UITableViewDelegate,UITableViewDataSource {
         return 0
     }
     
+    
     // 基类只是准备方法，子类负责具体的实现，子类的数据源方法不需要 super
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // 只是保证没有语法错误
         return UITableViewCell()
     }
+    
     
     // 在显示最后一行的时候，做上拉刷新
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -131,6 +160,7 @@ extension WBBaseViewController:UITableViewDelegate,UITableViewDataSource {
         let row = indexPath.row
         
         let section = tableView.numberOfSections - 1
+        
         
         if row < 0 || section < 0 {
             return
@@ -147,8 +177,6 @@ extension WBBaseViewController:UITableViewDelegate,UITableViewDataSource {
             loadData()
             
         }
-        
-        
     }
 }
 

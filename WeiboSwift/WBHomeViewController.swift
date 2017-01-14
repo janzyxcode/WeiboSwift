@@ -80,8 +80,7 @@ extension WBHomeViewController {
     override func setUpViews() {
         super.setUpViews()
         
-        navItem.leftBarButtonItem = UIBarButtonItem(title: "好友", target: self, action: #selector(showFriends))
-        
+        navItem.leftBarButtonItems = UIBarButtonItem.fixtedSpace(title: "好友", target: self, action: #selector(showFriends))
         tableView?.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
     }
 }

@@ -27,6 +27,7 @@
 		04EBC5071E24DD1A007A3E13 /* WBDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EBC5061E24DD1A007A3E13 /* WBDemoViewController.swift */; };
 		04EBC5091E24DE88007A3E13 /* UIBarButtonItem+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EBC5081E24DE88007A3E13 /* UIBarButtonItem+Extension.swift */; };
 		04EBC50B1E24E7CC007A3E13 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EBC50A1E24E7CC007A3E13 /* UIColor+Extension.swift */; };
+		04FA30E41E29C1A8002F6151 /* main.json in Resources */ = {isa = PBXBuildFile; fileRef = 04FA30E31E29C1A8002F6151 /* main.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		04EBC5061E24DD1A007A3E13 /* WBDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBDemoViewController.swift; sourceTree = "<group>"; };
 		04EBC5081E24DE88007A3E13 /* UIBarButtonItem+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Extension.swift"; sourceTree = "<group>"; };
 		04EBC50A1E24E7CC007A3E13 /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		04FA30E31E29C1A8002F6151 /* main.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = main.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,14 +128,15 @@
 			isa = PBXGroup;
 			children = (
 				040F1F1B1E232DA1008BB5E8 /* AppDelegate.swift */,
+				04FA30E31E29C1A8002F6151 /* main.json */,
 				04EBC5011E24D938007A3E13 /* WBHomeViewController.swift */,
 				04EBC4FF1E24D4E8007A3E13 /* WBBaseViewController.swift */,
 				04EB351C1E28CFBF0069D2C4 /* WBVisitorView.swift */,
+				04EBC5061E24DD1A007A3E13 /* WBDemoViewController.swift */,
 				04EB351B1E28B93E0069D2C4 /* Base */,
 				04EB351A1E28B9360069D2C4 /* Me */,
 				04EB35191E28B92B0069D2C4 /* Discover */,
 				04EB35181E28B9230069D2C4 /* Message */,
-				04EBC5061E24DD1A007A3E13 /* WBDemoViewController.swift */,
 				047F7DB31E235D960042B2FF /* Addtions */,
 				047F7DAE1E2334640042B2FF /* Extension */,
 				040F1F221E232DA1008BB5E8 /* Assets.xcassets */,
@@ -327,6 +330,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				040F1F261E232DA1008BB5E8 /* LaunchScreen.storyboard in Resources */,
+				04FA30E41E29C1A8002F6151 /* main.json in Resources */,
 				040F1F231E232DA1008BB5E8 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -30,8 +30,7 @@ class WBNavigationViewController: UINavigationController {
                     title = childViewControllers.first?.title ?? "返回"
                 }
                 
-                vc.navItem.leftBarButtonItem = UIBarButtonItem(title: title, target: self, action: #selector(popToParent), isBack: true)
-                
+                vc.navItem.leftBarButtonItems = UIBarButtonItem.fixtedSpace(title: title, target: self, action: #selector(popToParent), isBack: true)
             }
         }
         

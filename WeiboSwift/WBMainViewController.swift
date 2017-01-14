@@ -32,8 +32,9 @@ class WBMainViewController: UITabBarController {
     
     
     @objc private func composeStatus() {
-    print("click")
+        print("click")
     }
+    
     
     private func setupComposeButton() {
         tabBar.addSubview(composeButton)
@@ -47,21 +48,30 @@ class WBMainViewController: UITabBarController {
     }
     
     private func setupControllers() {
-        let array = [["className":"WBHomeViewController","title":"首页","imageName":"home",
-                      "visitorInfo":["imageName":"", "message": "关注一些人，回这里看看有什么惊喜"]],
-                     ["className":"WBMessageViewController","title":"消息","imageName":"message_center","visitorInfo":["imageName":"visitordiscover_image_message", "message": "登录后，别人评论你的微博，发给你的消息，都会在这里收到通知"]],
-                     ["className":"UIViewController"],
-                     ["className":"WBDiscoverViewController","title":"发现","imageName":"discover",
-                      "visitorInfo":["imageName":"visitordiscover_image_message", "message": "登录后，最新、最热微博尽在掌握，不再会与实事潮流擦肩而过"]],
-                     ["className":"WBMeViewController","title":"我","imageName":"profile",
-                      "visitorInfo":["imageName":"visitordiscover_image_profile", "message": "登录后，你的微博、相册、个人资料会显示在这里，展示给别人"]],
-                     ]
         
-        (array as NSArray).write(toFile: "/Users/mac/Desktop/demo.plist", atomically: true)
+        // 沙盒
+        let docDict = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+        let jsonPath = (docDict as NSString).appendingPathComponent("main.json")
+        var data = NSData(contentsOfFile: jsonPath)
+        
+        // 如果沙盒中没有该文件，就从 Bundle 加载 data
+        if data == nil {
+            let path = Bundle.main.path(forResource: "main.json", ofType: nil)
+            data = NSData(contentsOfFile: path!)
+            
+        }
+        
+
+        guard let array = try? JSONSerialization.jsonObject(with: data as! Data, options: []) as? [[String: AnyObject]] else {
+                return
+        }
+        
+        
+        
         
         var arrayM = [UIViewController]()
         
-        for dict in array {
+        for dict in array! {
             arrayM.append(controller(dict: dict as [String : AnyObject]))
         }
         
@@ -74,8 +84,8 @@ class WBMainViewController: UITabBarController {
             let vcClass = ClassFromString(classString: className as NSString?) as? WBBaseViewController.Type,
             let title = dict["title"] as? String,
             let imageName = dict["imageName"] as? String,
-        let visitorDict = dict["visitorInfo"] as? [String: String]
-        
+            let visitorDict = dict["visitorInfo"] as? [String: String]
+            
             else {
                 return UIViewController()
         }
@@ -88,8 +98,9 @@ class WBMainViewController: UITabBarController {
         vc.tabBarItem.image = UIImage(named: "tabbar_" + imageName)
         vc.tabBarItem.selectedImage = UIImage(named: "tabbar_" + imageName + "_selected")?.withRenderingMode(.alwaysOriginal)
         
-        //        vc.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.orange], for: .highlighted)
-        //        vc.tabBarItem.setTitleTextAttributes([NSFontAttributeName: UIFont.systemFont(ofSize: 18)], for: UIControlState(rawValue: 0))
+        vc.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.orange], for: .selected)
+        vc.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.darkGray], for: .normal)
+//        vc.tabBarItem.setTitleTextAttributes([NSFontAttributeName: UIFont.systemFont(ofSize: 18)], for: UIControlState(rawValue: 0))
         
         let nav = WBNavigationViewController(rootViewController: vc)
         return nav
@@ -97,12 +108,12 @@ class WBMainViewController: UITabBarController {
     
     
     /*
- portrait   :竖屏，肖像
+     portrait   :竖屏，肖像
      landscape     :横屏，风景画
      －代码控制设备的方向，可以再需要横屏的时候单独处理
      －设置支持的方向后，当前的控制器及子控制权都会遵守这个方向
      －视频播放通常是通过 modal 展现的
- */
+     */
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .portrait
     }
