@@ -41,7 +41,7 @@ extension UIBarButtonItem {
     
     class func fixtedSpace(title: String, fontSize: CGFloat = 16, target: AnyObject? ,action: Selector, isBack: Bool = false) -> [UIBarButtonItem] {
         let negativeSpacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
-        negativeSpacer.width = -10
+        negativeSpacer.width = -8
         return [negativeSpacer,UIBarButtonItem(title: title, fontSize: fontSize, target: target, action: action, isBack: isBack)]
     }
     

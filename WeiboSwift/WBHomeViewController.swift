@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import AFNetworking
 // 定义全局常量，尽量使用私有属性修饰，否则到处都可以访问
 private let cellId = "cellId"
 
@@ -20,7 +20,7 @@ class WBHomeViewController: WBBaseViewController {
     
     override func loadData() {
         
-        print("start")
+
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
             
@@ -36,12 +36,8 @@ class WBHomeViewController: WBBaseViewController {
             
             self.isPullup = false
             
-            print("fresh")
             self.tableView?.reloadData()
         }
-        
-        
-        
         
     }
     
@@ -50,15 +46,21 @@ class WBHomeViewController: WBBaseViewController {
         super.viewDidLoad()
         
         setUpViews()
+
+        let request = WBNetworkManager()
+        request.statusList { (_, _) in
+            
+        }
         
     }
     
     //FIXME:为什么不能加 private
     @objc func showFriends() {
         print(#function)
-        
+       
         let vc = WBDemoViewController()
         navigationController?.pushViewController(vc, animated: true)
+        
         
     }
 }
