@@ -6,7 +6,7 @@ use_frameworks!
 pod "AFNetworking"
 pod "pop"
 #pod "SDWebImage"
-#pod "YYModel"
+pod "YYModel"
 #pod "FMDB"
 #pod "SVProgressHUD"
 

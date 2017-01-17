@@ -28,6 +28,14 @@ class WBNetworkManager: AFHTTPSessionManager {
     var accessToken: String? = "2.002gxCKGBNN9YD26297f2843WEyCAE"
     
     
+    
+    /// <#Description#>
+    ///
+    /// - Parameters:
+    ///   - method: <#method description#>
+    ///   - URLString: <#URLString description#>
+    ///   - parameters: <#parameters description#>
+    ///   - completion: <#completion description#>
     func tokenRequest(method: WBHTTPMethod = .GET, URLString: String, parameters: [String: AnyObject]?, completion: @escaping (_ json: AnyObject?, _ isSuccess: Bool)->()) {
         
         guard let token = accessToken else {
@@ -46,6 +54,15 @@ class WBNetworkManager: AFHTTPSessionManager {
     }
     
     
+    
+    
+    /// <#Description#>
+    ///
+    /// - Parameters:
+    ///   - method: <#method description#>
+    ///   - URLString: <#URLString description#>
+    ///   - parameters: <#parameters description#>
+    ///   - completion: <#completion description#>
     func request(method: WBHTTPMethod = .GET, URLString: String, parameters: [String: AnyObject], completion:@escaping (_ json: AnyObject?, _ isSuccess: Bool)->()) {
         
         let success = { (task: URLSessionDataTask, json: Any?)->() in

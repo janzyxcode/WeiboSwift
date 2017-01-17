@@ -15,30 +15,20 @@ private let cellId = "cellId"
 class WBHomeViewController: WBBaseViewController {
     
     //FIXME: 加了private 后 extension不能访问到了
-    lazy var statusList = [String]()
+    lazy var listViewModel = WBStatusListViewModel()
     
     
     override func loadData() {
         
-
+        print("last text  \(self.listViewModel.statusList.last?.text)")
         
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
-            
-            for i in 0..<15 {
-                if self.isPullup {
-                    self.statusList.append("shangla + \(i)")
-                }else {
-                    self.statusList.insert(i.description, at: 0)
-                }
-            }
+        listViewModel.loadStatus(pullup: self.isPullup) { (isSuccess) in
             
             self.refreshControl?.endRefreshing()
-            
             self.isPullup = false
-            
             self.tableView?.reloadData()
+            
         }
-        
     }
     
     
@@ -46,7 +36,7 @@ class WBHomeViewController: WBBaseViewController {
         super.viewDidLoad()
         
         setUpViews()
-
+        
         let request = WBNetworkManager()
         request.statusList { (_, _) in
             
@@ -57,7 +47,7 @@ class WBHomeViewController: WBBaseViewController {
     //FIXME:为什么不能加 private
     @objc func showFriends() {
         print(#function)
-       
+        
         let vc = WBDemoViewController()
         navigationController?.pushViewController(vc, animated: true)
         
@@ -68,12 +58,12 @@ class WBHomeViewController: WBBaseViewController {
 
 extension WBHomeViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return statusList.count
+        return listViewModel.statusList.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
-        cell.textLabel?.text = self.statusList[indexPath.row]
+        cell.textLabel?.text = self.listViewModel.statusList[indexPath.row].text
         return cell
     }
 }

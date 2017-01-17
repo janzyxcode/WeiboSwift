@@ -15,7 +15,7 @@ import UIKit
 class WBBaseViewController: UIViewController {
 
     // 用户登录标记
-    var userLogin = false
+    var userLogin = true
     
     var tableView: UITableView?
     
