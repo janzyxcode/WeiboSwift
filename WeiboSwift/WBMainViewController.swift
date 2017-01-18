@@ -8,9 +8,10 @@
 
 import UIKit
 
-class WBMainViewController: UITabBarController {
+class WBMainViewController: UITabBarController,UITabBarControllerDelegate {
     
-    private lazy var composeButton: UIButton = { ()->UIButton in
+    //FIXME:private
+    lazy var composeButton: UIButton = { ()->UIButton in
         let btn = UIButton()
         btn.setBackgroundImage(UIImage(named:"common_button_orange"), for: .normal)
         btn.setBackgroundImage(UIImage(named:"common_button_orange_disable"), for: .highlighted)
@@ -22,13 +23,31 @@ class WBMainViewController: UITabBarController {
         return btn
     }()
     
+    var timer: Timer?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupControllers()
         self .setupComposeButton()
+        self.setupTimer()
+        delegate = self
+        
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(userLogin), name: NSNotification.Name(rawValue: WBUserShouldLoginNotification), object: nil)
+        
     }
     
+    func userLogin(n: Notification) {
+        let nav = UINavigationController(rootViewController: WBOAuthViewController())
+        present(nav, animated: true, completion: nil)
+    }
+    
+    deinit {
+        timer?.invalidate()
+        
+        NotificationCenter.default.removeObserver(self)
+    }
     
     
     @objc private func composeStatus() {
@@ -36,18 +55,85 @@ class WBMainViewController: UITabBarController {
     }
     
     
-    private func setupComposeButton() {
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        
+        let idx = (childViewControllers as NSArray).index(of: viewController)
+        if selectedIndex == 0 && idx == selectedIndex {
+            let nav = childViewControllers[0] as! UINavigationController
+            let vc = nav.childViewControllers[0] as! WBHomeViewController
+            
+            vc.tableView?.scrollToTop()
+            
+            // 刷新数据 － 增加延迟，保证表格先滚动到顶部再刷新
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1, execute: { 
+                vc.loadData()
+            })
+        }
+        
+        return !viewController.isMember(of: UIViewController.self)
+        
+        /*
+        isKindOfClass和isMemberOfClass之间的区别是：
+        我们可以使用isKindOfClass来确定一个对象是否是一个类的实例，或者是该类祖先类的实例。
+        isMemberOfClass只能用来判断前者，不能用来判断后者。
+        
+        可以说：isMemberOfClass不能检测任何的类都是基于NSObject类这一事实，而isKindOfClass可以
+        */
+    }
+   
+    
+    /*
+     portrait   :竖屏，肖像
+     landscape     :横屏，风景画
+     －代码控制设备的方向，可以再需要横屏的时候单独处理
+     －设置支持的方向后，当前的控制器及子控制权都会遵守这个方向
+     －视频播放通常是通过 modal 展现的
+     */
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .portrait
+    }
+}
+
+
+extension WBMainViewController {
+
+    func setupTimer() {
+        timer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+    }
+    
+    @objc func updateTimer() {
+        
+        if !WBNetworkManager.shared.userLogon {
+            return
+        }
+        
+        WBNetworkManager.shared.unreadCount { (count) in
+            print("count-\(count)")
+            self.tabBar.items?[0].badgeValue = count > 0 ? "\(count)" : nil
+            
+            // 授权才能显示
+            UIApplication.shared.applicationIconBadgeNumber = count
+        }
+    }
+}
+
+
+// extension 类似于 OC 中的分类，在Swift中还可以用来切分代码块
+//可以把相近似功能的函数，放在一个 extension中，便于代码维护
+//  和 OC 的分类一样，extension中不能定义属性
+extension WBMainViewController {
+    
+    func setupComposeButton() {
         tabBar.addSubview(composeButton)
         
         let count = CGFloat(childViewControllers.count)
-        let width = tabBar.bounds.width / count - 1
+        let width = tabBar.bounds.width / count
         
         composeButton.frame = tabBar.bounds.insetBy(dx: 2 * width, dy: 0)
         
-        
     }
     
-    private func setupControllers() {
+    func setupControllers() {
         
         // 沙盒
         let docDict = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
@@ -61,9 +147,9 @@ class WBMainViewController: UITabBarController {
             
         }
         
-
+        
         guard let array = try? JSONSerialization.jsonObject(with: data as! Data, options: []) as? [[String: AnyObject]] else {
-                return
+            return
         }
         
         
@@ -100,21 +186,10 @@ class WBMainViewController: UITabBarController {
         
         vc.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.orange], for: .selected)
         vc.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.darkGray], for: .normal)
-//        vc.tabBarItem.setTitleTextAttributes([NSFontAttributeName: UIFont.systemFont(ofSize: 18)], for: UIControlState(rawValue: 0))
+        //        vc.tabBarItem.setTitleTextAttributes([NSFontAttributeName: UIFont.systemFont(ofSize: 18)], for: UIControlState(rawValue: 0))
         
         let nav = WBNavigationViewController(rootViewController: vc)
         return nav
     }
-    
-    
-    /*
-     portrait   :竖屏，肖像
-     landscape     :横屏，风景画
-     －代码控制设备的方向，可以再需要横屏的时候单独处理
-     －设置支持的方向后，当前的控制器及子控制权都会遵守这个方向
-     －视频播放通常是通过 modal 展现的
-     */
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return .portrait
-    }
 }
+

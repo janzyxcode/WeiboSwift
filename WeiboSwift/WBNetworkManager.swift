@@ -19,23 +19,23 @@ enum WBHTTPMethod {
 
 class WBNetworkManager: AFHTTPSessionManager {
     
+    //FIXME:单例对网络的好处
     
     // 静态区／常量／闭包
     // 第一次访问时，执行闭包，并且将结果保存在 shared 常量中
     
     static let shared = WBNetworkManager()
     
-    var accessToken: String? = "2.002gxCKGBNN9YD26297f2843WEyCAE"
+    var accessToken: String? //= "2.002gxCKGBNN9YD26297f2843WEyCAE"
+    
+    var uid: String? = "3257517883"
+    
+    var userLogon: Bool {
+        return accessToken != nil
+    }
     
     
-    
-    /// <#Description#>
-    ///
-    /// - Parameters:
-    ///   - method: <#method description#>
-    ///   - URLString: <#URLString description#>
-    ///   - parameters: <#parameters description#>
-    ///   - completion: <#completion description#>
+    /// 专门负责拼接 token 的网络请求方法
     func tokenRequest(method: WBHTTPMethod = .GET, URLString: String, parameters: [String: AnyObject]?, completion: @escaping (_ json: AnyObject?, _ isSuccess: Bool)->()) {
         
         guard let token = accessToken else {
@@ -50,6 +50,7 @@ class WBNetworkManager: AFHTTPSessionManager {
         }
         
         parameters!["access_token"] = token as AnyObject?
+        
         request(URLString: URLString, parameters: parameters!, completion: completion)
     }
     

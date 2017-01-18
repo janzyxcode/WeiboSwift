@@ -33,8 +33,13 @@ class WBBaseViewController: UIViewController {
         super.viewDidLoad()
 
         setUpViews()
+        
+        WBNetworkManager.shared.userLogon ? loadData() : ()
     }
 
+    deinit {
+        print(self)
+    }
     
     override var title: String? {
         didSet {
@@ -42,9 +47,12 @@ class WBBaseViewController: UIViewController {
         }
     }
     
-    deinit {
-        print(self)
+    // 加载数据 － 具体的实现由子类负责
+    func loadData() {
+        // 如果子类不实现任何方法， 默认关闭
+        refreshControl?.endRefreshing()
     }
+    
 }
 
 
@@ -53,18 +61,16 @@ extension WBBaseViewController {
     //FIXME: 使用 private 其他 extension 就不能访问
     @objc func login() {
         print("login")
+        
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: WBUserShouldLoginNotification), object: nil)
     }
     
     @objc func register() {
         print("register")
     }
-    
-    // 加载数据 － 具体的实现由子类负责
-    @objc func loadData() {
-        // 如果子类不实现任何方法， 默认关闭
-        refreshControl?.endRefreshing()
-    }
 }
+
+
 
 
 // Swift中，利用 extension 可以把 函数 按照功能分类管理，便于阅读和维护
@@ -82,7 +88,7 @@ extension WBBaseViewController {
         
         setupNavigationBar()
         
-        userLogin ?  setupTableView() : setupVisitorView()
+        (WBNetworkManager.shared.accessToken != nil) ?  setupTableView() : setupVisitorView()
         
     }
     
