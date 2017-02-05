@@ -14,6 +14,11 @@
 			<key>orderHint</key>
 			<integer>2</integer>
 		</dict>
+		<key>YYModel.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>4</integer>
+		</dict>
 		<key>pop.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -27,12 +32,47 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>09C1D965B53F77AAAD73AA936CFBACE2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>21ADFFDF5C4DC8C9C97DFC252C812332</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2797FB11043D32EC64F4AA7CDD5A30EB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4B95E4E4837CF9A4491C81BB1AF40AAC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>ABE7C8BE374EF8722DEF606D79FC5D64</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>AF836F22A02AAC3AEF2C6E9EC12B239A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CECBCE0D0EC58839D6E5294409B3ACC8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>CF671F7E57B92905F1CC91D036D6B4A7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E45115C04F39A133A82B4EB4BB0B98AA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
