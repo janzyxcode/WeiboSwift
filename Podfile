@@ -8,7 +8,7 @@ pod "pop"
 #pod "SDWebImage"
 pod "YYModel"
 #pod "FMDB"
-#pod "SVProgressHUD"
+pod "SVProgressHUD"
 
 #pod 'MJRefresh' , '~> 3.1.0'                  # 下拉刷新
 #pod 'MBProgressHUD', '~> 0.9.2'                # 加载提示

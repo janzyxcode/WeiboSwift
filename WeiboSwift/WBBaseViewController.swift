@@ -88,7 +88,7 @@ extension WBBaseViewController {
         
         setupNavigationBar()
         
-        (WBNetworkManager.shared.accessToken != nil) ?  setupTableView() : setupVisitorView()
+        (WBNetworkManager.shared.userAccount.access_token != nil) ?  setupTableView() : setupVisitorView()
         
     }
     

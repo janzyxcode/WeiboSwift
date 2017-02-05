@@ -34,6 +34,7 @@
 		04F81ADE1E2F385300A0DECB /* WeiboCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F81ADD1E2F385300A0DECB /* WeiboCommon.swift */; };
 		04F81AE01E2F3F0C00A0DECB /* WBOAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F81ADF1E2F3F0C00A0DECB /* WBOAuthViewController.swift */; };
 		04FA30E41E29C1A8002F6151 /* main.json in Resources */ = {isa = PBXBuildFile; fileRef = 04FA30E31E29C1A8002F6151 /* main.json */; };
+		56DB6B281E474D9800A551A7 /* WBUserAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56DB6B271E474D9700A551A7 /* WBUserAccount.swift */; };
 		92B612DEC031C8C61DA3C52F /* Pods_WeiboSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3258B37946EDF128A0824230 /* Pods_WeiboSwift.framework */; };
 /* End PBXBuildFile section */
 
@@ -92,6 +93,7 @@
 		04FA30E31E29C1A8002F6151 /* main.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = main.json; sourceTree = "<group>"; };
 		19845F93A62E2B7290C863F9 /* Pods-WeiboSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeiboSwift.release.xcconfig"; path = "Pods/Target Support Files/Pods-WeiboSwift/Pods-WeiboSwift.release.xcconfig"; sourceTree = "<group>"; };
 		3258B37946EDF128A0824230 /* Pods_WeiboSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeiboSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		56DB6B271E474D9700A551A7 /* WBUserAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBUserAccount.swift; sourceTree = "<group>"; };
 		CC33A2535664AD5F22ABF738 /* Pods-WeiboSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeiboSwift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WeiboSwift/Pods-WeiboSwift.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -237,6 +239,7 @@
 			isa = PBXGroup;
 			children = (
 				04E2E2D81E2C64D30015BCB6 /* WBNetworkManager.swift */,
+				56DB6B271E474D9700A551A7 /* WBUserAccount.swift */,
 				04E2E2DC1E2C76A10015BCB6 /* WBNetworkManager+Extension.swift */,
 				04F81ADD1E2F385300A0DECB /* WeiboCommon.swift */,
 			);
@@ -497,6 +500,7 @@
 				047F7DB11E2334740042B2FF /* NSObject+Extension.swift in Sources */,
 				047F7DB71E235DE70042B2FF /* UIView+YYAdd.m in Sources */,
 				04EB351D1E28CFBF0069D2C4 /* WBVisitorView.swift in Sources */,
+				56DB6B281E474D9800A551A7 /* WBUserAccount.swift in Sources */,
 				047F7DBD1E23640D0042B2FF /* WBDiscoverViewController.swift in Sources */,
 				04EBC5021E24D938007A3E13 /* WBHomeViewController.swift in Sources */,
 				04DDFC811E2DB48B009F778A /* WBStatus.swift in Sources */,

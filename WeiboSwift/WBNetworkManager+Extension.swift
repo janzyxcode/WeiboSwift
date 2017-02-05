@@ -35,7 +35,7 @@ extension WBNetworkManager {
     /// 微博未读数量
     func unreadCount(completion: @escaping (_ count: Int)->()) {
         
-        guard let uid = uid else {
+        guard let uid = userAccount.uid else {
             return
         }
         

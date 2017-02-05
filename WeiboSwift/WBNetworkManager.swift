@@ -24,21 +24,25 @@ class WBNetworkManager: AFHTTPSessionManager {
     // 静态区／常量／闭包
     // 第一次访问时，执行闭包，并且将结果保存在 shared 常量中
     
-    static let shared = WBNetworkManager()
+    static let shared : WBNetworkManager = {
+      
+        let instance = WBNetworkManager()
+        instance.responseSerializer.acceptableContentTypes?.insert("text/plain")
+        return instance
+        
+    }()
     
-    var accessToken: String? //= "2.002gxCKGBNN9YD26297f2843WEyCAE"
-    
-    var uid: String? = "3257517883"
+    lazy var userAccount = WBUserAccount()
     
     var userLogon: Bool {
-        return accessToken != nil
+        return userAccount.access_token != nil
     }
     
     
     /// 专门负责拼接 token 的网络请求方法
     func tokenRequest(method: WBHTTPMethod = .GET, URLString: String, parameters: [String: AnyObject]?, completion: @escaping (_ json: AnyObject?, _ isSuccess: Bool)->()) {
         
-        guard let token = accessToken else {
+        guard let token = userAccount.access_token else {
             completion(nil, false)
             return
         }
@@ -86,6 +90,28 @@ class WBNetworkManager: AFHTTPSessionManager {
             
         }else {
             post(URLString, parameters: parameters, progress: nil, success: success, failure: failure)
+        }
+    }
+}
+
+
+extension WBNetworkManager {
+    
+    func loadAccessToken(code: String) {
+        
+        let urlString = "https://api.weibo.com/oauth2/access_token"
+        let params = ["client_id": WBAppKey,
+                      "client_secret": WBAppSecret,
+                      "grant_type": "authorization_code",
+                      "code": code,
+                      "redirect_uri": WBRedirectURI]
+        request(method: .POST, URLString: urlString, parameters: params as [String : AnyObject]) { (json, isSuccess) in
+            
+            self.userAccount.yy_modelSet(with: (json as? [String: AnyObject]) ?? [:])
+            
+            print(json)
+            print(self.userAccount)
+            
         }
     }
 }

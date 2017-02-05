@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
         }
         
-        
+        print(isNewVersion)
         
         window = UIWindow()
         window?.backgroundColor = UIColor.white
@@ -57,6 +57,25 @@ extension AppDelegate {
         //            print(jsonPath)
         //            
         //        }
+    }
+    
+    var isNewVersion: Bool {
+        
+        let currentVerison = (Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String) ?? ""
+        
+        let libarayPaths = NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true)
+        
+        guard let libarayPath = libarayPaths.first else {
+            return true
+        }
+        
+        let versionPath = libarayPath + "/version"
+        
+        let cacheVersion = try? String(contentsOfFile: versionPath, encoding: .utf8)
+        
+        _ = try? currentVerison.write(toFile: versionPath, atomically: true, encoding: .utf8)
+        
+        return currentVerison != cacheVersion
     }
     
 }

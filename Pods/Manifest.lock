@@ -15,18 +15,21 @@ PODS:
   - AFNetworking/UIKit (3.0.4):
     - AFNetworking/NSURLSession
   - pop (1.0.9)
+  - SVProgressHUD (2.0.4)
   - YYModel (1.0.2)
 
 DEPENDENCIES:
   - AFNetworking
   - pop
+  - SVProgressHUD
   - YYModel
 
 SPEC CHECKSUMS:
   AFNetworking: a0075feb321559dc78d9d85b55d11caa19eabb93
   pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
+  SVProgressHUD: bfde85ed6c573ea802b9cb37894ed9b629034f1b
   YYModel: 7a467eff45ae3641c33efb136c262d33b6f48c1a
 
-PODFILE CHECKSUM: c1d5db018721f24f26b6a0d808181737d5bd6f1c
+PODFILE CHECKSUM: 2a2484b46e60e480c4b00f7369cf2f07ae5a8bc8
 
 COCOAPODS: 1.1.1

@@ -30,7 +30,7 @@ class WBMainViewController: UITabBarController,UITabBarControllerDelegate {
         
         setupControllers()
         self .setupComposeButton()
-        self.setupTimer()
+//        self.setupTimer()
         delegate = self
         
         
