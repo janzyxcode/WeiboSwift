@@ -43,9 +43,13 @@ class WBNetworkManager: AFHTTPSessionManager {
     func tokenRequest(method: WBHTTPMethod = .GET, URLString: String, parameters: [String: AnyObject]?, completion: @escaping (_ json: AnyObject?, _ isSuccess: Bool)->()) {
         
         guard let token = userAccount.access_token else {
+            
+            NotificationCenter.default.post(name: NSNotification.Name(WBUserShouldLoginNotification), object: nil)
+            
             completion(nil, false)
             return
         }
+        
         
         var parameters = parameters
         
@@ -79,6 +83,8 @@ class WBNetworkManager: AFHTTPSessionManager {
             
             if (task?.response as? HTTPURLResponse)?.statusCode == 403 {
                 print("token outtime")
+                
+                NotificationCenter.default.post(name: NSNotification.Name(WBUserShouldLoginNotification), object: nil)
             }
             
             completion(nil, false)
@@ -95,23 +101,4 @@ class WBNetworkManager: AFHTTPSessionManager {
 }
 
 
-extension WBNetworkManager {
-    
-    func loadAccessToken(code: String) {
-        
-        let urlString = "https://api.weibo.com/oauth2/access_token"
-        let params = ["client_id": WBAppKey,
-                      "client_secret": WBAppSecret,
-                      "grant_type": "authorization_code",
-                      "code": code,
-                      "redirect_uri": WBRedirectURI]
-        request(method: .POST, URLString: urlString, parameters: params as [String : AnyObject]) { (json, isSuccess) in
-            
-            self.userAccount.yy_modelSet(with: (json as? [String: AnyObject]) ?? [:])
-            
-            print(json)
-            print(self.userAccount)
-            
-        }
-    }
-}
+

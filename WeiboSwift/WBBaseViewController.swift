@@ -35,9 +35,12 @@ class WBBaseViewController: UIViewController {
         setUpViews()
         
         WBNetworkManager.shared.userLogon ? loadData() : ()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(loginSuccess), name: NSNotification.Name(WBUserLoginSuccessedNotification), object: nil)
     }
 
     deinit {
+        NotificationCenter.default.removeObserver(self)
         print(self)
     }
     
@@ -57,6 +60,21 @@ class WBBaseViewController: UIViewController {
 
 
 extension WBBaseViewController {
+    //FIXME:private
+    @objc func loginSuccess() {
+        print("loginSuccess")
+        
+        navItem.leftBarButtonItems = nil
+        navItem.rightBarButtonItems = nil
+        
+        // 更新UI => 将访客视图替换为表格视图
+        // 需要重新设置view
+        // 在访问 view 的 getter 时，如果 view == nil 会调用 loadView -> viewDidLoad
+        view = nil
+        
+        // 注销通知 -> 重新执行viewDidLoad 会再次注册，避免通知被重新注册
+        NotificationCenter.default.removeObserver(self)
+    }
     
     //FIXME: 使用 private 其他 extension 就不能访问
     @objc func login() {
@@ -100,6 +118,8 @@ extension WBBaseViewController {
         
         tableView?.contentInset = UIEdgeInsetsMake(navigationBar.bounds.height, 0, tabBarController?.tabBar.bounds.height ?? 49, 0)
         
+        // 修改指示器的缩进
+        tableView?.scrollIndicatorInsets = tableView!.contentInset
         
         refreshControl = UIRefreshControl()
         tableView?.addSubview(refreshControl!)

@@ -8,6 +8,9 @@
 
 import UIKit
 import UserNotifications
+import SVProgressHUD
+import AFNetworking
+import SVProgressHUD
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,15 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        if #available(iOS 10.0, *) {
-            UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .carPlay]) { (success, error) in
-                print("autorization:" + (success ? "success" : "failed"))
-            }
-        }else {
-            let notifySettings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
-            application.registerUserNotificationSettings(notifySettings)
-            
-        }
+        setupAdditions()
+        
+       
         
         print(isNewVersion)
         
@@ -42,6 +39,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
+extension AppDelegate {
+    
+    func setupAdditions() {
+        // 设置 SVP 最小解除时间
+        
+//        SVProgressHUD.setMinimumDismissTimeInterval(1)
+        
+        // 设置网络加载指示器
+        AFNetworkActivityIndicatorManager.shared().isEnabled = true
+        
+        if #available(iOS 10.0, *) {
+            UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .carPlay]) { (success, error) in
+                print("autorization:" + (success ? "success" : "failed"))
+            }
+        }else {
+            let notifySettings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+            UIApplication.shared.registerUserNotificationSettings(notifySettings)
+            
+        }
+    }
+}
 
 extension AppDelegate {
     //FIXME:加上 private 就不能访问了
@@ -59,6 +77,7 @@ extension AppDelegate {
         //        }
     }
     
+
     var isNewVersion: Bool {
         
         let currentVerison = (Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String) ?? ""

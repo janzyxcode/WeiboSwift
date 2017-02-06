@@ -74,5 +74,21 @@ extension WBHomeViewController {
         
         navItem.leftBarButtonItems = UIBarButtonItem.fixtedSpace(title: "好友", target: self, action: #selector(showFriends))
         tableView?.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
+        
+        setupNavTitle()
+    }
+    
+    private func setupNavTitle() {
+        
+        let title = WBNetworkManager.shared.userAccount.screen_name
+        
+        
+        let button = WBTitleButton(title: title)
+        button.addTarget(self, action: #selector(clickTitleButton(btn:)), for: .touchUpInside)
+        navItem.titleView = button
+    }
+    
+    @objc func clickTitleButton(btn: UIButton){
+        btn.isSelected = !btn.isSelected
     }
 }

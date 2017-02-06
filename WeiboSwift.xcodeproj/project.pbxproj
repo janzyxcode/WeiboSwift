@@ -11,6 +11,11 @@
 		040F1F231E232DA1008BB5E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 040F1F221E232DA1008BB5E8 /* Assets.xcassets */; };
 		040F1F311E232DA2008BB5E8 /* WeiboSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040F1F301E232DA2008BB5E8 /* WeiboSwiftTests.swift */; };
 		040F1F3C1E232DA2008BB5E8 /* WeiboSwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040F1F3B1E232DA2008BB5E8 /* WeiboSwiftUITests.swift */; };
+		0464B54C1E48492C00B939FF /* WBTitleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0464B54B1E48492C00B939FF /* WBTitleButton.swift */; };
+		0464B54E1E484D8700B939FF /* WBNewFeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0464B54D1E484D8700B939FF /* WBNewFeatureView.swift */; };
+		0464B5501E484D9300B939FF /* WBWelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0464B54F1E484D9300B939FF /* WBWelcomeView.swift */; };
+		0464B5521E48523300B939FF /* WBWelcomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0464B5511E48523300B939FF /* WBWelcomeView.xib */; };
+		0464B5541E485F3100B939FF /* WBNewFeatureView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0464B5531E485F3100B939FF /* WBNewFeatureView.xib */; };
 		047F7DA91E2332B70042B2FF /* WBMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047F7DA81E2332B70042B2FF /* WBMainViewController.swift */; };
 		047F7DAD1E2332F30042B2FF /* WBMeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047F7DAC1E2332F30042B2FF /* WBMeViewController.swift */; };
 		047F7DB11E2334740042B2FF /* NSObject+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047F7DAF1E2334740042B2FF /* NSObject+Extension.swift */; };
@@ -66,6 +71,11 @@
 		040F1F371E232DA2008BB5E8 /* WeiboSwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeiboSwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		040F1F3B1E232DA2008BB5E8 /* WeiboSwiftUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeiboSwiftUITests.swift; sourceTree = "<group>"; };
 		040F1F3D1E232DA2008BB5E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0464B54B1E48492C00B939FF /* WBTitleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBTitleButton.swift; sourceTree = "<group>"; };
+		0464B54D1E484D8700B939FF /* WBNewFeatureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBNewFeatureView.swift; sourceTree = "<group>"; };
+		0464B54F1E484D9300B939FF /* WBWelcomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBWelcomeView.swift; sourceTree = "<group>"; };
+		0464B5511E48523300B939FF /* WBWelcomeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WBWelcomeView.xib; sourceTree = "<group>"; };
+		0464B5531E485F3100B939FF /* WBNewFeatureView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WBNewFeatureView.xib; sourceTree = "<group>"; };
 		047F7DA81E2332B70042B2FF /* WBMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBMainViewController.swift; sourceTree = "<group>"; };
 		047F7DAC1E2332F30042B2FF /* WBMeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBMeViewController.swift; sourceTree = "<group>"; };
 		047F7DAF1E2334740042B2FF /* NSObject+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+Extension.swift"; sourceTree = "<group>"; };
@@ -151,6 +161,11 @@
 				040F1F1B1E232DA1008BB5E8 /* AppDelegate.swift */,
 				04FA30E31E29C1A8002F6151 /* main.json */,
 				04EBC5011E24D938007A3E13 /* WBHomeViewController.swift */,
+				0464B54B1E48492C00B939FF /* WBTitleButton.swift */,
+				0464B54D1E484D8700B939FF /* WBNewFeatureView.swift */,
+				0464B5531E485F3100B939FF /* WBNewFeatureView.xib */,
+				0464B54F1E484D9300B939FF /* WBWelcomeView.swift */,
+				0464B5511E48523300B939FF /* WBWelcomeView.xib */,
 				04EBC4FF1E24D4E8007A3E13 /* WBBaseViewController.swift */,
 				04EB351C1E28CFBF0069D2C4 /* WBVisitorView.swift */,
 				04EBC5061E24DD1A007A3E13 /* WBDemoViewController.swift */,
@@ -412,6 +427,8 @@
 			files = (
 				04FA30E41E29C1A8002F6151 /* main.json in Resources */,
 				040F1F231E232DA1008BB5E8 /* Assets.xcassets in Resources */,
+				0464B5521E48523300B939FF /* WBWelcomeView.xib in Resources */,
+				0464B5541E485F3100B939FF /* WBNewFeatureView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -498,11 +515,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				047F7DB11E2334740042B2FF /* NSObject+Extension.swift in Sources */,
+				0464B54C1E48492C00B939FF /* WBTitleButton.swift in Sources */,
 				047F7DB71E235DE70042B2FF /* UIView+YYAdd.m in Sources */,
 				04EB351D1E28CFBF0069D2C4 /* WBVisitorView.swift in Sources */,
 				56DB6B281E474D9800A551A7 /* WBUserAccount.swift in Sources */,
 				047F7DBD1E23640D0042B2FF /* WBDiscoverViewController.swift in Sources */,
+				0464B5501E484D9300B939FF /* WBWelcomeView.swift in Sources */,
 				04EBC5021E24D938007A3E13 /* WBHomeViewController.swift in Sources */,
+				0464B54E1E484D8700B939FF /* WBNewFeatureView.swift in Sources */,
 				04DDFC811E2DB48B009F778A /* WBStatus.swift in Sources */,
 				04EBC5071E24DD1A007A3E13 /* WBDemoViewController.swift in Sources */,
 				04F81ADC1E2F1A9600A0DECB /* UIScrollView+Extension.swift in Sources */,

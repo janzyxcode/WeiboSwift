@@ -41,7 +41,6 @@ class WBOAuthViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         
         let urlString = "https://api.weibo.com/oauth2/authorize?client_id=\(WBAppKey)&redirect_uri=\(WBRedirectURI)"
         guard let url = URL(string: urlString) else {
@@ -80,7 +79,18 @@ extension WBOAuthViewController: UIWebViewDelegate {
         
         let code = request.url?.query?.substring(from: "code=".endIndex) ?? ""
         print(code)
-        WBNetworkManager.shared.loadAccessToken(code: code)
+        WBNetworkManager.shared.loadAccessToken(code: code) { (isSuccess) in
+            
+            if !isSuccess {
+               SVProgressHUD.showInfo(withStatus: "网络请求失败")
+            } else {
+                SVProgressHUD.showInfo(withStatus: "登陆成功")
+                
+                NotificationCenter.default.post(name: NSNotification.Name(WBUserLoginSuccessedNotification), object: nil)
+                
+                self.close()
+            }
+        }
         
         return false
     }

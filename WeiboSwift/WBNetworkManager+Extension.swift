@@ -44,11 +44,60 @@ extension WBNetworkManager {
         let params = ["uid": uid]
         
         tokenRequest(URLString: urlString, parameters: params as [String : AnyObject]?) { (json, isSuccess) in
-            print(json)
+
             let dict = json as? [String: AnyObject]
             let count = dict?["status"] as? Int
             completion(count ?? 0)
         }
     }
     
+}
+
+
+extension WBNetworkManager {
+    
+    func loadUserInfo(completion: @escaping (_ dict: [String: AnyObject])->())  {
+        
+        guard let uid = userAccount.uid else {
+            return
+        }
+        
+        let urlString = "https://api.weibo.com/2/users/show.json"
+        
+        let params = ["uid": uid]
+        
+        tokenRequest(URLString: urlString, parameters: params as [String : AnyObject]?) { (json, isSuccess) in
+            completion(json as! [String : AnyObject])
+        }
+    }
+}
+
+extension WBNetworkManager {
+    
+    func loadAccessToken(code: String, completion:@escaping (_ isSuccess: Bool)->()) {
+        
+        let urlString = "https://api.weibo.com/oauth2/access_token"
+        let params = ["client_id": WBAppKey,
+                      "client_secret": WBAppSecret,
+                      "grant_type": "authorization_code",
+                      "code": code,
+                      "redirect_uri": WBRedirectURI]
+        
+        request(method: .POST, URLString: urlString, parameters: params as [String : AnyObject]) { (json, isSuccess) in
+            
+            self.userAccount.yy_modelSet(with: (json as? [String: AnyObject]) ?? [:])
+            
+            self.loadUserInfo(completion: { (dict) in
+                
+                self.userAccount.yy_modelSet(with: dict)
+                
+                self.userAccount.saveAccount()
+                
+                print("userinfo--\(self.userAccount)")
+                
+                completion(isSuccess)
+            })
+            
+        }
+    }
 }
