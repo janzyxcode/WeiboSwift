@@ -90,6 +90,9 @@ class WBMainViewController: UITabBarController,UITabBarControllerDelegate {
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1, execute: {
                 vc.loadData()
             })
+            
+            vc.tabBarItem.badgeValue = nil
+            UIApplication.shared.applicationIconBadgeNumber = 0
         }
         
         return !viewController.isMember(of: UIViewController.self)
@@ -173,7 +176,7 @@ extension WBMainViewController {
         }
         
         WBNetworkManager.shared.unreadCount { (count) in
-            print("count-\(count)")
+            
             self.tabBar.items?[0].badgeValue = count > 0 ? "\(count)" : nil
             
             // 授权才能显示

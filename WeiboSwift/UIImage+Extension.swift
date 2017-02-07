@@ -19,4 +19,84 @@ extension UIImage {
         let image = UIImage(named: imageName + "_highlighted")
         return image
     }
+    
+    
+    // 将给定的图像进行拉伸，并且返回 ‘新’的图像
+    func ll_avatarImage(size: CGSize?, backColor: UIColor = UIColor.white, lineColor: UIColor = UIColor.lightGray) -> UIImage? {
+        
+        var size = size
+        if size == nil {
+            size = self.size
+        }
+        
+        let rect = CGRect(origin: CGPoint(), size: size!)
+        
+        // 1、图像上下文－内存中开辟一个地址，跟屏幕无关
+        /**
+         参数：
+         1> size：绘图的尺寸
+         2> 不透明：false／true
+         3> scale：屏幕分辨率，默认生成的图像默认使用 1.0 的分辨率，图像质量不好，可以知道 0，会选择当前设备的屏幕分辨率
+         */
+        UIGraphicsBeginImageContextWithOptions(rect.size, true, 0)
+        
+        
+        // 背景填充
+        backColor.setFill()
+        UIRectFill(rect)
+        
+        // 圆角图
+        let path = UIBezierPath(ovalIn: rect)
+        path.addClip()
+        
+        //  绘图
+        self.draw(in: rect)
+        
+        // 外边框
+        let ovalPath = UIBezierPath(ovalIn: rect)
+        ovalPath.lineWidth = 2
+        lineColor.setStroke()
+        ovalPath.stroke()
+        
+        
+        //  取得结果
+        let result = UIGraphicsGetImageFromCurrentImageContext()
+        
+        // 关闭上下文
+        UIGraphicsEndImageContext()
+        
+        return result
+    }
+    
+    
+    func ll_normalDraw(size: CGSize?) -> UIImage? {
+        
+        var size = size
+        if size == nil {
+            size = self.size
+        }
+        
+        let rect = CGRect(origin: CGPoint(), size: size!)
+        
+        // 1、图像上下文－内存中开辟一个地址，跟屏幕无关
+        /**
+         参数：
+         1> size：绘图的尺寸
+         2> 不透明：false／true
+         3> scale：屏幕分辨率，默认生成的图像默认使用 1.0 的分辨率，图像质量不好，可以知道 0，会选择当前设备的屏幕分辨率
+         */
+        UIGraphicsBeginImageContextWithOptions(rect.size, false, 0)
+
+        //  绘图
+        self.draw(in: rect)
+                
+        //  取得结果
+        let result = UIGraphicsGetImageFromCurrentImageContext()
+        
+        // 关闭上下文
+        UIGraphicsEndImageContext()
+        
+        return result
+    }
+
 }

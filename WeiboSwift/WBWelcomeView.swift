@@ -17,6 +17,7 @@ class WBWelcomeView: UIView {
     
     @IBOutlet weak var bottomCons: NSLayoutConstraint!
     
+    @IBOutlet weak var iconWidthCons: NSLayoutConstraint!
     
     class func welcomeView() -> WBWelcomeView {
         let nib = UINib(nibName: "WBWelcomeView", bundle: nil)
@@ -49,7 +50,7 @@ class WBWelcomeView: UIView {
         }
 
         iconView.sd_setImage(with: url, placeholderImage: UIImage(named: "avator_default"))
-        iconView.layer.cornerRadius = iconView.bounds.width * 0.5
+        iconView.layer.cornerRadius = iconWidthCons.constant * 0.5
         iconView.layer.masksToBounds = true
         
     }

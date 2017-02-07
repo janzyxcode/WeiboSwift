@@ -51,9 +51,10 @@
             <connections>
                 <outlet property="bottomCons" destination="CsN-gp-tsK" id="1xC-rb-EkJ"/>
                 <outlet property="iconView" destination="vk6-wH-F6v" id="lfD-wP-bvp"/>
+                <outlet property="iconWidthCons" destination="j37-fv-cow" id="GOm-Cy-TM8"/>
                 <outlet property="tipL" destination="eh6-NV-Ss8" id="mD0-Xg-SBN"/>
             </connections>
-            <point key="canvasLocation" x="87" y="131"/>
+            <point key="canvasLocation" x="-265" y="15"/>
         </view>
     </objects>
     <resources>

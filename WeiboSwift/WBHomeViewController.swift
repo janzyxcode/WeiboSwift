@@ -20,7 +20,7 @@ class WBHomeViewController: WBBaseViewController {
     
     override func loadData() {
         
-        print("last text  \(self.listViewModel.statusList.last?.text)")
+        print("last text  \(self.listViewModel.statusList.last?.status.text)")
         
         listViewModel.loadStatus(pullup: self.isPullup) { (isSuccess) in
             
@@ -62,8 +62,9 @@ extension WBHomeViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
-        cell.textLabel?.text = self.listViewModel.statusList[indexPath.row].text
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! WBStatusCell
+        cell.viewModel = listViewModel.statusList[indexPath.row]
+        
         return cell
     }
 }
@@ -73,7 +74,11 @@ extension WBHomeViewController {
         super.setUpViews()
         
         navItem.leftBarButtonItems = UIBarButtonItem.fixtedSpace(title: "好友", target: self, action: #selector(showFriends))
-        tableView?.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
+        
+        tableView?.register(UINib(nibName: "WBStatusNormalCell", bundle: nil), forCellReuseIdentifier: cellId)
+        tableView?.rowHeight = UITableViewAutomaticDimension
+        tableView?.estimatedRowHeight = 300
+        tableView?.separatorStyle = .none
         
         setupNavTitle()
     }

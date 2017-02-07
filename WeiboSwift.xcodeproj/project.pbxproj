@@ -11,6 +11,14 @@
 		040F1F231E232DA1008BB5E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 040F1F221E232DA1008BB5E8 /* Assets.xcassets */; };
 		040F1F311E232DA2008BB5E8 /* WeiboSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040F1F301E232DA2008BB5E8 /* WeiboSwiftTests.swift */; };
 		040F1F3C1E232DA2008BB5E8 /* WeiboSwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040F1F3B1E232DA2008BB5E8 /* WeiboSwiftUITests.swift */; };
+		041945C51E496E9C0069E586 /* WBStatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041945C41E496E9C0069E586 /* WBStatusCell.swift */; };
+		041945C91E496EF40069E586 /* WBStatusNormalCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 041945C81E496EF40069E586 /* WBStatusNormalCell.xib */; };
+		041945CB1E4978350069E586 /* WBUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041945CA1E4978350069E586 /* WBUser.swift */; };
+		041945CF1E497AE70069E586 /* WBStatusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041945CE1E497AE70069E586 /* WBStatusViewModel.swift */; };
+		041945D11E4997EA0069E586 /* UIImageView+WebImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041945D01E4997EA0069E586 /* UIImageView+WebImage.swift */; };
+		041945D31E49ADA90069E586 /* WBStatusToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041945D21E49ADA90069E586 /* WBStatusToolBar.swift */; };
+		041945D51E49B44C0069E586 /* WBStatusPictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041945D41E49B44C0069E586 /* WBStatusPictureView.swift */; };
+		041945D71E49B56C0069E586 /* WBStatusPicture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041945D61E49B56C0069E586 /* WBStatusPicture.swift */; };
 		0464B54C1E48492C00B939FF /* WBTitleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0464B54B1E48492C00B939FF /* WBTitleButton.swift */; };
 		0464B54E1E484D8700B939FF /* WBNewFeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0464B54D1E484D8700B939FF /* WBNewFeatureView.swift */; };
 		0464B5501E484D9300B939FF /* WBWelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0464B54F1E484D9300B939FF /* WBWelcomeView.swift */; };
@@ -71,6 +79,14 @@
 		040F1F371E232DA2008BB5E8 /* WeiboSwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeiboSwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		040F1F3B1E232DA2008BB5E8 /* WeiboSwiftUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeiboSwiftUITests.swift; sourceTree = "<group>"; };
 		040F1F3D1E232DA2008BB5E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		041945C41E496E9C0069E586 /* WBStatusCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBStatusCell.swift; sourceTree = "<group>"; };
+		041945C81E496EF40069E586 /* WBStatusNormalCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WBStatusNormalCell.xib; sourceTree = "<group>"; };
+		041945CA1E4978350069E586 /* WBUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBUser.swift; sourceTree = "<group>"; };
+		041945CE1E497AE70069E586 /* WBStatusViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBStatusViewModel.swift; sourceTree = "<group>"; };
+		041945D01E4997EA0069E586 /* UIImageView+WebImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+WebImage.swift"; sourceTree = "<group>"; };
+		041945D21E49ADA90069E586 /* WBStatusToolBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBStatusToolBar.swift; sourceTree = "<group>"; };
+		041945D41E49B44C0069E586 /* WBStatusPictureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBStatusPictureView.swift; sourceTree = "<group>"; };
+		041945D61E49B56C0069E586 /* WBStatusPicture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBStatusPicture.swift; sourceTree = "<group>"; };
 		0464B54B1E48492C00B939FF /* WBTitleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBTitleButton.swift; sourceTree = "<group>"; };
 		0464B54D1E484D8700B939FF /* WBNewFeatureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBNewFeatureView.swift; sourceTree = "<group>"; };
 		0464B54F1E484D9300B939FF /* WBWelcomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBWelcomeView.swift; sourceTree = "<group>"; };
@@ -160,8 +176,6 @@
 			children = (
 				040F1F1B1E232DA1008BB5E8 /* AppDelegate.swift */,
 				04FA30E31E29C1A8002F6151 /* main.json */,
-				04EBC5011E24D938007A3E13 /* WBHomeViewController.swift */,
-				0464B54B1E48492C00B939FF /* WBTitleButton.swift */,
 				0464B54D1E484D8700B939FF /* WBNewFeatureView.swift */,
 				0464B5531E485F3100B939FF /* WBNewFeatureView.xib */,
 				0464B54F1E484D9300B939FF /* WBWelcomeView.swift */,
@@ -170,6 +184,7 @@
 				04EB351C1E28CFBF0069D2C4 /* WBVisitorView.swift */,
 				04EBC5061E24DD1A007A3E13 /* WBDemoViewController.swift */,
 				04F81ADF1E2F3F0C00A0DECB /* WBOAuthViewController.swift */,
+				04D72E271E495F4A005FDF44 /* Home */,
 				04DDFC831E2DB7EB009F778A /* ViewModel */,
 				04DDFC7F1E2DB479009F778A /* Model */,
 				04E2E2D71E2C64B20015BCB6 /* Tool */,
@@ -211,6 +226,7 @@
 				047F7DBE1E2368ED0042B2FF /* UIImage+Extension.swift */,
 				04EBC5081E24DE88007A3E13 /* UIBarButtonItem+Extension.swift */,
 				04F81ADB1E2F1A9600A0DECB /* UIScrollView+Extension.swift */,
+				041945D01E4997EA0069E586 /* UIImageView+WebImage.swift */,
 			);
 			name = Extension;
 			sourceTree = "<group>";
@@ -224,10 +240,25 @@
 			name = Addtions;
 			sourceTree = "<group>";
 		};
+		04D72E271E495F4A005FDF44 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				04EBC5011E24D938007A3E13 /* WBHomeViewController.swift */,
+				0464B54B1E48492C00B939FF /* WBTitleButton.swift */,
+				041945C41E496E9C0069E586 /* WBStatusCell.swift */,
+				041945C81E496EF40069E586 /* WBStatusNormalCell.xib */,
+				041945D21E49ADA90069E586 /* WBStatusToolBar.swift */,
+				041945D41E49B44C0069E586 /* WBStatusPictureView.swift */,
+			);
+			name = Home;
+			sourceTree = "<group>";
+		};
 		04DDFC7F1E2DB479009F778A /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				04DDFC801E2DB48B009F778A /* WBStatus.swift */,
+				041945CA1E4978350069E586 /* WBUser.swift */,
+				041945D61E49B56C0069E586 /* WBStatusPicture.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -246,6 +277,7 @@
 			isa = PBXGroup;
 			children = (
 				04DDFC841E2DB808009F778A /* WBStatusListViewModel.swift */,
+				041945CE1E497AE70069E586 /* WBStatusViewModel.swift */,
 			);
 			name = ViewModel;
 			sourceTree = "<group>";
@@ -425,6 +457,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				041945C91E496EF40069E586 /* WBStatusNormalCell.xib in Resources */,
 				04FA30E41E29C1A8002F6151 /* main.json in Resources */,
 				040F1F231E232DA1008BB5E8 /* Assets.xcassets in Resources */,
 				0464B5521E48523300B939FF /* WBWelcomeView.xib in Resources */,
@@ -514,16 +547,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				041945D31E49ADA90069E586 /* WBStatusToolBar.swift in Sources */,
 				047F7DB11E2334740042B2FF /* NSObject+Extension.swift in Sources */,
 				0464B54C1E48492C00B939FF /* WBTitleButton.swift in Sources */,
+				041945D51E49B44C0069E586 /* WBStatusPictureView.swift in Sources */,
 				047F7DB71E235DE70042B2FF /* UIView+YYAdd.m in Sources */,
 				04EB351D1E28CFBF0069D2C4 /* WBVisitorView.swift in Sources */,
 				56DB6B281E474D9800A551A7 /* WBUserAccount.swift in Sources */,
 				047F7DBD1E23640D0042B2FF /* WBDiscoverViewController.swift in Sources */,
 				0464B5501E484D9300B939FF /* WBWelcomeView.swift in Sources */,
+				041945CB1E4978350069E586 /* WBUser.swift in Sources */,
 				04EBC5021E24D938007A3E13 /* WBHomeViewController.swift in Sources */,
 				0464B54E1E484D8700B939FF /* WBNewFeatureView.swift in Sources */,
 				04DDFC811E2DB48B009F778A /* WBStatus.swift in Sources */,
+				041945D71E49B56C0069E586 /* WBStatusPicture.swift in Sources */,
 				04EBC5071E24DD1A007A3E13 /* WBDemoViewController.swift in Sources */,
 				04F81ADC1E2F1A9600A0DECB /* UIScrollView+Extension.swift in Sources */,
 				04EBC5001E24D4E8007A3E13 /* WBBaseViewController.swift in Sources */,
@@ -533,14 +570,17 @@
 				04F81ADE1E2F385300A0DECB /* WeiboCommon.swift in Sources */,
 				047F7DAD1E2332F30042B2FF /* WBMeViewController.swift in Sources */,
 				04DDFC851E2DB808009F778A /* WBStatusListViewModel.swift in Sources */,
+				041945D11E4997EA0069E586 /* UIImageView+WebImage.swift in Sources */,
 				04EBC50B1E24E7CC007A3E13 /* UIColor+Extension.swift in Sources */,
 				047F7DB91E2363910042B2FF /* WBMessageViewController.swift in Sources */,
 				04E2E2D91E2C64D30015BCB6 /* WBNetworkManager.swift in Sources */,
+				041945C51E496E9C0069E586 /* WBStatusCell.swift in Sources */,
 				04EBC5091E24DE88007A3E13 /* UIBarButtonItem+Extension.swift in Sources */,
 				047F7DBF1E2368ED0042B2FF /* UIImage+Extension.swift in Sources */,
 				04EBC5051E24DCFB007A3E13 /* WBNavigationViewController.swift in Sources */,
 				04E2E2DD1E2C76A10015BCB6 /* WBNetworkManager+Extension.swift in Sources */,
 				047F7DA91E2332B70042B2FF /* WBMainViewController.swift in Sources */,
+				041945CF1E497AE70069E586 /* WBStatusViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

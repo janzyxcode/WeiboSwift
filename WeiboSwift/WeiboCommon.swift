@@ -21,3 +21,10 @@ let WBUserShouldLoginNotification = "WBUserShouldLoginNotification"
 
 let WBUserLoginSuccessedNotification = "WBUserLoginSuccessedNotification"
 		
+
+
+
+let WBStatusPictureViewOutterMargin = CGFloat(12)
+let WBStatusPictureViewInnerMargin = CGFloat(3)
+let WBStatusPictureViewWidth = UIScreen.main.bounds.width - 2 * WBStatusPictureViewOutterMargin
+let WBStatusPictureItemWidth = (WBStatusPictureViewWidth - 2 * WBStatusPictureViewInnerMargin) / 3

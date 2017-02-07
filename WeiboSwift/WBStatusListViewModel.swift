@@ -25,7 +25,7 @@ private let maxPullupTryTimes = 3
 
 class WBStatusListViewModel {
     
-    lazy var statusList = [WBStatus]()
+    lazy var statusList = [WBStatusViewModel]()
     
     // 上次刷新错误次数
     private var pullupErrorTimes = 0
@@ -39,21 +39,30 @@ class WBStatusListViewModel {
         }
         
         // 取出数组中第一条微博的 ID
-        let since_id = pullup ? 0 : (self.statusList.first?.id ?? 0)
+        let since_id = pullup ? 0 : (self.statusList.first?.status.id ?? 0)
         // 上拉刷新，取出数组的最后一条微博 ID
-        let max_id = !pullup ? 0 : (self.statusList.last?.id ?? 0)
+        let max_id = !pullup ? 0 : (self.statusList.last?.status.id ?? 0)
         
         
         
         WBNetworkManager.shared.statusList(since_id: since_id, max_id: max_id) { (list, isSuccess) in
           
-            guard let array = NSArray.yy_modelArray(with: WBStatus.self, json: list ?? []) as? [WBStatus]
-                else {
-                    completion(isSuccess, false)
-                    return
+            if !isSuccess {
+                completion(false, false)
+                return
             }
             
-            print("刷新到\(array.count)条")
+            var array = [WBStatusViewModel]()
+            
+            for dict in list ?? [] {
+                let status = WBStatus()
+                status.yy_modelSet(with: dict)
+                let viewModel = WBStatusViewModel(model: status)
+                array.append(viewModel)
+            }
+            
+            
+            print("刷新到\(array.count)条  \(array)")
             
             if pullup {
                 self.statusList += array
