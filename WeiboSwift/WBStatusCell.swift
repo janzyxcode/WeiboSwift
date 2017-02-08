@@ -67,6 +67,5 @@ class WBStatusCell: UITableViewCell {
         self.layer.rasterizationScale = UIScreen.main.scale
     }
 
- 
 
 }
