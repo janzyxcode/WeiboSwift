@@ -78,7 +78,7 @@ extension WBOAuthViewController: UIWebViewDelegate {
         }
         
         let code = request.url?.query?.substring(from: "code=".endIndex) ?? ""
-        print(code)
+        
         WBNetworkManager.shared.loadAccessToken(code: code) { (isSuccess) in
             
             if !isSuccess {

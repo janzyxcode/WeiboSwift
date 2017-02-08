@@ -10,6 +10,36 @@ import UIKit
 
 class WBStatusPictureView: UIView {
     
+    var viewModel: WBStatusViewModel? {
+        didSet {
+        urls = viewModel?.picURLs
+         calcVIewSize()
+        }
+    }
+    
+    // 根据视图模型的配图视图大小，调整显示内容
+    private func calcVIewSize() {
+        
+        // 处理宽度
+        // 单图。更加视图的大小，修改 subviews[0] 的宽高
+        if viewModel?.picURLs?.count == 1 {
+            let viewSize = viewModel?.pictureViewSize ?? CGSize()
+            
+            let v = subviews[0]
+            v.frame = CGRect(x: 0, y: WBStatusPictureViewOutterMargin, width: viewSize.width, height: viewSize.height - WBStatusPictureViewOutterMargin)
+            
+        }else {
+            
+            // 多图，恢复subview[0]的宽高，保证九宫格布局的完整
+            let v = subviews[0]
+            v.frame = CGRect(x: 0, y: WBStatusPictureViewOutterMargin, width: WBStatusPictureItemWidth, height: WBStatusPictureItemWidth)
+            
+        }
+        
+        heightCons.constant = viewModel?.pictureViewSize.height ?? 0
+    }
+    
+    
     var urls: [WBStatusPicture]? {
         didSet {
             for v in subviews {

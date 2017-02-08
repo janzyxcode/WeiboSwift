@@ -43,7 +43,7 @@ class WBUserAccount: NSObject {
         }
         
         let filePath =  libarayPath + accountFile
-        print(filePath)
+        
         guard let data = NSData(contentsOfFile: filePath),
             let dict = try? JSONSerialization.jsonObject(with: data as Data, options: []) as? [String: AnyObject]
             else {

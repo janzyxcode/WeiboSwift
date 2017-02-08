@@ -22,7 +22,7 @@ extension UIImage {
     
     
     // 将给定的图像进行拉伸，并且返回 ‘新’的图像
-    func ll_avatarImage(size: CGSize?, backColor: UIColor = UIColor.white, lineColor: UIColor = UIColor.lightGray) -> UIImage? {
+    func ll_avatarImage(size: CGSize?, backColor: UIColor = UIColor.white, lineColor: UIColor = UIColor.lightGray, lineWidth: CGFloat = 0) -> UIImage? {
         
         var size = size
         if size == nil {
@@ -53,10 +53,12 @@ extension UIImage {
         self.draw(in: rect)
         
         // 外边框
-        let ovalPath = UIBezierPath(ovalIn: rect)
-        ovalPath.lineWidth = 2
-        lineColor.setStroke()
-        ovalPath.stroke()
+        if lineWidth > 0 {
+            let ovalPath = UIBezierPath(ovalIn: rect)
+            ovalPath.lineWidth = lineWidth
+            lineColor.setStroke()
+            ovalPath.stroke()
+        }
         
         
         //  取得结果

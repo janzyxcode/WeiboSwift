@@ -8,9 +8,10 @@
 
 import UIKit
 import AFNetworking
-// 定义全局常量，尽量使用私有属性修饰，否则到处都可以访问
-private let cellId = "cellId"
 
+// 定义全局常量，尽量使用私有属性修饰，否则到处都可以访问
+private let originalCellId  = "originalCellId"
+private let retweetedCellId = "retweetedCellId"
 
 class WBHomeViewController: WBBaseViewController {
     
@@ -20,7 +21,6 @@ class WBHomeViewController: WBBaseViewController {
     
     override func loadData() {
         
-        print("last text  \(self.listViewModel.statusList.last?.status.text)")
         
         listViewModel.loadStatus(pullup: self.isPullup) { (isSuccess) in
             
@@ -47,7 +47,6 @@ class WBHomeViewController: WBBaseViewController {
     //FIXME:为什么不能加 private
     @objc func showFriends() {
         print(#function)
-        
         let vc = WBDemoViewController()
         navigationController?.pushViewController(vc, animated: true)
         
@@ -61,9 +60,22 @@ extension WBHomeViewController {
         return listViewModel.statusList.count
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        let vm = listViewModel.statusList[indexPath.row]
+        
+        return vm.rowHeight
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let vm = listViewModel.statusList[indexPath.row]
+        let cellId = (vm.status.retweeted_status != nil) ? retweetedCellId : originalCellId
+        
+        // 取 cell － 本身会调用代理方法（如果有）
+        // 如果没有，找到 cell， 按照自动布局的规则，从上向下计算，找到向下的约束，从而计算动态行高
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! WBStatusCell
-        cell.viewModel = listViewModel.statusList[indexPath.row]
+        cell.viewModel = vm
         
         return cell
     }
@@ -75,8 +87,9 @@ extension WBHomeViewController {
         
         navItem.leftBarButtonItems = UIBarButtonItem.fixtedSpace(title: "好友", target: self, action: #selector(showFriends))
         
-        tableView?.register(UINib(nibName: "WBStatusNormalCell", bundle: nil), forCellReuseIdentifier: cellId)
-        tableView?.rowHeight = UITableViewAutomaticDimension
+        tableView?.register(UINib(nibName: "WBStatusNormalCell", bundle: nil), forCellReuseIdentifier: originalCellId)
+        tableView?.register(UINib(nibName: "WBStatusReweetedCell", bundle: nil), forCellReuseIdentifier: retweetedCellId)
+//        tableView?.rowHeight = UITableViewAutomaticDimension
         tableView?.estimatedRowHeight = 300
         tableView?.separatorStyle = .none
         

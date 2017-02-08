@@ -19,6 +19,9 @@ class WBStatus: NSObject {
     
     var user: WBUser?
     
+    //  被转发的原创微博
+    var retweeted_status: WBStatus?
+    
     var resosts_count:Int = 0
     var comments_count:Int = 0
     var attitudes_count:Int = 0

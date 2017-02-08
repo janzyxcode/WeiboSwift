@@ -22,10 +22,7 @@ extension UIImageView {
         
         sd_setImage(with: url, placeholderImage: placeholderImage, options: [], progress: nil) { (image, _, _, _) in
             if isAvatar {
-                self.image = image?.ll_avatarImage(size: self.bounds.size)
-            }else {
-                //FIXME:为何图片还会不正常缩放
-                self.image = image?.ll_normalDraw(size: self.bounds.size)
+                self.image = image?.ll_avatarImage(size: self.bounds.size, lineWidth: 0.5)
             }
         }
     }

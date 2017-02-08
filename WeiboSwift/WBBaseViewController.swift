@@ -60,7 +60,7 @@ class WBBaseViewController: UIViewController {
 
 
 extension WBBaseViewController {
-    //FIXME:private
+    //FIXME:加上 private 就不能访问了
     @objc func loginSuccess() {
         print("loginSuccess")
         
