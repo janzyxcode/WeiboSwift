@@ -12,8 +12,9 @@ class WBStatusPictureView: UIView {
     
     var viewModel: WBStatusViewModel? {
         didSet {
-        urls = viewModel?.picURLs
-         calcVIewSize()
+            //FIXME
+            calcVIewSize()
+            urls = viewModel?.picURLs
         }
     }
     
@@ -26,13 +27,19 @@ class WBStatusPictureView: UIView {
             let viewSize = viewModel?.pictureViewSize ?? CGSize()
             
             let v = subviews[0]
-            v.frame = CGRect(x: 0, y: WBStatusPictureViewOutterMargin, width: viewSize.width, height: viewSize.height - WBStatusPictureViewOutterMargin)
+            v.frame = CGRect(x: 0,
+                             y: WBStatusPictureViewOutterMargin,
+                             width: viewSize.width,
+                             height: viewSize.height - WBStatusPictureViewOutterMargin)
             
         }else {
             
             // 多图，恢复subview[0]的宽高，保证九宫格布局的完整
             let v = subviews[0]
-            v.frame = CGRect(x: 0, y: WBStatusPictureViewOutterMargin, width: WBStatusPictureItemWidth, height: WBStatusPictureItemWidth)
+            v.frame = CGRect(x: 0,
+                             y: WBStatusPictureViewOutterMargin,
+                             width: WBStatusPictureItemWidth,
+                             height: WBStatusPictureItemWidth)
             
         }
         
@@ -45,7 +52,7 @@ class WBStatusPictureView: UIView {
             for v in subviews {
                 v.isHidden = true
             }
-
+            
             var index = 0
             for url in urls ?? [] {
                 

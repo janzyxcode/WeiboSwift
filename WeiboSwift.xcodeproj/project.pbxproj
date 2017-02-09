@@ -19,6 +19,9 @@
 		041945D31E49ADA90069E586 /* WBStatusToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041945D21E49ADA90069E586 /* WBStatusToolBar.swift */; };
 		041945D51E49B44C0069E586 /* WBStatusPictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041945D41E49B44C0069E586 /* WBStatusPictureView.swift */; };
 		041945D71E49B56C0069E586 /* WBStatusPicture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041945D61E49B56C0069E586 /* WBStatusPicture.swift */; };
+		04611DE31E4C737C008016E5 /* LLRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04611DE21E4C737C008016E5 /* LLRefreshControl.swift */; };
+		04611DEF1E4C846A008016E5 /* LLRefreshView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04611DEE1E4C846A008016E5 /* LLRefreshView.xib */; };
+		04611DF71E4C8870008016E5 /* LLRefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04611DF61E4C8870008016E5 /* LLRefreshView.swift */; };
 		0464B54C1E48492C00B939FF /* WBTitleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0464B54B1E48492C00B939FF /* WBTitleButton.swift */; };
 		0464B54E1E484D8700B939FF /* WBNewFeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0464B54D1E484D8700B939FF /* WBNewFeatureView.swift */; };
 		0464B5501E484D9300B939FF /* WBWelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0464B54F1E484D9300B939FF /* WBWelcomeView.swift */; };
@@ -88,6 +91,9 @@
 		041945D21E49ADA90069E586 /* WBStatusToolBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBStatusToolBar.swift; sourceTree = "<group>"; };
 		041945D41E49B44C0069E586 /* WBStatusPictureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBStatusPictureView.swift; sourceTree = "<group>"; };
 		041945D61E49B56C0069E586 /* WBStatusPicture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBStatusPicture.swift; sourceTree = "<group>"; };
+		04611DE21E4C737C008016E5 /* LLRefreshControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLRefreshControl.swift; sourceTree = "<group>"; };
+		04611DEE1E4C846A008016E5 /* LLRefreshView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LLRefreshView.xib; sourceTree = "<group>"; };
+		04611DF61E4C8870008016E5 /* LLRefreshView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLRefreshView.swift; sourceTree = "<group>"; };
 		0464B54B1E48492C00B939FF /* WBTitleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBTitleButton.swift; sourceTree = "<group>"; };
 		0464B54D1E484D8700B939FF /* WBNewFeatureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBNewFeatureView.swift; sourceTree = "<group>"; };
 		0464B54F1E484D9300B939FF /* WBWelcomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBWelcomeView.swift; sourceTree = "<group>"; };
@@ -186,6 +192,7 @@
 				04EB351C1E28CFBF0069D2C4 /* WBVisitorView.swift */,
 				04EBC5061E24DD1A007A3E13 /* WBDemoViewController.swift */,
 				04F81ADF1E2F3F0C00A0DECB /* WBOAuthViewController.swift */,
+				04611DE11E4C7340008016E5 /* RefreshControl */,
 				04D72E271E495F4A005FDF44 /* Home */,
 				04DDFC831E2DB7EB009F778A /* ViewModel */,
 				04DDFC7F1E2DB479009F778A /* Model */,
@@ -217,6 +224,16 @@
 				040F1F3D1E232DA2008BB5E8 /* Info.plist */,
 			);
 			path = WeiboSwiftUITests;
+			sourceTree = "<group>";
+		};
+		04611DE11E4C7340008016E5 /* RefreshControl */ = {
+			isa = PBXGroup;
+			children = (
+				04611DE21E4C737C008016E5 /* LLRefreshControl.swift */,
+				04611DF61E4C8870008016E5 /* LLRefreshView.swift */,
+				04611DEE1E4C846A008016E5 /* LLRefreshView.xib */,
+			);
+			name = RefreshControl;
 			sourceTree = "<group>";
 		};
 		047F7DAE1E2334640042B2FF /* Extension */ = {
@@ -464,6 +481,7 @@
 				04FA30E41E29C1A8002F6151 /* main.json in Resources */,
 				040F1F231E232DA1008BB5E8 /* Assets.xcassets in Resources */,
 				04CB13F81E4AB20A002A3771 /* WBStatusReweetedCell.xib in Resources */,
+				04611DEF1E4C846A008016E5 /* LLRefreshView.xib in Resources */,
 				0464B5521E48523300B939FF /* WBWelcomeView.xib in Resources */,
 				0464B5541E485F3100B939FF /* WBNewFeatureView.xib in Resources */,
 			);
@@ -562,6 +580,7 @@
 				0464B5501E484D9300B939FF /* WBWelcomeView.swift in Sources */,
 				041945CB1E4978350069E586 /* WBUser.swift in Sources */,
 				04EBC5021E24D938007A3E13 /* WBHomeViewController.swift in Sources */,
+				04611DE31E4C737C008016E5 /* LLRefreshControl.swift in Sources */,
 				0464B54E1E484D8700B939FF /* WBNewFeatureView.swift in Sources */,
 				04DDFC811E2DB48B009F778A /* WBStatus.swift in Sources */,
 				041945D71E49B56C0069E586 /* WBStatusPicture.swift in Sources */,
@@ -574,6 +593,7 @@
 				04F81ADE1E2F385300A0DECB /* WeiboCommon.swift in Sources */,
 				047F7DAD1E2332F30042B2FF /* WBMeViewController.swift in Sources */,
 				04DDFC851E2DB808009F778A /* WBStatusListViewModel.swift in Sources */,
+				04611DF71E4C8870008016E5 /* LLRefreshView.swift in Sources */,
 				041945D11E4997EA0069E586 /* UIImageView+WebImage.swift in Sources */,
 				04EBC50B1E24E7CC007A3E13 /* UIColor+Extension.swift in Sources */,
 				047F7DB91E2363910042B2FF /* WBMessageViewController.swift in Sources */,

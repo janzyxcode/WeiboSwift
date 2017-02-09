@@ -93,7 +93,7 @@ extension WBNetworkManager {
                 
                 self.userAccount.saveAccount()
                 
-                print("userinfo--\(self.userAccount)")
+                printLog("userinfo--\(self.userAccount)")
                 
                 completion(isSuccess)
             })

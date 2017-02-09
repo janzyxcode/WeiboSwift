@@ -51,23 +51,22 @@ class WBUserAccount: NSObject {
         }
         
         // 用户是否登陆的关键代码
-        //        self.yy_modelSet(with: dict ?? [:])
+        // self.yy_modelSet(with: dict ?? [:])
         yy_modelSet(with: dict ?? [:])
         
         // 测试过期日期
 //        expiresDate = Date(timeIntervalSinceNow: -3600 * 24)
-        print(expiresDate as Any)
         
         
         if expiresDate?.compare(Date()) != .orderedDescending {
-            print("time out")
+            printLog("time out")
             
             access_token = nil
             uid = nil
             try? FileManager.default.removeItem(atPath: filePath)
         }
         
-        print("normal－－\(self)")
+        printLog("normal－－\(self)")
     }
     
     

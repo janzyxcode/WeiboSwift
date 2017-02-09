@@ -41,7 +41,7 @@ class WBBaseViewController: UIViewController {
 
     deinit {
         NotificationCenter.default.removeObserver(self)
-        print(self)
+        printLog(self)
     }
     
     override var title: String? {
@@ -62,7 +62,7 @@ class WBBaseViewController: UIViewController {
 extension WBBaseViewController {
     //FIXME:加上 private 就不能访问了
     @objc func loginSuccess() {
-        print("loginSuccess")
+        printLog("loginSuccess")
         
         navItem.leftBarButtonItems = nil
         navItem.rightBarButtonItems = nil
@@ -78,13 +78,13 @@ extension WBBaseViewController {
     
     //FIXME: 使用 private 其他 extension 就不能访问
     @objc func login() {
-        print("login")
+        printLog("login")
         
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: WBUserShouldLoginNotification), object: nil)
     }
     
     @objc func register() {
-        print("register")
+        printLog("register")
     }
 }
 
@@ -171,6 +171,9 @@ extension WBBaseViewController:UITableViewDelegate,UITableViewDataSource {
         return 0
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 10
+    }
     
     // 基类只是准备方法，子类负责具体的实现，子类的数据源方法不需要 super
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -195,7 +198,7 @@ extension WBBaseViewController:UITableViewDelegate,UITableViewDataSource {
         let count = tableView.numberOfRows(inSection: section)
         
         
-        // 如果是最后一行，同时没有开始上拉刷新
+        // 如果是最后一行，同时开始上拉刷新
         if row == (count - 1)
            && !isPullup {
             

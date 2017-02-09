@@ -22,7 +22,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         setupAdditions()
         
-
         window = UIWindow()
         window?.backgroundColor = UIColor.white
         
@@ -33,6 +32,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 }
+
+
 
 extension AppDelegate {
     

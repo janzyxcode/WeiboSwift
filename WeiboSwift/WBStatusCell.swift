@@ -23,8 +23,7 @@ class WBStatusCell: UITableViewCell {
             
             // 配图视图模型
             pictureView.viewModel = viewModel
-                        
-//            pictureView.urls = viewModel?.picURLs
+            
             
             retweetedLabel?.text = viewModel?.retweetedText
         }

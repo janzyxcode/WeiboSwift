@@ -33,7 +33,7 @@ class WBWelcomeView: UIView {
 //        super.init(coder: aDecoder)
 //        // initwithcode 只是刚刚从 XIB 的二进制文件将视图数据加载完成
 //        // 还没有和代码连线建立起关系，所有开放时，千万不要在这个方法中处理 UI
-//        print("iconview-\(iconView)")
+//        printLog("iconview-\(iconView)")
 //    }
     
     override func awakeFromNib() {

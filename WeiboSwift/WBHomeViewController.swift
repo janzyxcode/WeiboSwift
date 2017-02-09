@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import AFNetworking
+
 
 // 定义全局常量，尽量使用私有属性修饰，否则到处都可以访问
 private let originalCellId  = "originalCellId"
@@ -18,16 +18,15 @@ class WBHomeViewController: WBBaseViewController {
     //FIXME: 加了private 后 extension不能访问到了
     lazy var listViewModel = WBStatusListViewModel()
     
-    
     override func loadData() {
         
-        
-        listViewModel.loadStatus(pullup: self.isPullup) { (isSuccess) in
-            
+        listViewModel.loadStatus(pullup: self.isPullup) { (isSuccess, shouldRefresh) in
             self.refreshControl?.endRefreshing()
             self.isPullup = false
-            self.tableView?.reloadData()
             
+            if shouldRefresh {
+                self.tableView?.reloadData()
+            }
         }
     }
     
@@ -36,21 +35,12 @@ class WBHomeViewController: WBBaseViewController {
         super.viewDidLoad()
         
         setUpViews()
-        
-        let request = WBNetworkManager()
-        request.statusList { (_, _) in
-            
-        }
-        
     }
     
     //FIXME:为什么不能加 private
     @objc func showFriends() {
-        print(#function)
         let vc = WBDemoViewController()
-        navigationController?.pushViewController(vc, animated: true)
-        
-        
+        navigationController?.pushViewController(vc, animated: true)   
     }
 }
 
@@ -60,10 +50,9 @@ extension WBHomeViewController {
         return listViewModel.statusList.count
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         let vm = listViewModel.statusList[indexPath.row]
-        
         return vm.rowHeight
     }
     
@@ -89,7 +78,7 @@ extension WBHomeViewController {
         
         tableView?.register(UINib(nibName: "WBStatusNormalCell", bundle: nil), forCellReuseIdentifier: originalCellId)
         tableView?.register(UINib(nibName: "WBStatusReweetedCell", bundle: nil), forCellReuseIdentifier: retweetedCellId)
-//        tableView?.rowHeight = UITableViewAutomaticDimension
+        //        tableView?.rowHeight = UITableViewAutomaticDimension
         tableView?.estimatedRowHeight = 300
         tableView?.separatorStyle = .none
         
@@ -99,7 +88,6 @@ extension WBHomeViewController {
     private func setupNavTitle() {
         
         let title = WBNetworkManager.shared.userAccount.screen_name
-        
         
         let button = WBTitleButton(title: title)
         button.addTarget(self, action: #selector(clickTitleButton(btn:)), for: .touchUpInside)

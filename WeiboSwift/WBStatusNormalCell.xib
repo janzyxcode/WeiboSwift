@@ -16,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="489" height="532"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hKC-ZL-zpe" id="OCT-Jk-9Yv">
-                <rect key="frame" x="0.0" y="0.0" width="489" height="531"/>
+                <rect key="frame" x="0.0" y="0.0" width="489" height="532"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LWh-fw-UBS">
@@ -27,44 +27,44 @@
                         </constraints>
                     </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bzo-Ff-49E">
-                        <rect key="frame" x="12" y="24" width="34" height="34"/>
+                        <rect key="frame" x="12" y="24" width="40" height="40"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="34" id="M7S-gO-9Sx"/>
-                            <constraint firstAttribute="width" constant="34" id="tMz-JZ-JPc"/>
+                            <constraint firstAttribute="height" constant="40" id="M7S-gO-9Sx"/>
+                            <constraint firstAttribute="width" constant="40" id="tMz-JZ-JPc"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yp4-5i-0v9">
-                        <rect key="frame" x="58" y="24" width="38" height="18"/>
+                        <rect key="frame" x="64" y="24" width="38" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="0.95294117647058818" green="0.24313725490196078" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c2k-hB-IYK">
-                        <rect key="frame" x="58" y="46" width="27" height="12"/>
+                        <rect key="frame" x="64" y="52" width="27" height="12"/>
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                         <color key="textColor" red="1" green="0.42352941176470588" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ui9-Ut-G59">
-                        <rect key="frame" x="91" y="46" width="27" height="12"/>
+                        <rect key="frame" x="97" y="52" width="27" height="12"/>
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                         <color key="textColor" red="0.50980392156862742" green="0.50980392156862742" blue="0.50980392156862742" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="common_icon_membership" translatesAutoresizingMaskIntoConstraints="NO" id="Ale-SY-Bhb">
-                        <rect key="frame" x="102" y="26" width="14" height="14"/>
+                        <rect key="frame" x="108" y="26" width="14" height="14"/>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar_vip" translatesAutoresizingMaskIntoConstraints="NO" id="XCQ-xX-2ex">
-                        <rect key="frame" x="35" y="47" width="14" height="14"/>
+                        <rect key="frame" x="41" y="53" width="14" height="14"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o10-A4-sRB">
-                        <rect key="frame" x="12" y="70" width="38" height="18"/>
+                        <rect key="frame" x="12" y="76" width="38" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="textColor" red="0.15686274510000001" green="0.15686274510000001" blue="0.15686274510000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LvT-DZ-pMG" customClass="WBStatusPictureView" customModule="WeiboSwift" customModuleProvider="target">
-                        <rect key="frame" x="12" y="88" width="465" height="10"/>
+                        <rect key="frame" x="12" y="94" width="465" height="10"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="10" id="Ehf-cn-c8d"/>
                         </constraints>
@@ -73,7 +73,7 @@
                         </connections>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rYT-P2-bnD" customClass="WBStatusToolBar" customModule="WeiboSwift" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="110" width="489" height="35"/>
+                        <rect key="frame" x="0.0" y="116" width="489" height="35"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JC5-cl-A37">
                                 <rect key="frame" x="0.0" y="0.0" width="163" height="35"/>

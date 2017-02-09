@@ -34,7 +34,8 @@ class WBStatusListViewModel {
     func loadStatus(pullup: Bool, completion: @escaping (_ isSuccess: Bool, _ shouldRefresh: Bool)->()) {
         
         if pullup && pullupErrorTimes > maxPullupTryTimes {
-            completion(true, false)
+            //FIXME:??
+            completion(false, false)
             return
         }
         
@@ -59,10 +60,11 @@ class WBStatusListViewModel {
                 status.yy_modelSet(with: dict)
                 let viewModel = WBStatusViewModel(model: status)
                 array.append(viewModel)
+                
             }
             
-            
-            print("刷新到\(array.count)条  \(array)")
+           printLog("刷新到\(array.count)条")            
+//            printLog("刷新到\(array.count)条  \(array)")
             
             if pullup {
                 self.statusList += array
@@ -117,22 +119,23 @@ class WBStatusListViewModel {
             
             SDWebImageManager.shared().downloadImage(with: url, options: [], progress: nil, completed: { (image, _, _, _, _) in
                 
-                if let image = image, let data = UIImagePNGRepresentation(image)     {
+                if let image = image,
+                    let data = UIImagePNGRepresentation(image) {
+                    // NSData 是 length 属性
                     length += data.count
                     
                     //  图片缓存成功，更新配图视图的大小
                     vm.updateSingleImageSize(image: image)
                 }
-                
+
                 // 出组 － 放在回调的最后一句
                 group.leave()
             })
-            
         }
         
         // 监听调度组情况
         group.notify(queue: DispatchQueue.main) { 
-            print("all cahce  \(length / 1024) k")
+            printLog("all cahce  \(length / 1024) k")
             //执行闭包回调
             finished(true, true)
         }

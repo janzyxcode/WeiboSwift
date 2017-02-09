@@ -55,7 +55,7 @@ class WBMainViewController: UITabBarController,UITabBarControllerDelegate {
         
         
         DispatchQueue.main.asyncAfter(deadline: when) {
-            print("test")
+            printLog("test")
             SVProgressHUD.setDefaultMaskType(.clear)
             
             let nav = UINavigationController(rootViewController: WBOAuthViewController())
@@ -73,7 +73,7 @@ class WBMainViewController: UITabBarController,UITabBarControllerDelegate {
     
     
     @objc private func composeStatus() {
-        print("click")
+        printLog("click")
     }
     
     

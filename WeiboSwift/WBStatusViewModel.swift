@@ -80,6 +80,8 @@ class WBStatusViewModel: CustomStringConvertible {
         pictureViewSize = calcPictureViewSize(count: picURLs?.count)
         
         retweetedText = "@" + (status.retweeted_status?.user?.screen_name ?? "") + ":" + (status.retweeted_status?.text ?? "")
+        
+        updateRowHeight()
     }
     
     
@@ -118,17 +120,18 @@ class WBStatusViewModel: CustomStringConvertible {
         
         var size = image.size
         
-        let minWidth: CGFloat = 40
+        
         let maxWidth: CGFloat = 300
+        let minWidth: CGFloat = 40
         
         // 过宽图片处理
-        if size.width > 40 {
+        if size.width > maxWidth {
             size.width = maxWidth
             size.height = size.width * image.size.height / image.size.width
         }
         
         // 过窄图片处理
-        if size.width < 300 {
+        if size.width < minWidth {
             size.width = minWidth
             size.height = size.width * image.size.height / image.size.width / 4
         }
@@ -142,7 +145,7 @@ class WBStatusViewModel: CustomStringConvertible {
     
     // 根据当前视图模型内容计算行高
     func updateRowHeight() {
-    
+        
         // 原创微博：顶部分隔视图(12) ＋ 间距(12) ＋ 图片的高度(34) ＋ 间距(12) ＋ 正文高度(需要计算) ＋ 配图视图(高度需要计算) ＋ 间距(12) ＋ 底部视图高度(35)
         
         // 被转发微博：顶部分隔视图(12) ＋ 间距(12) ＋ 图片的高度(34) ＋ 间距(12) ＋ 正文高度(需要计算) ＋ 间距(12) ＋ 间距(12) ＋ 转发文本(高度需要计算) ＋ 配图视图(高度需要计算) ＋ 间距(12) ＋ 底部视图高度(35)
@@ -188,6 +191,6 @@ class WBStatusViewModel: CustomStringConvertible {
     var description: String {
         return status.description
     }
-
+    
 }
 

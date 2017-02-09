@@ -50,7 +50,6 @@ class WBNetworkManager: AFHTTPSessionManager {
             return
         }
         
-        
         var parameters = parameters
         
         if parameters == nil {
@@ -79,10 +78,10 @@ class WBNetworkManager: AFHTTPSessionManager {
         }
         
         let failure = { (task: URLSessionDataTask?, error: Error)->() in
-            print(error)
+            printLog("\(URLString)  \(parameters)\n\(error)")
             
             if (task?.response as? HTTPURLResponse)?.statusCode == 403 {
-                print("token outtime")
+                printLog("token outtime")
                 
                 NotificationCenter.default.post(name: NSNotification.Name(WBUserShouldLoginNotification), object: nil)
             }
@@ -93,7 +92,6 @@ class WBNetworkManager: AFHTTPSessionManager {
         
         if method == .GET {
             get(URLString, parameters: parameters, progress: nil, success: success, failure: failure)
-            
         }else {
             post(URLString, parameters: parameters, progress: nil, success: success, failure: failure)
         }
