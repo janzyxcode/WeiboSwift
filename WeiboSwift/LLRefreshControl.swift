@@ -9,7 +9,12 @@
 import UIKit
 
 // 刷新状态切换临界点
-private let RefreshOffset: CGFloat = 60
+
+// row
+//private let RefreshOffset: CGFloat = 60
+
+// JD
+private let RefreshOffset: CGFloat = 75
 
 // 刷新状态
 // － Normal：       普通状态，什么也不做
@@ -28,18 +33,16 @@ class LLRefreshControl: UIControl {
     private weak var scrollView: UIScrollView?
     
     //FIXME:private
-    lazy var refreshView: LLRefreshView = LLRefreshView.refreshView()
+//    lazy var refreshView: LLRefreshView = LLRefreshView.refreshView()
+    lazy var refreshView: JDRefreshControlView = JDRefreshControlView.refreshView()
     
     init() {
         super.init(frame: CGRect())
-        
         setupUI()
-        backgroundColor = UIColor.orange
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
         setupUI()
     }
     
@@ -52,7 +55,7 @@ class LLRefreshControl: UIControl {
     override func willMove(toSuperview newSuperview: UIView?) {
         super.willMove(toSuperview: newSuperview)
         
-        print(newSuperview)
+        printLog(newSuperview)
         
         guard let sv = newSuperview as? UIScrollView else {
             return
@@ -70,17 +73,23 @@ class LLRefreshControl: UIControl {
     // － KVO：如果不释放，会崩溃
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         
-//        print(scrollView?.contentOffset)
         
         guard let sv = scrollView else {
             return
         }
         
+        
         let height = -(sv.contentInset.top + sv.contentOffset.y)
+        
+        
         
         if height < 0 {
             return
         }
+        
+        
+        refreshView.pullRation = height > RefreshOffset ? 1.0 : height / RefreshOffset
+        
         
         // 根据高度设置刷新控件的 frame
         self.frame = CGRect(x: 0, y: -height, width: sv.bounds.width, height: height)
@@ -91,19 +100,68 @@ class LLRefreshControl: UIControl {
             if height > RefreshOffset
                 && (refreshView.refreshState == .Normal)
             {
-                print("let it go")
+                
                 refreshView.refreshState = .Pulling
                 
-            }else if height <= RefreshOffset
-            && refreshView.refreshState == .Pulling {
-                print("drawing")
+            }else if height <= RefreshOffset && refreshView.refreshState == .Pulling {
+                
                 refreshView.refreshState = .Normal
             }
         }else {
             if refreshView.refreshState == .Pulling {
-                print("start refresh")
-                refreshView.refreshState = .WillRefresh
+                
+                beginRefreshing()
+                
+                // 发送刷新数据事件
+                sendActions(for: .valueChanged)
             }
+        }
+    }
+    
+    func beginRefreshing() {
+        
+        
+        guard let sv = scrollView else {
+            return
+        }
+        
+        // 如果正在刷新，直接返回
+        if refreshView.refreshState == .WillRefresh {
+            return
+        }
+        
+        
+        // 刷新结束之后，将状态修改为 .Normal 才能够继续响应刷新
+        refreshView.refreshState = .WillRefresh
+        
+        // 让整个刷新视图能够显示出来
+        // 解决方法：修改表格的contentInset
+        var inset = sv.contentInset
+        inset.top += RefreshOffset
+        sv.contentInset = inset
+        
+        // 如果开始调用 beginRefresh 会重复发送刷新事件
+//        sendActions(for: .valueChanged)
+    }
+    
+    
+    func endRefreshing() {
+        
+        guard let sv = scrollView else {
+            return
+        }
+        
+        if refreshView.refreshState != .WillRefresh {
+            return
+        }
+        
+        refreshView.refreshState = .Normal
+        
+        var inset = sv.contentInset
+        inset.top -= RefreshOffset
+        
+        UIView.animate(withDuration: 0.3) {
+          sv.contentInset = inset
         }
     }
     
@@ -112,33 +170,47 @@ class LLRefreshControl: UIControl {
         superview?.removeObserver(self, forKeyPath: "contentOffset")
         super.removeFromSuperview()
     }
-
-    
-    func beginRefreshing() {
-        
-    }
-
-    
-    func endRefreshing() {
-        
-    }
 }
 
 
 extension LLRefreshControl {
     func setupUI() {
-        backgroundColor = UIColor.orange
-        
-        clipsToBounds = true
+        backgroundColor = superview?.backgroundColor
+    
+//        clipsToBounds = true
         
         addSubview(refreshView)
         
-        // 自动布局 － 设置 xib 控件的自动布局，需要指定宽高约苏
+        // 自动布局 － 设置 xib 控件的自动布局，需要指定宽高约束
         refreshView.translatesAutoresizingMaskIntoConstraints = false
         
-        addConstraint(NSLayoutConstraint(item: refreshView, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1.0, constant: 0))
-        addConstraint(NSLayoutConstraint(item: refreshView, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1.0, constant: 0))
-        addConstraint(NSLayoutConstraint(item: refreshView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: refreshView.bounds.width))
-        addConstraint(NSLayoutConstraint(item: refreshView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: refreshView.bounds.height))
+        addConstraint(NSLayoutConstraint(item: refreshView,
+                                         attribute: .centerX,
+                                         relatedBy: .equal,
+                                         toItem: self,
+                                         attribute: .centerX,
+                                         multiplier: 1.0,
+                                         constant: 0))
+        addConstraint(NSLayoutConstraint(item: refreshView,
+                                         attribute: .bottom,
+                                         relatedBy: .equal,
+                                         toItem: self,
+                                         attribute: .bottom,
+                                         multiplier: 1.0,
+                                         constant: 0))
+        addConstraint(NSLayoutConstraint(item: refreshView,
+                                         attribute: .width,
+                                         relatedBy: .equal,
+                                         toItem: nil,
+                                         attribute: .notAnAttribute,
+                                         multiplier: 1.0,
+                                         constant: refreshView.bounds.width))
+        addConstraint(NSLayoutConstraint(item: refreshView,
+                                         attribute: .height,
+                                         relatedBy: .equal,
+                                         toItem: nil,
+                                         attribute: .notAnAttribute,
+                                         multiplier: 1.0,
+                                         constant: refreshView.bounds.height))
     }
 }

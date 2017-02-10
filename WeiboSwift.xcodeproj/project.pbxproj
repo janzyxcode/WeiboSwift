@@ -35,6 +35,12 @@
 		047F7DB91E2363910042B2FF /* WBMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047F7DB81E2363910042B2FF /* WBMessageViewController.swift */; };
 		047F7DBD1E23640D0042B2FF /* WBDiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047F7DBC1E23640D0042B2FF /* WBDiscoverViewController.swift */; };
 		047F7DBF1E2368ED0042B2FF /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047F7DBE1E2368ED0042B2FF /* UIImage+Extension.swift */; };
+		04C984DD1E4DD1EE00B38293 /* JDRefreshControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C984DB1E4DD1EE00B38293 /* JDRefreshControlView.swift */; };
+		04C984DE1E4DD1EE00B38293 /* JDRefreshControlView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04C984DC1E4DD1EE00B38293 /* JDRefreshControlView.xib */; };
+		04C984E11E4DD23300B38293 /* WBComposeTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C984E01E4DD23300B38293 /* WBComposeTypeView.swift */; };
+		04C984E31E4DD24100B38293 /* WBComposeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04C984E21E4DD24100B38293 /* WBComposeView.xib */; };
+		04C984E51E4DD6C400B38293 /* WBComposeTypebutton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04C984E41E4DD6C400B38293 /* WBComposeTypebutton.xib */; };
+		04C984E71E4DD6CE00B38293 /* WBComposeTypebutton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C984E61E4DD6CE00B38293 /* WBComposeTypebutton.swift */; };
 		04CB13F81E4AB20A002A3771 /* WBStatusReweetedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04CB13F71E4AB20A002A3771 /* WBStatusReweetedCell.xib */; };
 		04DDFC811E2DB48B009F778A /* WBStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DDFC801E2DB48B009F778A /* WBStatus.swift */; };
 		04DDFC851E2DB808009F778A /* WBStatusListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DDFC841E2DB808009F778A /* WBStatusListViewModel.swift */; };
@@ -109,6 +115,12 @@
 		047F7DB81E2363910042B2FF /* WBMessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBMessageViewController.swift; sourceTree = "<group>"; };
 		047F7DBC1E23640D0042B2FF /* WBDiscoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBDiscoverViewController.swift; sourceTree = "<group>"; };
 		047F7DBE1E2368ED0042B2FF /* UIImage+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
+		04C984DB1E4DD1EE00B38293 /* JDRefreshControlView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JDRefreshControlView.swift; sourceTree = "<group>"; };
+		04C984DC1E4DD1EE00B38293 /* JDRefreshControlView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JDRefreshControlView.xib; sourceTree = "<group>"; };
+		04C984E01E4DD23300B38293 /* WBComposeTypeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBComposeTypeView.swift; sourceTree = "<group>"; };
+		04C984E21E4DD24100B38293 /* WBComposeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WBComposeView.xib; sourceTree = "<group>"; };
+		04C984E41E4DD6C400B38293 /* WBComposeTypebutton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WBComposeTypebutton.xib; sourceTree = "<group>"; };
+		04C984E61E4DD6CE00B38293 /* WBComposeTypebutton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBComposeTypebutton.swift; sourceTree = "<group>"; };
 		04CB13F71E4AB20A002A3771 /* WBStatusReweetedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WBStatusReweetedCell.xib; sourceTree = "<group>"; };
 		04DDFC801E2DB48B009F778A /* WBStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBStatus.swift; sourceTree = "<group>"; };
 		04DDFC841E2DB808009F778A /* WBStatusListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBStatusListViewModel.swift; sourceTree = "<group>"; };
@@ -192,6 +204,7 @@
 				04EB351C1E28CFBF0069D2C4 /* WBVisitorView.swift */,
 				04EBC5061E24DD1A007A3E13 /* WBDemoViewController.swift */,
 				04F81ADF1E2F3F0C00A0DECB /* WBOAuthViewController.swift */,
+				04C984DF1E4DD21A00B38293 /* Compose */,
 				04611DE11E4C7340008016E5 /* RefreshControl */,
 				04D72E271E495F4A005FDF44 /* Home */,
 				04DDFC831E2DB7EB009F778A /* ViewModel */,
@@ -232,6 +245,8 @@
 				04611DE21E4C737C008016E5 /* LLRefreshControl.swift */,
 				04611DF61E4C8870008016E5 /* LLRefreshView.swift */,
 				04611DEE1E4C846A008016E5 /* LLRefreshView.xib */,
+				04C984DB1E4DD1EE00B38293 /* JDRefreshControlView.swift */,
+				04C984DC1E4DD1EE00B38293 /* JDRefreshControlView.xib */,
 			);
 			name = RefreshControl;
 			sourceTree = "<group>";
@@ -257,6 +272,17 @@
 				047F7DB61E235DE70042B2FF /* UIView+YYAdd.m */,
 			);
 			name = Addtions;
+			sourceTree = "<group>";
+		};
+		04C984DF1E4DD21A00B38293 /* Compose */ = {
+			isa = PBXGroup;
+			children = (
+				04C984E01E4DD23300B38293 /* WBComposeTypeView.swift */,
+				04C984E21E4DD24100B38293 /* WBComposeView.xib */,
+				04C984E61E4DD6CE00B38293 /* WBComposeTypebutton.swift */,
+				04C984E41E4DD6C400B38293 /* WBComposeTypebutton.xib */,
+			);
+			name = Compose;
 			sourceTree = "<group>";
 		};
 		04D72E271E495F4A005FDF44 /* Home */ = {
@@ -477,9 +503,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04C984DE1E4DD1EE00B38293 /* JDRefreshControlView.xib in Resources */,
 				041945C91E496EF40069E586 /* WBStatusNormalCell.xib in Resources */,
 				04FA30E41E29C1A8002F6151 /* main.json in Resources */,
+				04C984E31E4DD24100B38293 /* WBComposeView.xib in Resources */,
 				040F1F231E232DA1008BB5E8 /* Assets.xcassets in Resources */,
+				04C984E51E4DD6C400B38293 /* WBComposeTypebutton.xib in Resources */,
 				04CB13F81E4AB20A002A3771 /* WBStatusReweetedCell.xib in Resources */,
 				04611DEF1E4C846A008016E5 /* LLRefreshView.xib in Resources */,
 				0464B5521E48523300B939FF /* WBWelcomeView.xib in Resources */,
@@ -581,13 +610,16 @@
 				041945CB1E4978350069E586 /* WBUser.swift in Sources */,
 				04EBC5021E24D938007A3E13 /* WBHomeViewController.swift in Sources */,
 				04611DE31E4C737C008016E5 /* LLRefreshControl.swift in Sources */,
+				04C984DD1E4DD1EE00B38293 /* JDRefreshControlView.swift in Sources */,
 				0464B54E1E484D8700B939FF /* WBNewFeatureView.swift in Sources */,
 				04DDFC811E2DB48B009F778A /* WBStatus.swift in Sources */,
+				04C984E71E4DD6CE00B38293 /* WBComposeTypebutton.swift in Sources */,
 				041945D71E49B56C0069E586 /* WBStatusPicture.swift in Sources */,
 				04EBC5071E24DD1A007A3E13 /* WBDemoViewController.swift in Sources */,
 				04F81ADC1E2F1A9600A0DECB /* UIScrollView+Extension.swift in Sources */,
 				04EBC5001E24D4E8007A3E13 /* WBBaseViewController.swift in Sources */,
 				04F81AE01E2F3F0C00A0DECB /* WBOAuthViewController.swift in Sources */,
+				04C984E11E4DD23300B38293 /* WBComposeTypeView.swift in Sources */,
 				047F7DB21E2334740042B2FF /* Bundle+Extension.swift in Sources */,
 				040F1F1C1E232DA1008BB5E8 /* AppDelegate.swift in Sources */,
 				04F81ADE1E2F385300A0DECB /* WeiboCommon.swift in Sources */,

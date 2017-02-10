@@ -73,7 +73,9 @@ class WBMainViewController: UITabBarController,UITabBarControllerDelegate {
     
     
     @objc private func composeStatus() {
-        printLog("click")
+        
+        WBComposeTypeView.composeTypeView().show()
+        
     }
     
     

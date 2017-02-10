@@ -21,7 +21,7 @@ class WBBaseViewController: UIViewController {
     
     var visitorInfoDictionary: [String: String]?
     
-    var refreshControl: UIRefreshControl?
+    var refreshControl: LLRefreshControl?
     
     var isPullup = false
     
@@ -121,7 +121,7 @@ extension WBBaseViewController {
         // 修改指示器的缩进
         tableView?.scrollIndicatorInsets = tableView!.contentInset
         
-        refreshControl = UIRefreshControl()
+        refreshControl = LLRefreshControl()
         tableView?.addSubview(refreshControl!)
         refreshControl?.addTarget(self, action: #selector(loadData), for: .valueChanged)
     }
