@@ -192,5 +192,15 @@ class WBStatusViewModel: CustomStringConvertible {
         return status.description
     }
     
+    
+    
+    /**
+ 高级优化： 离屏渲染
+          栅格化： 异步绘制之后，会生成一张独立的图像
+          如果检测到cell的性能已经很好，就不需要离屏渲染，离屏渲染需要在GPU/CPU 之间快速切换，耗电会厉害
+ 
+ 
+ */
+    
 }
 

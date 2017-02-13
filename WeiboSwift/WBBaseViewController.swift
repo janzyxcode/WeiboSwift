@@ -32,6 +32,9 @@ class WBBaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
+        
+        
         setUpViews()
         
         WBNetworkManager.shared.userLogon ? loadData() : ()
@@ -59,8 +62,8 @@ class WBBaseViewController: UIViewController {
 }
 
 
-extension WBBaseViewController {
-    //FIXME:加上 private 就不能访问了
+private extension WBBaseViewController {
+    
     @objc func loginSuccess() {
         printLog("loginSuccess")
         
@@ -76,7 +79,7 @@ extension WBBaseViewController {
         NotificationCenter.default.removeObserver(self)
     }
     
-    //FIXME: 使用 private 其他 extension 就不能访问
+    
     @objc func login() {
         printLog("login")
         
@@ -151,8 +154,8 @@ extension WBBaseViewController {
     }
     
     
-    //FIXME: private为什么报错
-    func setupNavigationBar() {
+    
+    private func setupNavigationBar() {
         
         view.addSubview(navigationBar)
         navigationBar.items = [navItem]

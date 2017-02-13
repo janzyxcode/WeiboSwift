@@ -34,7 +34,7 @@ class WBStatusListViewModel {
     func loadStatus(pullup: Bool, completion: @escaping (_ isSuccess: Bool, _ shouldRefresh: Bool)->()) {
         
         if pullup && pullupErrorTimes > maxPullupTryTimes {
-            //FIXME:??
+            
             completion(false, false)
             return
         }

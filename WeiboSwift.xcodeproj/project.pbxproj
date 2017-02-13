@@ -46,6 +46,7 @@
 		04DDFC851E2DB808009F778A /* WBStatusListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DDFC841E2DB808009F778A /* WBStatusListViewModel.swift */; };
 		04E2E2D91E2C64D30015BCB6 /* WBNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E2E2D81E2C64D30015BCB6 /* WBNetworkManager.swift */; };
 		04E2E2DD1E2C76A10015BCB6 /* WBNetworkManager+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E2E2DC1E2C76A10015BCB6 /* WBNetworkManager+Extension.swift */; };
+		04EA79F81E51A08100553023 /* WBCompViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EA79F71E51A08100553023 /* WBCompViewController.swift */; };
 		04EB351D1E28CFBF0069D2C4 /* WBVisitorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EB351C1E28CFBF0069D2C4 /* WBVisitorView.swift */; };
 		04EBC5001E24D4E8007A3E13 /* WBBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EBC4FF1E24D4E8007A3E13 /* WBBaseViewController.swift */; };
 		04EBC5021E24D938007A3E13 /* WBHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EBC5011E24D938007A3E13 /* WBHomeViewController.swift */; };
@@ -126,6 +127,7 @@
 		04DDFC841E2DB808009F778A /* WBStatusListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBStatusListViewModel.swift; sourceTree = "<group>"; };
 		04E2E2D81E2C64D30015BCB6 /* WBNetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBNetworkManager.swift; sourceTree = "<group>"; };
 		04E2E2DC1E2C76A10015BCB6 /* WBNetworkManager+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WBNetworkManager+Extension.swift"; sourceTree = "<group>"; };
+		04EA79F71E51A08100553023 /* WBCompViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBCompViewController.swift; sourceTree = "<group>"; };
 		04EB351C1E28CFBF0069D2C4 /* WBVisitorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBVisitorView.swift; sourceTree = "<group>"; };
 		04EBC4FF1E24D4E8007A3E13 /* WBBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBBaseViewController.swift; sourceTree = "<group>"; };
 		04EBC5011E24D938007A3E13 /* WBHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBHomeViewController.swift; sourceTree = "<group>"; };
@@ -281,6 +283,7 @@
 				04C984E21E4DD24100B38293 /* WBComposeView.xib */,
 				04C984E61E4DD6CE00B38293 /* WBComposeTypebutton.swift */,
 				04C984E41E4DD6C400B38293 /* WBComposeTypebutton.xib */,
+				04EA79F71E51A08100553023 /* WBCompViewController.swift */,
 			);
 			name = Compose;
 			sourceTree = "<group>";
@@ -598,6 +601,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04EA79F81E51A08100553023 /* WBCompViewController.swift in Sources */,
 				041945D31E49ADA90069E586 /* WBStatusToolBar.swift in Sources */,
 				047F7DB11E2334740042B2FF /* NSObject+Extension.swift in Sources */,
 				0464B54C1E48492C00B939FF /* WBTitleButton.swift in Sources */,

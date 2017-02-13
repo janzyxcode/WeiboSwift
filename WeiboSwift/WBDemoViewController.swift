@@ -37,10 +37,11 @@ class WBDemoViewController: WBBaseViewController {
 
 extension WBDemoViewController {
     
-    override func setUpViews() {
-        super.setUpViews()
-
-        navItem.rightBarButtonItems = UIBarButtonItem.fixtedSpace(title: "下一个", target: self, action: #selector(showNext))
-    }
+    
+//    override func setUpViews() {
+//        super.setUpViews()
+//
+//        navItem.rightBarButtonItems = UIBarButtonItem.fixtedSpace(title: "下一个", target: self, action: #selector(showNext))
+//    }
 }
 

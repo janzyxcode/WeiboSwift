@@ -26,6 +26,9 @@ class WBStatusCell: UITableViewCell {
             
             
             retweetedLabel?.text = viewModel?.retweetedText
+            
+            sourceLabel.text = viewModel?.status.source
+            
         }
     }
     
@@ -67,4 +70,14 @@ class WBStatusCell: UITableViewCell {
     }
 
 
+    
+    
+    /**
+ 正则表达式： ‘匹配’字符串，进行模糊查找
+     .     匹配任意字符，回车除外
+     *     匹配任意多次
+     ?     尽量少的匹配
+ 
+     不是OC特有，几乎所有的语言/IDE，都支持正则表达式
+ */
 }

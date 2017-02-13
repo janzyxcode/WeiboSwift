@@ -19,6 +19,10 @@ class WBStatus: NSObject {
     
     var user: WBUser?
     
+    var created_at: String?
+    
+    var source: String?
+    
     //  被转发的原创微博
     var retweeted_status: WBStatus?
     
