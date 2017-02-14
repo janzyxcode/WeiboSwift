@@ -22,6 +22,8 @@ class WBBaseViewController: UIViewController {
     var visitorInfoDictionary: [String: String]?
     
     var refreshControl: LLRefreshControl?
+    var addPageControl: LLAddPageControl?
+    
     
     var isPullup = false
     
@@ -127,6 +129,11 @@ extension WBBaseViewController {
         refreshControl = LLRefreshControl()
         tableView?.addSubview(refreshControl!)
         refreshControl?.addTarget(self, action: #selector(loadData), for: .valueChanged)
+        
+        
+        addPageControl = LLAddPageControl()
+        tableView?.addSubview(addPageControl!)
+        addPageControl?.addTarget(self, action: #selector(loadMore), for: .valueChanged)
     }
     
     
@@ -153,7 +160,11 @@ extension WBBaseViewController {
         navItem.rightBarButtonItems = UIBarButtonItem.fixtedSpace(title: "登录", target: self, action: #selector(login))
     }
     
-    
+    func loadMore()  {
+        printLog("more")
+        isPullup = true
+        loadData()
+    }
     
     private func setupNavigationBar() {
         
@@ -186,29 +197,28 @@ extension WBBaseViewController:UITableViewDelegate,UITableViewDataSource {
     
     
     // 在显示最后一行的时候，做上拉刷新
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        
-       //  判断 indexPath 是否是最后一行
-        let row = indexPath.row
-        
-        let section = tableView.numberOfSections - 1
-        
-        
-        if row < 0 || section < 0 {
-            return
-        }
-        
-        let count = tableView.numberOfRows(inSection: section)
-        
-        
-        // 如果是最后一行，同时开始上拉刷新
-        if row == (count - 1)
-           && !isPullup {
-            
-            isPullup = true
-            loadData()
-            
-        }
-    }
+//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+//        
+//       //  判断 indexPath 是否是最后一行
+//        let row = indexPath.row
+//        
+//        let section = tableView.numberOfSections - 1
+//        
+//        if row < 0 || section < 0 {
+//            return
+//        }
+//        
+//        let count = tableView.numberOfRows(inSection: section)
+//        
+//        
+//        // 如果是最后一行，同时开始上拉刷新
+//        if row == (count - 1)
+//           && !isPullup {
+//            
+//            isPullup = true
+//            loadData()
+//
+//        }
+//    }
 }
 

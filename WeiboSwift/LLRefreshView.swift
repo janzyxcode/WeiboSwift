@@ -38,7 +38,7 @@ class LLRefreshView: UIView {
                 tipLabel.text = "释放刷新"
                 
                 UIView.animate(withDuration: 0.25, animations: {
-                    self.tipIcon.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI - 0.001))
+                    self.tipIcon.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI + 0.001))
                 })
                 
             case .WillRefresh:

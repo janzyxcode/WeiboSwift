@@ -55,7 +55,8 @@ class LLRefreshControl: UIControl {
     override func willMove(toSuperview newSuperview: UIView?) {
         super.willMove(toSuperview: newSuperview)
         
-        printLog(newSuperview)
+        
+        backgroundColor = newSuperview?.backgroundColor
         
         guard let sv = newSuperview as? UIScrollView else {
             return
@@ -112,8 +113,6 @@ class LLRefreshControl: UIControl {
                 
                 beginRefreshing()
                 
-                // 发送刷新数据事件
-                sendActions(for: .valueChanged)
             }
         }
     }
@@ -140,8 +139,8 @@ class LLRefreshControl: UIControl {
         inset.top += RefreshOffset
         sv.contentInset = inset
         
-        // 如果开始调用 beginRefresh 会重复发送刷新事件
-//        sendActions(for: .valueChanged)
+        
+        sendActions(for: .valueChanged)
     }
     
     
@@ -175,7 +174,6 @@ class LLRefreshControl: UIControl {
 
 extension LLRefreshControl {
     func setupUI() {
-        backgroundColor = superview?.backgroundColor
     
 //        clipsToBounds = true
         

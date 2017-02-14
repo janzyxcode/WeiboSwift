@@ -42,6 +42,9 @@
 		04C984E51E4DD6C400B38293 /* WBComposeTypebutton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04C984E41E4DD6C400B38293 /* WBComposeTypebutton.xib */; };
 		04C984E71E4DD6CE00B38293 /* WBComposeTypebutton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C984E61E4DD6CE00B38293 /* WBComposeTypebutton.swift */; };
 		04CB13F81E4AB20A002A3771 /* WBStatusReweetedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04CB13F71E4AB20A002A3771 /* WBStatusReweetedCell.xib */; };
+		04CC9B0B1E52E881009D95BE /* LLAddPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC9B0A1E52E881009D95BE /* LLAddPageControl.swift */; };
+		04CC9B0F1E52ECC9009D95BE /* LLAddPageControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC9B0E1E52ECC9009D95BE /* LLAddPageControlView.swift */; };
+		04CC9B111E52ECD7009D95BE /* LLAddPageControlView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04CC9B101E52ECD7009D95BE /* LLAddPageControlView.xib */; };
 		04DDFC811E2DB48B009F778A /* WBStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DDFC801E2DB48B009F778A /* WBStatus.swift */; };
 		04DDFC851E2DB808009F778A /* WBStatusListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DDFC841E2DB808009F778A /* WBStatusListViewModel.swift */; };
 		04E2E2D91E2C64D30015BCB6 /* WBNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E2E2D81E2C64D30015BCB6 /* WBNetworkManager.swift */; };
@@ -123,6 +126,9 @@
 		04C984E41E4DD6C400B38293 /* WBComposeTypebutton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WBComposeTypebutton.xib; sourceTree = "<group>"; };
 		04C984E61E4DD6CE00B38293 /* WBComposeTypebutton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBComposeTypebutton.swift; sourceTree = "<group>"; };
 		04CB13F71E4AB20A002A3771 /* WBStatusReweetedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WBStatusReweetedCell.xib; sourceTree = "<group>"; };
+		04CC9B0A1E52E881009D95BE /* LLAddPageControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLAddPageControl.swift; sourceTree = "<group>"; };
+		04CC9B0E1E52ECC9009D95BE /* LLAddPageControlView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLAddPageControlView.swift; sourceTree = "<group>"; };
+		04CC9B101E52ECD7009D95BE /* LLAddPageControlView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LLAddPageControlView.xib; sourceTree = "<group>"; };
 		04DDFC801E2DB48B009F778A /* WBStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBStatus.swift; sourceTree = "<group>"; };
 		04DDFC841E2DB808009F778A /* WBStatusListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBStatusListViewModel.swift; sourceTree = "<group>"; };
 		04E2E2D81E2C64D30015BCB6 /* WBNetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBNetworkManager.swift; sourceTree = "<group>"; };
@@ -202,7 +208,6 @@
 				0464B5531E485F3100B939FF /* WBNewFeatureView.xib */,
 				0464B54F1E484D9300B939FF /* WBWelcomeView.swift */,
 				0464B5511E48523300B939FF /* WBWelcomeView.xib */,
-				04EBC4FF1E24D4E8007A3E13 /* WBBaseViewController.swift */,
 				04EB351C1E28CFBF0069D2C4 /* WBVisitorView.swift */,
 				04EBC5061E24DD1A007A3E13 /* WBDemoViewController.swift */,
 				04F81ADF1E2F3F0C00A0DECB /* WBOAuthViewController.swift */,
@@ -244,11 +249,8 @@
 		04611DE11E4C7340008016E5 /* RefreshControl */ = {
 			isa = PBXGroup;
 			children = (
-				04611DE21E4C737C008016E5 /* LLRefreshControl.swift */,
-				04611DF61E4C8870008016E5 /* LLRefreshView.swift */,
-				04611DEE1E4C846A008016E5 /* LLRefreshView.xib */,
-				04C984DB1E4DD1EE00B38293 /* JDRefreshControlView.swift */,
-				04C984DC1E4DD1EE00B38293 /* JDRefreshControlView.xib */,
+				04CC9B0D1E52EC8C009D95BE /* AddPage */,
+				04CC9B0C1E52EC3E009D95BE /* Refresh */,
 			);
 			name = RefreshControl;
 			sourceTree = "<group>";
@@ -286,6 +288,28 @@
 				04EA79F71E51A08100553023 /* WBCompViewController.swift */,
 			);
 			name = Compose;
+			sourceTree = "<group>";
+		};
+		04CC9B0C1E52EC3E009D95BE /* Refresh */ = {
+			isa = PBXGroup;
+			children = (
+				04611DE21E4C737C008016E5 /* LLRefreshControl.swift */,
+				04611DF61E4C8870008016E5 /* LLRefreshView.swift */,
+				04611DEE1E4C846A008016E5 /* LLRefreshView.xib */,
+				04C984DB1E4DD1EE00B38293 /* JDRefreshControlView.swift */,
+				04C984DC1E4DD1EE00B38293 /* JDRefreshControlView.xib */,
+			);
+			name = Refresh;
+			sourceTree = "<group>";
+		};
+		04CC9B0D1E52EC8C009D95BE /* AddPage */ = {
+			isa = PBXGroup;
+			children = (
+				04CC9B0E1E52ECC9009D95BE /* LLAddPageControlView.swift */,
+				04CC9B101E52ECD7009D95BE /* LLAddPageControlView.xib */,
+				04CC9B0A1E52E881009D95BE /* LLAddPageControl.swift */,
+			);
+			name = AddPage;
 			sourceTree = "<group>";
 		};
 		04D72E271E495F4A005FDF44 /* Home */ = {
@@ -369,6 +393,7 @@
 		04EB351B1E28B93E0069D2C4 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				04EBC4FF1E24D4E8007A3E13 /* WBBaseViewController.swift */,
 				047F7DA81E2332B70042B2FF /* WBMainViewController.swift */,
 				04EBC5041E24DCFB007A3E13 /* WBNavigationViewController.swift */,
 			);
@@ -512,6 +537,7 @@
 				04C984E31E4DD24100B38293 /* WBComposeView.xib in Resources */,
 				040F1F231E232DA1008BB5E8 /* Assets.xcassets in Resources */,
 				04C984E51E4DD6C400B38293 /* WBComposeTypebutton.xib in Resources */,
+				04CC9B111E52ECD7009D95BE /* LLAddPageControlView.xib in Resources */,
 				04CB13F81E4AB20A002A3771 /* WBStatusReweetedCell.xib in Resources */,
 				04611DEF1E4C846A008016E5 /* LLRefreshView.xib in Resources */,
 				0464B5521E48523300B939FF /* WBWelcomeView.xib in Resources */,
@@ -616,6 +642,7 @@
 				04611DE31E4C737C008016E5 /* LLRefreshControl.swift in Sources */,
 				04C984DD1E4DD1EE00B38293 /* JDRefreshControlView.swift in Sources */,
 				0464B54E1E484D8700B939FF /* WBNewFeatureView.swift in Sources */,
+				04CC9B0F1E52ECC9009D95BE /* LLAddPageControlView.swift in Sources */,
 				04DDFC811E2DB48B009F778A /* WBStatus.swift in Sources */,
 				04C984E71E4DD6CE00B38293 /* WBComposeTypebutton.swift in Sources */,
 				041945D71E49B56C0069E586 /* WBStatusPicture.swift in Sources */,
@@ -635,6 +662,7 @@
 				047F7DB91E2363910042B2FF /* WBMessageViewController.swift in Sources */,
 				04E2E2D91E2C64D30015BCB6 /* WBNetworkManager.swift in Sources */,
 				041945C51E496E9C0069E586 /* WBStatusCell.swift in Sources */,
+				04CC9B0B1E52E881009D95BE /* LLAddPageControl.swift in Sources */,
 				04EBC5091E24DE88007A3E13 /* UIBarButtonItem+Extension.swift in Sources */,
 				047F7DBF1E2368ED0042B2FF /* UIImage+Extension.swift in Sources */,
 				04EBC5051E24DCFB007A3E13 /* WBNavigationViewController.swift in Sources */,

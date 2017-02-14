@@ -19,9 +19,16 @@ class WBHomeViewController: WBBaseViewController {
     lazy var listViewModel = WBStatusListViewModel()
     
     override func loadData() {
-        
+        printLog("laodata")
         listViewModel.loadStatus(pullup: self.isPullup) { (isSuccess, shouldRefresh) in
-            self.refreshControl?.endRefreshing()
+            printLog("ennloadata")
+            if self.isPullup == true {
+                self.addPageControl?.endRefreshing()
+            }else {
+               self.refreshControl?.endRefreshing()
+            }
+            
+            
             self.isPullup = false
             
             if shouldRefresh {

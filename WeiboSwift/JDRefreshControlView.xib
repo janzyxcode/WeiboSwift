@@ -11,18 +11,18 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="JDRefreshControlView" customModule="ScrollRefresh" customModuleProvider="target">
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="JDRefreshControlView" customModule="WeiboSwift" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="366" height="161"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="让购物更轻松" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MdP-Uz-SZ1">
-                    <rect key="frame" x="166" y="116" width="74" height="14.5"/>
+                    <rect key="frame" x="166" y="116" width="74" height="15"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <color key="textColor" red="0.49019607843137253" green="0.49019607843137253" blue="0.49019607843137253" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="下拉刷新..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1hF-yr-PWp">
-                    <rect key="frame" x="166" y="133.5" width="50.5" height="12"/>
+                    <rect key="frame" x="166" y="134" width="51" height="12"/>
                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                     <color key="textColor" red="0.54509803921568623" green="0.5490196078431373" blue="0.56470588235294117" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
@@ -34,16 +34,20 @@
                     <rect key="frame" x="60" y="105" width="41" height="49"/>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="box" translatesAutoresizingMaskIntoConstraints="NO" id="o72-6B-itd">
-                    <rect key="frame" x="141" y="121" width="18" height="15"/>
+                    <rect key="frame" x="156" y="120.5" width="18" height="15"/>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="staticDeliveryStaff" translatesAutoresizingMaskIntoConstraints="NO" id="fkW-2h-UXs">
-                    <rect key="frame" x="101" y="86" width="52" height="73"/>
+                    <rect key="frame" x="101" y="159" width="0.0" height="0.0"/>
+                    <constraints>
+                        <constraint firstAttribute="width" id="Eoj-Xs-SNi"/>
+                        <constraint firstAttribute="height" id="KRS-Ej-K3F"/>
+                    </constraints>
                 </imageView>
             </subviews>
             <color key="backgroundColor" red="0.92156862745098034" green="0.94117647058823528" blue="0.95686274509803915" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="MdP-Uz-SZ1" firstAttribute="centerY" secondItem="aiI-wZ-3sg" secondAttribute="centerY" id="0hS-GV-kFr"/>
-                <constraint firstItem="o72-6B-itd" firstAttribute="trailing" secondItem="aiI-wZ-3sg" secondAttribute="trailing" id="2ob-Bq-nLW"/>
+                <constraint firstItem="o72-6B-itd" firstAttribute="trailing" secondItem="aiI-wZ-3sg" secondAttribute="trailing" constant="15" id="2ob-Bq-nLW"/>
                 <constraint firstItem="MdP-Uz-SZ1" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" constant="20" id="8T5-OL-h0M"/>
                 <constraint firstItem="aiI-wZ-3sg" firstAttribute="leading" secondItem="XIY-cZ-APa" secondAttribute="trailing" id="Cmh-gF-RO1"/>
                 <constraint firstItem="fkW-2h-UXs" firstAttribute="leading" secondItem="aiI-wZ-3sg" secondAttribute="leading" id="M4V-TZ-kgf"/>
@@ -59,12 +63,15 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="autoStaffImgv" destination="fkW-2h-UXs" id="QKH-3L-uoF"/>
+                <outlet property="autoStaffImgvHeight" destination="KRS-Ej-K3F" id="I37-xR-v7k"/>
+                <outlet property="autoStaffImgvWidth" destination="Eoj-Xs-SNi" id="PHW-Hm-mPW"/>
                 <outlet property="box" destination="o72-6B-itd" id="LCG-qB-5aa"/>
+                <outlet property="boxTrailingCons" destination="2ob-Bq-nLW" id="e07-Yg-dA9"/>
                 <outlet property="deliveryStaffImgv" destination="aiI-wZ-3sg" id="Lh5-Hr-hFx"/>
                 <outlet property="speed" destination="XIY-cZ-APa" id="0Kv-h3-EDK"/>
                 <outlet property="tipLabel" destination="1hF-yr-PWp" id="J2F-Z8-Q5M"/>
             </connections>
-            <point key="canvasLocation" x="85" y="-109"/>
+            <point key="canvasLocation" x="-3" y="-108"/>
         </view>
     </objects>
     <resources>

@@ -36,12 +36,21 @@ class JDRefreshControlView: UIView {
     var pullRation: CGFloat = 0 {
         didSet {
             
-            //FIXME:人物不是从下到上
             
             pullRation = fabs(pullRation)
             
-            autoStaffImgv.transform = CGAffineTransform(scaleX: pullRation, y: pullRation)
+
             box.transform = CGAffineTransform(scaleX: pullRation, y: pullRation)
+            
+            boxTrailingCons.constant = 15 * (CGFloat(1) - pullRation)
+
+            
+            guard let size = autoStaffImgv.image?.size else {
+                return
+            }
+            
+            autoStaffImgvWidth.constant = size.width * pullRation
+            autoStaffImgvHeight.constant = size.height * pullRation
             
 
         }
@@ -62,7 +71,7 @@ class JDRefreshControlView: UIView {
             let image1 = #imageLiteral(resourceName: "deliveryStaff1")
             let image2 = #imageLiteral(resourceName: "deliveryStaff2")
             let image3 = #imageLiteral(resourceName: "deliveryStaff3")
-            deliveryStaffImgv.image = UIImage.animatedImage(with: [image1,image2,image3], duration: 0.3)
+            deliveryStaffImgv.image = UIImage.animatedImage(with: [image1,image2,image3], duration: 0.25)
         }
     }
     
@@ -76,6 +85,15 @@ class JDRefreshControlView: UIView {
     @IBOutlet weak var deliveryStaffImgv: UIImageView!
     
     @IBOutlet weak var autoStaffImgv: UIImageView!
+    
+    @IBOutlet weak var autoStaffImgvWidth: NSLayoutConstraint!
+    
+    @IBOutlet weak var autoStaffImgvHeight: NSLayoutConstraint!
+    
+    @IBOutlet weak var boxTrailingCons: NSLayoutConstraint!
+    
+
+    
     
     class func refreshView()-> JDRefreshControlView {
         let nib = UINib(nibName: "JDRefreshControlView", bundle: nil)
