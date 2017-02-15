@@ -39,7 +39,9 @@ class WBStatusViewModel: CustomStringConvertible {
     var commentStr: String?
     var likeStr: String?
     
-    var retweetedText: String?
+    var statusAttrText: NSAttributedString?
+    var reweetedAttrText: NSAttributedString?
+    
     
     var pictureViewSize = CGSize()
     
@@ -79,7 +81,15 @@ class WBStatusViewModel: CustomStringConvertible {
         
         pictureViewSize = calcPictureViewSize(count: picURLs?.count)
         
-        retweetedText = "@" + (status.retweeted_status?.user?.screen_name ?? "") + ":" + (status.retweeted_status?.text ?? "")
+        
+        let originalFont = UIFont.systemFont(ofSize: 15)
+        let retweetedFont = UIFont.systemFont(ofSize: 14)
+        
+        statusAttrText = LLEmoticonManager.shared.emoticonString(string: model.text ?? "", font: originalFont)
+        
+        let rText = "@" + (status.retweeted_status?.user?.screen_name ?? "") + ":" + (status.retweeted_status?.text ?? "")
+        
+        reweetedAttrText = LLEmoticonManager.shared.emoticonString(string: rText, font: retweetedFont)
         
         updateRowHeight()
     }
@@ -158,16 +168,16 @@ class WBStatusViewModel: CustomStringConvertible {
         var height: CGFloat = 0
         
         let viewSize = CGSize(width: UIScreen.main.bounds.width - 2 * margin, height: CGFloat(MAXFLOAT))
-        let originalFont = UIFont.systemFont(ofSize: 15)
-        let retweetedFont = UIFont.systemFont(ofSize: 14)
+        
         
         height = 2 * margin + iconHeight + margin
         
         // 正文高度
-        if let text = status.text {
+        if let text = statusAttrText {
             
             // usesLineFragmentOrigin：换行文本，统一使用
-            height += (text as NSString).boundingRect(with: viewSize, options: [.usesLineFragmentOrigin], attributes: [NSFontAttributeName: originalFont], context: nil).height
+            height += text.boundingRect(with: viewSize, options: [.usesLineFragmentOrigin], context: nil).height
+            
         }
         
         // 判断是否转发微博
@@ -176,8 +186,8 @@ class WBStatusViewModel: CustomStringConvertible {
             height += 2 * margin
             
             // 转发文本的高度
-            if let text = retweetedText {
-                height += (text as NSString).boundingRect(with: viewSize, options: [.usesLineFragmentOrigin], attributes: [NSFontAttributeName: retweetedFont], context: nil).height
+            if let text = reweetedAttrText {
+                height += text.boundingRect(with: viewSize, options: [.usesLineFragmentOrigin], context: nil).height
             }
         }
         

@@ -58,7 +58,7 @@ class WBOAuthViewController: UIViewController {
     }
     
     @objc func autoFill() {
-       let js = "document.getElementById('userId').value = '18566663496';" + "document.getElementById('passwd').value = 'nailiao04';"
+       let js = "document.getElementById('userId').value = '18566663496';" + "document.getElementById('passwd').value = '';"
         webView.stringByEvaluatingJavaScript(from: js)
     }
 }

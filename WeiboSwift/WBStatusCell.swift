@@ -9,10 +9,12 @@
 import UIKit
 
 class WBStatusCell: UITableViewCell {
-
+    
     var viewModel: WBStatusViewModel? {
         didSet {
-            statusLabel?.text = viewModel?.status.text
+            statusLabel?.attributedText = viewModel?.statusAttrText
+            retweetedLabel?.attributedText = viewModel?.reweetedAttrText
+            
             nameLabel.text = viewModel?.status.user?.screen_name
             memberIconView.image = viewModel?.memberIcon
             vipIconView.image = viewModel?.vipIcon
@@ -25,10 +27,7 @@ class WBStatusCell: UITableViewCell {
             pictureView.viewModel = viewModel
             
             
-            retweetedLabel?.text = viewModel?.retweetedText
-            
             sourceLabel.text = viewModel?.status.source
-            
         }
     }
     
@@ -51,7 +50,7 @@ class WBStatusCell: UITableViewCell {
     
     @IBOutlet weak var pictureView: WBStatusPictureView!
     
-   /// 被转发微博的标签 － 原创微博没有此控件，一定要用 ‘？’
+    /// 被转发微博的标签 － 原创微博没有此控件，一定要用 ‘？’
     @IBOutlet weak var retweetedLabel: UILabel?
     
     override func awakeFromNib() {
@@ -68,16 +67,9 @@ class WBStatusCell: UITableViewCell {
         // 使用 ‘栅格化’ 必须注意指定分辨率
         self.layer.rasterizationScale = UIScreen.main.scale
     }
-
-
     
     
-    /**
- 正则表达式： ‘匹配’字符串，进行模糊查找
-     .     匹配任意字符，回车除外
-     *     匹配任意多次
-     ?     尽量少的匹配
- 
-     不是OC特有，几乎所有的语言/IDE，都支持正则表达式
- */
+    
+    
+   
 }

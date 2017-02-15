@@ -20,6 +20,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
+//        let m = LLEmoticonManager.shared
+        
+//        printLog(m.packages)
+        printLog(LLEmoticonManager.shared.packages.last?.emoticons.first?.image)
+        printLog(LLEmoticonManager.shared.packages.last?.emoticons.first)
+        
+        printLog(LLEmoticonManager.shared.findEmoticon(string: "[马上有对象]"))
+        
         setupAdditions()
         
         window = UIWindow()

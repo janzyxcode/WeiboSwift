@@ -21,7 +21,13 @@ class WBStatus: NSObject {
     
     var created_at: String?
     
-    var source: String?
+    var source: String? {
+        didSet {
+            // 重新计算来源并且保存
+            // 在 didSet 中，给source 再次设置值，不会调用 didSet
+           source = "来自" + (source?.ll_href()?.text ?? "")
+        }
+    }
     
     //  被转发的原创微博
     var retweeted_status: WBStatus?
