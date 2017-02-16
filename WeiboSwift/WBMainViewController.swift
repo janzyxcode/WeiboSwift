@@ -81,8 +81,9 @@ class WBMainViewController: UITabBarController,UITabBarControllerDelegate {
                     return
             }
             
-            let vc = cls.init()
-            let nav = UINavigationController(rootViewController: vc)
+            let nibvc = cls.init(nibName: clsName, bundle: nil)
+//            let vc = cls.init()
+            let nav = UINavigationController(rootViewController: nibvc)
             
             self.present(nav, animated: true, completion: {
                 v?.removeFromSuperview()

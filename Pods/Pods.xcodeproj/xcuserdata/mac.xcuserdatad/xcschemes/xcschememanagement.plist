@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>FFLabel.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-WeiboSwift.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -37,27 +42,32 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>32CA774A755264E98C2D3B8D4FABA2EE</key>
+		<key>41F2A599E78ED9E4CC6C77395B8E3B68</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>435628131723D62D6AB8073F779FC395</key>
+		<key>5159CA8FFB0A945B68EAD79EAED6F682</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6AD2DE604C9485735846C9FB7AFC08A7</key>
+		<key>56B1E436874C7884016C59D98D8ED798</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>75DB357F7345CB2B88EAB77B618123B5</key>
+		<key>6394E3A5A1FE20256CB0A5EB0EB09961</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BB1B6294C828F50DCE2DB70FEBBE9420</key>
+		<key>9A8B06C667BF436000AA594A4E9FC3A7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CF108937BC0218EBA349181E04F58E19</key>
 		<dict>
 			<key>primary</key>
 			<true/>

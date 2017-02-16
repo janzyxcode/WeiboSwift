@@ -8,34 +8,57 @@
 
 import UIKit
 
+/**
+ 通过view的背景色和 viewDidLoad里面的一样可以知道，加载视图控制器的时候，如果 XIB 和控制器同名，默认的构造函数，会优先加载 XIB
+ */
+
 class WBCompViewController: UIViewController {
 
+    @IBOutlet weak var textView: UITextView!
+    
+    @IBOutlet weak var toolbar: UIToolbar!
+    
+    
+    @IBOutlet var sendButton: UIButton!
+    
+    
+    // XIB 里 label换行： option ＋ 回车
+    // 如果想调整间距，可以增加一个空行，设置空行的字体，lineHeight
+    @IBOutlet var titleLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor.yellow
-
-        navigationItem.leftBarButtonItems = UIBarButtonItem.fixtedSpace(title: "退出", target: self, action: #selector(close))
+        setupUI()
     }
     
-    @objc private func close() {
+    @objc func close() {
         dismiss(animated: true, completion: nil)
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+
+    @IBAction func postStatus(_ sender: UIButton) {
+        printLog("post")
     }
     
+}
 
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+extension WBCompViewController {
+    
+    func setupUI() {
+        
+        view.backgroundColor = UIColor.white
+        
+        setupNavigationBar()
     }
-    */
-
+    
+    func setupNavigationBar() {
+       navigationItem.leftBarButtonItems = UIBarButtonItem.fixtedSpace(title: "关闭", target: self, action: #selector(close))
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: sendButton)
+        navigationItem.titleView = titleLabel
+        
+        
+        sendButton.isEnabled = false
+    }
 }

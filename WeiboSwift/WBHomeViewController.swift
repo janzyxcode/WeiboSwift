@@ -73,8 +73,26 @@ extension WBHomeViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! WBStatusCell
         cell.viewModel = vm
         
+        
+        // 如果用block 需要在数据源方法中，给每一个 cell 设置 block
+        // cell.completionBlock = { // ... }
+        // 设置代理只是传递一个指针地址
+        cell.delegate = self
+        
         return cell
     }
+}
+
+extension WBHomeViewController: WBstatusCellDelegate {
+    
+    func statusCellDidSelectedURLString(cell: WBStatusCell, urlString: String) {
+        
+        let vc = WBWebViewController()
+        vc.urlString = urlString
+        navigationController?.pushViewController(vc, animated: true)
+        
+    }
+    
 }
 
 extension WBHomeViewController {

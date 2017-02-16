@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1212" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WBCompViewController" customModule="WeiboSwift" customModuleProvider="target">
+            <connections>
+                <outlet property="sendButton" destination="zZY-on-1uj" id="y98-97-4j0"/>
+                <outlet property="textView" destination="czN-fV-65g" id="2ne-WH-OUm"/>
+                <outlet property="titleLabel" destination="rOW-sd-Pq5" id="Z9b-r7-NGE"/>
+                <outlet property="toolbar" destination="Zb8-3Q-Hj8" id="Esy-tu-gIb"/>
+                <outlet property="view" destination="iN0-l3-epB" id="Rme-eV-dk2"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zb8-3Q-Hj8">
+                    <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="xHg-En-amr"/>
+                    </constraints>
+                    <items>
+                        <barButtonItem title="Item" id="2K1-9i-A0y"/>
+                    </items>
+                </toolbar>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="czN-fV-65g">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="Zb8-3Q-Hj8" secondAttribute="bottom" id="J9h-8d-hwQ"/>
+                <constraint firstItem="Zb8-3Q-Hj8" firstAttribute="top" secondItem="czN-fV-65g" secondAttribute="bottom" id="Vhc-je-jWU"/>
+                <constraint firstItem="czN-fV-65g" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="fJ1-jA-306"/>
+                <constraint firstItem="Zb8-3Q-Hj8" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="fiy-xx-h7b"/>
+                <constraint firstItem="czN-fV-65g" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="i4x-5Z-q9b"/>
+                <constraint firstAttribute="trailing" secondItem="czN-fV-65g" secondAttribute="trailing" id="m4X-if-cI3"/>
+                <constraint firstAttribute="trailing" secondItem="Zb8-3Q-Hj8" secondAttribute="trailing" id="vkm-Sx-qxG"/>
+            </constraints>
+            <point key="canvasLocation" x="104.5" y="53.5"/>
+        </view>
+        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="zZY-on-1uj">
+            <rect key="frame" x="0.0" y="0.0" width="45" height="35"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+            <state key="normal" title="发布" backgroundImage="common_button_big_orange"/>
+            <state key="disabled" backgroundImage="common_button_white_disable">
+                <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+            </state>
+            <state key="highlighted" backgroundImage="common_button_big_orange_highlighted"/>
+            <connections>
+                <action selector="postStatus:" destination="-1" eventType="touchUpInside" id="pSW-n9-leM"/>
+            </connections>
+            <point key="canvasLocation" x="-295" y="283.5"/>
+        </button>
+        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rOW-sd-Pq5">
+            <rect key="frame" x="0.0" y="0.0" width="100" height="35"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <attributedString key="attributedText">
+                <fragment content="发微博">
+                    <attributes>
+                        <font key="NSFont" size="12" name=".PingFangSC-Regular"/>
+                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                    </attributes>
+                </fragment>
+                <fragment>
+                    <string key="content" base64-UTF8="YES">
+Cgo
+</string>
+                    <attributes>
+                        <font key="NSFont" size="6" name=".AppleSystemUIFont"/>
+                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                    </attributes>
+                </fragment>
+                <fragment content="啦啦啦重名啦">
+                    <attributes>
+                        <color key="NSColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <font key="NSFont" size="10" name=".PingFangSC-Regular"/>
+                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                    </attributes>
+                </fragment>
+            </attributedString>
+            <color key="highlightedColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+            <point key="canvasLocation" x="-280" y="394"/>
+        </label>
+    </objects>
+    <resources>
+        <image name="common_button_big_orange" width="11" height="9"/>
+        <image name="common_button_big_orange_highlighted" width="11" height="9"/>
+        <image name="common_button_white_disable" width="11" height="35"/>
+    </resources>
+</document>

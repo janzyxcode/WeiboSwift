@@ -49,6 +49,8 @@
 		04CC9B0B1E52E881009D95BE /* LLAddPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC9B0A1E52E881009D95BE /* LLAddPageControl.swift */; };
 		04CC9B0F1E52ECC9009D95BE /* LLAddPageControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC9B0E1E52ECC9009D95BE /* LLAddPageControlView.swift */; };
 		04CC9B111E52ECD7009D95BE /* LLAddPageControlView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04CC9B101E52ECD7009D95BE /* LLAddPageControlView.xib */; };
+		04D3BC731E557E1B00615446 /* WBWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D3BC721E557E1B00615446 /* WBWebViewController.swift */; };
+		04D3BC751E55859300615446 /* WBCompViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D3BC741E55859300615446 /* WBCompViewController.xib */; };
 		04DDFC811E2DB48B009F778A /* WBStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DDFC801E2DB48B009F778A /* WBStatus.swift */; };
 		04DDFC851E2DB808009F778A /* WBStatusListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DDFC841E2DB808009F778A /* WBStatusListViewModel.swift */; };
 		04E289A51E542AFB00891F92 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E289A41E542AFB00891F92 /* String+Extension.swift */; };
@@ -138,6 +140,8 @@
 		04CC9B0A1E52E881009D95BE /* LLAddPageControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLAddPageControl.swift; sourceTree = "<group>"; };
 		04CC9B0E1E52ECC9009D95BE /* LLAddPageControlView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLAddPageControlView.swift; sourceTree = "<group>"; };
 		04CC9B101E52ECD7009D95BE /* LLAddPageControlView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LLAddPageControlView.xib; sourceTree = "<group>"; };
+		04D3BC721E557E1B00615446 /* WBWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBWebViewController.swift; sourceTree = "<group>"; };
+		04D3BC741E55859300615446 /* WBCompViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WBCompViewController.xib; sourceTree = "<group>"; };
 		04DDFC801E2DB48B009F778A /* WBStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBStatus.swift; sourceTree = "<group>"; };
 		04DDFC841E2DB808009F778A /* WBStatusListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBStatusListViewModel.swift; sourceTree = "<group>"; };
 		04E289A41E542AFB00891F92 /* String+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
@@ -309,6 +313,7 @@
 				04C984E61E4DD6CE00B38293 /* WBComposeTypebutton.swift */,
 				04C984E41E4DD6C400B38293 /* WBComposeTypebutton.xib */,
 				04EA79F71E51A08100553023 /* WBCompViewController.swift */,
+				04D3BC741E55859300615446 /* WBCompViewController.xib */,
 			);
 			name = Compose;
 			sourceTree = "<group>";
@@ -345,6 +350,7 @@
 				04CB13F71E4AB20A002A3771 /* WBStatusReweetedCell.xib */,
 				041945D21E49ADA90069E586 /* WBStatusToolBar.swift */,
 				041945D41E49B44C0069E586 /* WBStatusPictureView.swift */,
+				04D3BC721E557E1B00615446 /* WBWebViewController.swift */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -566,6 +572,7 @@
 				04611DEF1E4C846A008016E5 /* LLRefreshView.xib in Resources */,
 				0464B5521E48523300B939FF /* WBWelcomeView.xib in Resources */,
 				0464B5541E485F3100B939FF /* WBNewFeatureView.xib in Resources */,
+				04D3BC751E55859300615446 /* WBCompViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -661,6 +668,7 @@
 				04EB351D1E28CFBF0069D2C4 /* WBVisitorView.swift in Sources */,
 				56DB6B281E474D9800A551A7 /* WBUserAccount.swift in Sources */,
 				047F7DBD1E23640D0042B2FF /* WBDiscoverViewController.swift in Sources */,
+				04D3BC731E557E1B00615446 /* WBWebViewController.swift in Sources */,
 				0464B5501E484D9300B939FF /* WBWelcomeView.swift in Sources */,
 				041945CB1E4978350069E586 /* WBUser.swift in Sources */,
 				041145671E543C770006DF3E /* LLEmoticonManager.swift in Sources */,
