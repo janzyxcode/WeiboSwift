@@ -14,10 +14,31 @@ class LLEmoticon: NSObject {
     var type = false
     var chs: String?
     var png: String?
-    var code: String?
+    
+    var emoji: String?
     
     // 表情模型所在的目录
     var directory: String?
+    
+    
+    // unicode 的编码，展现使用 UTF8 1～4 个字节表示一个字符
+    var code: String? {
+        didSet {
+            guard let code = code else {
+                return
+            }
+            
+            // 实例化字符扫描
+            let scanner = Scanner(string: code)
+            
+            // 从 code 中扫描出 十六进制的数值
+            var result: UInt32 = 0
+            scanner.scanHexInt32(&result)
+
+            // 使用  Uint32 的数值，生成一个 UTF8的字符
+            emoji = String(Character(UnicodeScalar(result)!))
+        }
+    }
     
     // 图片表情对应的图像
     var image: UIImage? {

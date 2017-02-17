@@ -9,8 +9,14 @@
 import UIKit
 import AFNetworking
 
+
 // Swift 的枚举支持任意数据类型
 //  switch / enum 在OC 中都只是支持整数
+
+/**
+ 405错误：不支持的网络请求方法
+ */
+
 enum WBHTTPMethod {
     case GET
     case POST
@@ -40,7 +46,7 @@ class WBNetworkManager: AFHTTPSessionManager {
     
     
     /// 专门负责拼接 token 的网络请求方法
-    func tokenRequest(method: WBHTTPMethod = .GET, URLString: String, parameters: [String: AnyObject]?, completion: @escaping (_ json: AnyObject?, _ isSuccess: Bool)->()) {
+    func tokenRequest(method: WBHTTPMethod = .GET, URLString: String, parameters: [String: AnyObject]?, name: String? = nil, data: Data? = nil, completion: @escaping (_ json: AnyObject?, _ isSuccess: Bool)->()) {
         
         guard let token = userAccount.access_token else {
             
@@ -58,10 +64,41 @@ class WBNetworkManager: AFHTTPSessionManager {
         
         parameters!["access_token"] = token as AnyObject?
         
-        request(URLString: URLString, parameters: parameters!, completion: completion)
+        if let name = name, let data = data {
+            upload(URLString: URLString, parameters: parameters, name: name, data: data, completion: completion)
+        }
+        
+        request(method: method, URLString: URLString, parameters: parameters!, completion: completion)
     }
     
     
+    //  上传文件必须是 POST 方法， GET 只能获取数据
+    func upload(URLString: String, parameters: [String: AnyObject]?, name: String, data: Data, completion: @escaping (_ json: AnyObject?, _ isSuccess: Bool) -> ()) {
+
+        post(URLString, parameters: parameters, constructingBodyWith: { (formDat) in
+            
+            /**
+             data： 要上传的二进制数据
+             name： 服务器接收数据的字段名
+             fileName： 保存在服务器的文件名，大多数服务器，现在可以乱写
+                  很多服务器，上传图片完成后，会生成缩略图，中图，大图
+             mimeType: 告诉服务器上传文件的类型，如果不想告诉，可以使用 application/octet-stream image/png image/jpg  image/gif
+            */
+            formDat.appendPart(withFileData: data, name: name, fileName: "xxx", mimeType: "application/octet-stream")
+            
+        }, progress: nil, success: { (_, result) in
+            
+            completion(result as AnyObject, true)
+            
+        }) { (task, error) in
+            if (task?.response as? HTTPURLResponse)?.statusCode == 403 {
+                
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: WBUserShouldLoginNotification), object: "bad token")
+            }
+            
+            completion(nil, true)
+        }
+    }
     
     
     /// <#Description#>

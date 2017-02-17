@@ -130,13 +130,7 @@ class WBComposeTypeView: UIView {
     @IBAction func close(_ sender: UIButton) {
         hideButtons()
     }
-    
-    
-    
-    
-    
 }
-
 
 
 

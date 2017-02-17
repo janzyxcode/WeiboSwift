@@ -6,7 +6,7 @@
 //  Copyright © 2017年 nailiao. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class LLEmoticonManager {
     
@@ -14,6 +14,12 @@ class LLEmoticonManager {
     static let shared = LLEmoticonManager()
     
     lazy var packages = [LLEmoticonPackage]()
+    
+    lazy var bundle: Bundle = {
+        let path = Bundle.main.path(forResource: "HMEmoticon.bundle", ofType: nil)
+          return Bundle(path: path!)!
+    }()
+    
     
     // 构造函数，如果在 init 之前增加 private 修饰符，可以要求调用者必须通过 shared 访问对象
     // OC 要重写 allocWithZone 方法

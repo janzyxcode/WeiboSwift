@@ -56,6 +56,31 @@ extension WBNetworkManager {
 
 extension WBNetworkManager {
     
+    func postStatus(text: String, image: UIImage?, completion: @escaping (_ result: [String: AnyObject]?, _ isSuccess: Bool) -> ()){
+        
+        let urlString = image == nil ? "https://api.weibo.com/2/statuses/update.json" : "https://upload.api.weibo.com/2/statuses/upload.json"
+        
+        let params = ["status": text]
+        
+        var name: String?
+        var data: Data?
+        
+        if image != nil {
+            name = "pic"
+            data = UIImagePNGRepresentation(image!)
+        }
+        
+        tokenRequest(method: .POST, URLString: urlString, parameters: params as [String : AnyObject]?, name: name, data: data) { (json, isSuccess) in
+            completion(json as! [String : AnyObject]?, isSuccess)
+        }
+        
+    }
+    
+}
+
+
+extension WBNetworkManager {
+    
     func loadUserInfo(completion: @escaping (_ dict: [String: AnyObject])->())  {
         
         guard let uid = userAccount.uid else {
@@ -101,3 +126,5 @@ extension WBNetworkManager {
         }
     }
 }
+
+

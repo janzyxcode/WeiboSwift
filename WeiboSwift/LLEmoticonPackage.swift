@@ -33,6 +33,31 @@ class LLEmoticonPackage: NSObject {
     
     lazy var emoticons = [LLEmoticon]()
     
+    // 表情页面数量
+    var numberOfPages: Int {
+        return (emoticons.count - 1) / 20 + 1
+    }
+    
+    
+    // 从懒加载的表情包中，按照 page 截取最多 20 个表情模型的数组
+    func emoticon(page: Int)-> [LLEmoticon] {
+    
+        let count = 20
+        let location = page * count
+        var length = count
+        
+        if location + length > emoticons.count {
+            length = emoticons.count - location
+        }
+        
+        let range = NSRange(location: location, length: length)
+        
+        let subArray = (emoticons as NSArray).subarray(with: range)
+        
+        return subArray as! [LLEmoticon]
+    }
+    
+    
     override var description: String {
         return yy_modelDescription()
     }

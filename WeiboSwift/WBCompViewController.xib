@@ -15,6 +15,7 @@
                 <outlet property="textView" destination="czN-fV-65g" id="2ne-WH-OUm"/>
                 <outlet property="titleLabel" destination="rOW-sd-Pq5" id="Z9b-r7-NGE"/>
                 <outlet property="toolbar" destination="Zb8-3Q-Hj8" id="Esy-tu-gIb"/>
+                <outlet property="toolbarBottomCons" destination="J9h-8d-hwQ" id="RCs-1w-ePT"/>
                 <outlet property="view" destination="iN0-l3-epB" id="Rme-eV-dk2"/>
             </connections>
         </placeholder>
@@ -32,12 +33,14 @@
                         <barButtonItem title="Item" id="2K1-9i-A0y"/>
                     </items>
                 </toolbar>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="czN-fV-65g">
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="czN-fV-65g" customClass="WBComposeTextView" customModule="WeiboSwift" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="8kR-Bu-OcT"/>
+                    </connections>
                 </textView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
