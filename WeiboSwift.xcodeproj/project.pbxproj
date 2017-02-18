@@ -75,6 +75,9 @@
 		04FC9A571E57FAB500DC8BA5 /* LLEmoticonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FC9A521E57FAB500DC8BA5 /* LLEmoticonCell.swift */; };
 		04FC9A581E57FAB500DC8BA5 /* LLEmotictionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FC9A531E57FAB500DC8BA5 /* LLEmotictionLayout.swift */; };
 		04FC9A5C1E57FBAB00DC8BA5 /* LLEmotionAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FC9A5B1E57FBAB00DC8BA5 /* LLEmotionAttachment.swift */; };
+		04FC9AA21E58386700DC8BA5 /* WBStatusListDAL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FC9AA11E58386700DC8BA5 /* WBStatusListDAL.swift */; };
+		04FC9AA61E58399900DC8BA5 /* LNGSQLiteManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FC9AA41E58399900DC8BA5 /* LNGSQLiteManger.swift */; };
+		04FC9AA71E58399900DC8BA5 /* status.sql in Resources */ = {isa = PBXBuildFile; fileRef = 04FC9AA51E58399900DC8BA5 /* status.sql */; };
 		56DB6B281E474D9800A551A7 /* WBUserAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56DB6B271E474D9700A551A7 /* WBUserAccount.swift */; };
 		92B612DEC031C8C61DA3C52F /* Pods_WeiboSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3258B37946EDF128A0824230 /* Pods_WeiboSwift.framework */; };
 /* End PBXBuildFile section */
@@ -173,6 +176,9 @@
 		04FC9A521E57FAB500DC8BA5 /* LLEmoticonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLEmoticonCell.swift; sourceTree = "<group>"; };
 		04FC9A531E57FAB500DC8BA5 /* LLEmotictionLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLEmotictionLayout.swift; sourceTree = "<group>"; };
 		04FC9A5B1E57FBAB00DC8BA5 /* LLEmotionAttachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLEmotionAttachment.swift; sourceTree = "<group>"; };
+		04FC9AA11E58386700DC8BA5 /* WBStatusListDAL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBStatusListDAL.swift; sourceTree = "<group>"; };
+		04FC9AA41E58399900DC8BA5 /* LNGSQLiteManger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LNGSQLiteManger.swift; sourceTree = "<group>"; };
+		04FC9AA51E58399900DC8BA5 /* status.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = status.sql; sourceTree = "<group>"; };
 		19845F93A62E2B7290C863F9 /* Pods-WeiboSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeiboSwift.release.xcconfig"; path = "Pods/Target Support Files/Pods-WeiboSwift/Pods-WeiboSwift.release.xcconfig"; sourceTree = "<group>"; };
 		3258B37946EDF128A0824230 /* Pods_WeiboSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeiboSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		56DB6B271E474D9700A551A7 /* WBUserAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBUserAccount.swift; sourceTree = "<group>"; };
@@ -239,6 +245,7 @@
 				04EB351C1E28CFBF0069D2C4 /* WBVisitorView.swift */,
 				04EBC5061E24DD1A007A3E13 /* WBDemoViewController.swift */,
 				04F81ADF1E2F3F0C00A0DECB /* WBOAuthViewController.swift */,
+				04FC9AA31E58398A00DC8BA5 /* FMDB */,
 				04FC9A4E1E57FA9900DC8BA5 /* EmoticonKeyboard */,
 				041145631E543C400006DF3E /* Emoticon */,
 				04C984DF1E4DD21A00B38293 /* Compose */,
@@ -397,6 +404,7 @@
 			children = (
 				04DDFC841E2DB808009F778A /* WBStatusListViewModel.swift */,
 				041945CE1E497AE70069E586 /* WBStatusViewModel.swift */,
+				04FC9AA11E58386700DC8BA5 /* WBStatusListDAL.swift */,
 			);
 			name = ViewModel;
 			sourceTree = "<group>";
@@ -456,6 +464,15 @@
 				04FC9A531E57FAB500DC8BA5 /* LLEmotictionLayout.swift */,
 			);
 			name = EmoticonKeyboard;
+			sourceTree = "<group>";
+		};
+		04FC9AA31E58398A00DC8BA5 /* FMDB */ = {
+			isa = PBXGroup;
+			children = (
+				04FC9AA41E58399900DC8BA5 /* LNGSQLiteManger.swift */,
+				04FC9AA51E58399900DC8BA5 /* status.sql */,
+			);
+			name = FMDB;
 			sourceTree = "<group>";
 		};
 		74FABB613CC247260BB5EC1B /* Pods */ = {
@@ -598,6 +615,7 @@
 				040F1F231E232DA1008BB5E8 /* Assets.xcassets in Resources */,
 				04C984E51E4DD6C400B38293 /* WBComposeTypebutton.xib in Resources */,
 				04CC9B111E52ECD7009D95BE /* LLAddPageControlView.xib in Resources */,
+				04FC9AA71E58399900DC8BA5 /* status.sql in Resources */,
 				04CB13F81E4AB20A002A3771 /* WBStatusReweetedCell.xib in Resources */,
 				04611DEF1E4C846A008016E5 /* LLRefreshView.xib in Resources */,
 				0464B5521E48523300B939FF /* WBWelcomeView.xib in Resources */,
@@ -690,6 +708,7 @@
 			files = (
 				0411456B1E5441ED0006DF3E /* LLEmoticonPackage.swift in Sources */,
 				04EA79F81E51A08100553023 /* WBCompViewController.swift in Sources */,
+				04FC9AA21E58386700DC8BA5 /* WBStatusListDAL.swift in Sources */,
 				041945D31E49ADA90069E586 /* WBStatusToolBar.swift in Sources */,
 				047F7DB11E2334740042B2FF /* NSObject+Extension.swift in Sources */,
 				0464B54C1E48492C00B939FF /* WBTitleButton.swift in Sources */,
@@ -697,6 +716,7 @@
 				047F7DB71E235DE70042B2FF /* UIView+YYAdd.m in Sources */,
 				04FC9A571E57FAB500DC8BA5 /* LLEmoticonCell.swift in Sources */,
 				04EB351D1E28CFBF0069D2C4 /* WBVisitorView.swift in Sources */,
+				04FC9AA61E58399900DC8BA5 /* LNGSQLiteManger.swift in Sources */,
 				56DB6B281E474D9800A551A7 /* WBUserAccount.swift in Sources */,
 				047F7DBD1E23640D0042B2FF /* WBDiscoverViewController.swift in Sources */,
 				04D3BC731E557E1B00615446 /* WBWebViewController.swift in Sources */,

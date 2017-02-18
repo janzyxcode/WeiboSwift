@@ -46,7 +46,7 @@ class WBStatusListViewModel {
         
         
         
-        WBNetworkManager.shared.statusList(since_id: since_id, max_id: max_id) { (list, isSuccess) in
+        WBStatusListDAL.loadStatus(since_id: since_id, max_id: max_id) { (list, isSuccess) in
             
             if !isSuccess {
                 completion(false, false)

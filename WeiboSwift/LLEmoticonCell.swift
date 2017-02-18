@@ -22,7 +22,6 @@ class LLEmoticonCell: UICollectionViewCell {
     
     var emoticons: [LLEmoticon]? {
         didSet {
-            print("count---\(emoticons?.count)")
             
             for v in contentView.subviews {
                 v.isHidden = true

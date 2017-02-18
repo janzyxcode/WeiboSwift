@@ -7,7 +7,7 @@ pod "AFNetworking"
 pod "pop"
 pod "SDWebImage"
 pod "YYModel"
-#pod "FMDB"
+pod "FMDB"
 pod "SVProgressHUD"
 pod "FFLabel"
 

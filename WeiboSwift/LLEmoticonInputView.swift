@@ -55,8 +55,7 @@ extension LLEmoticonInputView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! LLEmoticonCell
-        //FIXME: collection item？
-        print("\(indexPath) -- \(indexPath.item)")
+
         cell.emoticons = LLEmoticonManager.shared.packages[indexPath.section].emoticon(page: indexPath.item)
         cell.delegate = self
         return cell
