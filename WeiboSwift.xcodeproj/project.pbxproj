@@ -69,6 +69,12 @@
 		04F81ADE1E2F385300A0DECB /* WeiboCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F81ADD1E2F385300A0DECB /* WeiboCommon.swift */; };
 		04F81AE01E2F3F0C00A0DECB /* WBOAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F81ADF1E2F3F0C00A0DECB /* WBOAuthViewController.swift */; };
 		04FA30E41E29C1A8002F6151 /* main.json in Resources */ = {isa = PBXBuildFile; fileRef = 04FA30E31E29C1A8002F6151 /* main.json */; };
+		04FC9A541E57FAB500DC8BA5 /* LLEmoticonInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FC9A4F1E57FAB500DC8BA5 /* LLEmoticonInputView.swift */; };
+		04FC9A551E57FAB500DC8BA5 /* LLEmoticonInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04FC9A501E57FAB500DC8BA5 /* LLEmoticonInputView.xib */; };
+		04FC9A561E57FAB500DC8BA5 /* LLEmoticonToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FC9A511E57FAB500DC8BA5 /* LLEmoticonToolBar.swift */; };
+		04FC9A571E57FAB500DC8BA5 /* LLEmoticonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FC9A521E57FAB500DC8BA5 /* LLEmoticonCell.swift */; };
+		04FC9A581E57FAB500DC8BA5 /* LLEmotictionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FC9A531E57FAB500DC8BA5 /* LLEmotictionLayout.swift */; };
+		04FC9A5C1E57FBAB00DC8BA5 /* LLEmotionAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FC9A5B1E57FBAB00DC8BA5 /* LLEmotionAttachment.swift */; };
 		56DB6B281E474D9800A551A7 /* WBUserAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56DB6B271E474D9700A551A7 /* WBUserAccount.swift */; };
 		92B612DEC031C8C61DA3C52F /* Pods_WeiboSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3258B37946EDF128A0824230 /* Pods_WeiboSwift.framework */; };
 /* End PBXBuildFile section */
@@ -161,6 +167,12 @@
 		04F81ADD1E2F385300A0DECB /* WeiboCommon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeiboCommon.swift; sourceTree = "<group>"; };
 		04F81ADF1E2F3F0C00A0DECB /* WBOAuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBOAuthViewController.swift; sourceTree = "<group>"; };
 		04FA30E31E29C1A8002F6151 /* main.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = main.json; sourceTree = "<group>"; };
+		04FC9A4F1E57FAB500DC8BA5 /* LLEmoticonInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLEmoticonInputView.swift; sourceTree = "<group>"; };
+		04FC9A501E57FAB500DC8BA5 /* LLEmoticonInputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LLEmoticonInputView.xib; sourceTree = "<group>"; };
+		04FC9A511E57FAB500DC8BA5 /* LLEmoticonToolBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLEmoticonToolBar.swift; sourceTree = "<group>"; };
+		04FC9A521E57FAB500DC8BA5 /* LLEmoticonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLEmoticonCell.swift; sourceTree = "<group>"; };
+		04FC9A531E57FAB500DC8BA5 /* LLEmotictionLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLEmotictionLayout.swift; sourceTree = "<group>"; };
+		04FC9A5B1E57FBAB00DC8BA5 /* LLEmotionAttachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLEmotionAttachment.swift; sourceTree = "<group>"; };
 		19845F93A62E2B7290C863F9 /* Pods-WeiboSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeiboSwift.release.xcconfig"; path = "Pods/Target Support Files/Pods-WeiboSwift/Pods-WeiboSwift.release.xcconfig"; sourceTree = "<group>"; };
 		3258B37946EDF128A0824230 /* Pods_WeiboSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeiboSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		56DB6B271E474D9700A551A7 /* WBUserAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBUserAccount.swift; sourceTree = "<group>"; };
@@ -227,6 +239,7 @@
 				04EB351C1E28CFBF0069D2C4 /* WBVisitorView.swift */,
 				04EBC5061E24DD1A007A3E13 /* WBDemoViewController.swift */,
 				04F81ADF1E2F3F0C00A0DECB /* WBOAuthViewController.swift */,
+				04FC9A4E1E57FA9900DC8BA5 /* EmoticonKeyboard */,
 				041145631E543C400006DF3E /* Emoticon */,
 				04C984DF1E4DD21A00B38293 /* Compose */,
 				04611DE11E4C7340008016E5 /* RefreshControl */,
@@ -269,6 +282,7 @@
 				041145641E543C540006DF3E /* HMEmoticon.bundle */,
 				041145661E543C770006DF3E /* LLEmoticonManager.swift */,
 				041145681E54418B0006DF3E /* LLEmoticon.swift */,
+				04FC9A5B1E57FBAB00DC8BA5 /* LLEmotionAttachment.swift */,
 				0411456A1E5441ED0006DF3E /* LLEmoticonPackage.swift */,
 			);
 			name = Emoticon;
@@ -432,6 +446,18 @@
 			name = Base;
 			sourceTree = "<group>";
 		};
+		04FC9A4E1E57FA9900DC8BA5 /* EmoticonKeyboard */ = {
+			isa = PBXGroup;
+			children = (
+				04FC9A4F1E57FAB500DC8BA5 /* LLEmoticonInputView.swift */,
+				04FC9A501E57FAB500DC8BA5 /* LLEmoticonInputView.xib */,
+				04FC9A511E57FAB500DC8BA5 /* LLEmoticonToolBar.swift */,
+				04FC9A521E57FAB500DC8BA5 /* LLEmoticonCell.swift */,
+				04FC9A531E57FAB500DC8BA5 /* LLEmotictionLayout.swift */,
+			);
+			name = EmoticonKeyboard;
+			sourceTree = "<group>";
+		};
 		74FABB613CC247260BB5EC1B /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -568,6 +594,7 @@
 				04FA30E41E29C1A8002F6151 /* main.json in Resources */,
 				04C984E31E4DD24100B38293 /* WBComposeView.xib in Resources */,
 				041145651E543C540006DF3E /* HMEmoticon.bundle in Resources */,
+				04FC9A551E57FAB500DC8BA5 /* LLEmoticonInputView.xib in Resources */,
 				040F1F231E232DA1008BB5E8 /* Assets.xcassets in Resources */,
 				04C984E51E4DD6C400B38293 /* WBComposeTypebutton.xib in Resources */,
 				04CC9B111E52ECD7009D95BE /* LLAddPageControlView.xib in Resources */,
@@ -668,6 +695,7 @@
 				0464B54C1E48492C00B939FF /* WBTitleButton.swift in Sources */,
 				041945D51E49B44C0069E586 /* WBStatusPictureView.swift in Sources */,
 				047F7DB71E235DE70042B2FF /* UIView+YYAdd.m in Sources */,
+				04FC9A571E57FAB500DC8BA5 /* LLEmoticonCell.swift in Sources */,
 				04EB351D1E28CFBF0069D2C4 /* WBVisitorView.swift in Sources */,
 				56DB6B281E474D9800A551A7 /* WBUserAccount.swift in Sources */,
 				047F7DBD1E23640D0042B2FF /* WBDiscoverViewController.swift in Sources */,
@@ -688,12 +716,15 @@
 				04F81ADC1E2F1A9600A0DECB /* UIScrollView+Extension.swift in Sources */,
 				04EBC5001E24D4E8007A3E13 /* WBBaseViewController.swift in Sources */,
 				04F81AE01E2F3F0C00A0DECB /* WBOAuthViewController.swift in Sources */,
+				04FC9A541E57FAB500DC8BA5 /* LLEmoticonInputView.swift in Sources */,
 				04C984E11E4DD23300B38293 /* WBComposeTypeView.swift in Sources */,
 				047F7DB21E2334740042B2FF /* Bundle+Extension.swift in Sources */,
 				040F1F1C1E232DA1008BB5E8 /* AppDelegate.swift in Sources */,
+				04FC9A581E57FAB500DC8BA5 /* LLEmotictionLayout.swift in Sources */,
 				04F81ADE1E2F385300A0DECB /* WeiboCommon.swift in Sources */,
 				047F7DAD1E2332F30042B2FF /* WBMeViewController.swift in Sources */,
 				04DDFC851E2DB808009F778A /* WBStatusListViewModel.swift in Sources */,
+				04FC9A5C1E57FBAB00DC8BA5 /* LLEmotionAttachment.swift in Sources */,
 				04D4F46C1E5699EF00354A45 /* WBComposeTextView.swift in Sources */,
 				04611DF71E4C8870008016E5 /* LLRefreshView.swift in Sources */,
 				041945D11E4997EA0069E586 /* UIImageView+WebImage.swift in Sources */,
@@ -707,6 +738,7 @@
 				04EBC5051E24DCFB007A3E13 /* WBNavigationViewController.swift in Sources */,
 				04E2E2DD1E2C76A10015BCB6 /* WBNetworkManager+Extension.swift in Sources */,
 				047F7DA91E2332B70042B2FF /* WBMainViewController.swift in Sources */,
+				04FC9A561E57FAB500DC8BA5 /* LLEmoticonToolBar.swift in Sources */,
 				041945CF1E497AE70069E586 /* WBStatusViewModel.swift in Sources */,
 				04E289A51E542AFB00891F92 /* String+Extension.swift in Sources */,
 			);

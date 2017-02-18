@@ -65,7 +65,8 @@ class LLEmoticon: NSObject {
             return NSAttributedString(string: "")
         }
         
-        let attactment = NSTextAttachment()
+        let attactment = LLEmotionAttachment()
+        attactment.chs = chs
         
         attactment.image = image
         let height = font.lineHeight

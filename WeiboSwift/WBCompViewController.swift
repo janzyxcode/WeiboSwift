@@ -15,7 +15,7 @@ import SVProgressHUD
 
 class WBCompViewController: UIViewController {
 
-    @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var textView: WBComposeTextView!
     
     @IBOutlet weak var toolbar: UIToolbar!
     
@@ -26,6 +26,11 @@ class WBCompViewController: UIViewController {
     // XIB 里 label换行： option ＋ 回车
     // 如果想调整间距，可以增加一个空行，设置空行的字体，lineHeight
     @IBOutlet var titleLabel: UILabel!
+    
+    
+    lazy var emoticonView: LLEmoticonInputView = LLEmoticonInputView.inputView {[weak self] (emoticon) in
+        self?.textView.insertEmoticon(em: emoticon)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,9 +72,7 @@ class WBCompViewController: UIViewController {
 
     @IBAction func postStatus(_ sender: UIButton) {
         
-        guard let text = textView.text else {
-            return
-        }
+        let text = textView.emoticonText
         
         
 //        let image = UIImage(named: "icon_courier")
@@ -98,15 +101,21 @@ class WBCompViewController: UIViewController {
         // textView.inputView 就是文本框的输入视图
         // 如果使用系统默认的键盘，输入视图为 nil
         
-        let keyboardView = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 253))
-        keyboardView.backgroundColor = UIColor.blue
+//        let keyboardView = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 253))
+//        keyboardView.backgroundColor = UIColor.blue
+//        
+//        // 设置键盘视图
+//        textView.inputView = keyboardView
         
-        // 设置键盘视图
-        textView.inputView = keyboardView
+        
+        textView.inputView = (textView.inputView == nil) ? emoticonView : nil
         
         // 刷新键盘视图
         textView.reloadInputViews()
     }
+ 
+    
+    
     
 }
 
