@@ -9,6 +9,9 @@
 import Foundation
 import FMDB
 
+// 最大数据库缓存时间，以 s 为单位
+private let maxDBCacheTime: TimeInterval = -5 * 24 * 60 * 60
+
 /// SQLite 管理器
 /**
  1、数据库本质上是保存在沙盒中的一个文件，首先需要创建并且打开数据库
@@ -21,6 +24,18 @@ import FMDB
  开发数据库功能的时候，首先一定要在 navicat 中测试 SQL 的正确性
  */
 
+
+/**
+ 什么数据适合缓存
+ - 实时敏感度不高
+ - 更新效率低
+ - 有查询需求的
+ 
+ 例如：菜谱、qq好友、常用的地标
+ 
+ 微博不适合
+ 
+ */
 
 class LNGSQLiteManger {
 
@@ -45,6 +60,64 @@ class LNGSQLiteManger {
         
         // 打开数据库
         createTable()
+        
+        // 监听应用程序进入后台
+        NotificationCenter.default.addObserver(self, selector: #selector(clearDBCache), name: NSNotification.Name.UIApplicationDidEnterBackground, object: nil)
+        
+        
+        /**
+         SDImageCache
+         // Subscribe to app events
+         [[NSNotificationCenter defaultCenter] addObserver:self
+         selector:@selector(clearMemory)
+         name:UIApplicationDidReceiveMemoryWarningNotification
+         object:nil];
+         
+         [[NSNotificationCenter defaultCenter] addObserver:self
+         selector:@selector(cleanDisk)
+         name:UIApplicationWillTerminateNotification
+         object:nil];
+         
+         [[NSNotificationCenter defaultCenter] addObserver:self
+         selector:@selector(backgroundCleanDisk)
+         name:UIApplicationDidEnterBackgroundNotification
+         object:nil];
+
+         */
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    
+    /**
+     
+     清理数据缓存
+     注意细节：
+     - Sqlite 的数据不断的增加数据，数据库文件的大小，会不断的增加
+     - 但是： 如果删除了数据，数据库的带下，不会变小
+     - 如果要变小
+     - 1：将数据库文件复制一个心的副本，status.db.old
+     - 2：新建一个空的数据库文件
+     - 3：自己编写 SQL，从 old 中将所有的数据读出，写入新的数据库
+     */
+    
+    
+    @objc private func clearDBCache() {
+        
+        let dateString = Date.ll_dateString(delta: maxDBCacheTime)
+        
+        printLog("clear \(dateString)")
+        
+        let sql = "DELETE FROM T_Status WHERE createTime < ?;"
+        
+        queue.inDatabase { (db) in
+        
+            if db?.executeUpdate(sql, withArgumentsIn: [dateString]) == true {
+                printLog("delete \(db?.changes())")
+            }
+        }
     }
     
 }

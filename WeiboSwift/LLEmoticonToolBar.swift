@@ -8,8 +8,27 @@
 
 import UIKit
 
+@objc protocol LLEmoticonToolBarDelegae: NSObjectProtocol {
+    func emoticonToolBarDidSelectedItemIndex(toolbar:  LLEmoticonToolBar, index: Int)
+}
+
+
 class LLEmoticonToolBar: UIView {
 
+    var selectIndex: Int = 0 {
+        didSet {
+            
+            for btn in subviews as! [UIButton] {
+                btn.isSelected = false
+            }
+            
+            (subviews[selectIndex] as! UIButton).isSelected = true
+            
+        }
+    }
+    
+    weak var delegate: LLEmoticonToolBarDelegae?
+    
     override func awakeFromNib() {
         setupUI()
     }
@@ -24,8 +43,12 @@ class LLEmoticonToolBar: UIView {
         for (i, btn) in subviews.enumerated() {
             btn.frame = rect.offsetBy(dx: CGFloat(i) * w, dy: 0)
         }
-        
-        
+    }
+    
+    
+    @objc func clickItem(button: UIButton) {
+        delegate?.emoticonToolBarDidSelectedItemIndex(toolbar:self, index: button.tag)
+
     }
 }
 
@@ -35,7 +58,7 @@ private extension LLEmoticonToolBar {
         
         let manager = LLEmoticonManager.shared
         
-        for p in manager.packages {
+        for (i, p) in manager.packages.enumerated() {
             
             let btn = UIButton()
             btn.setTitle(p.groupName, for: [])
@@ -44,10 +67,12 @@ private extension LLEmoticonToolBar {
             btn.setTitleColor(UIColor.darkGray, for: .highlighted)
             btn.setTitleColor(UIColor.darkGray, for: .selected)
             btn.sizeToFit()
+            btn.tag = i
+            btn.addTarget(self, action: #selector(clickItem), for: .touchUpInside)
             addSubview(btn)
         }
         
-        
+        (subviews[0] as! UIButton).isSelected = true
     }
     
 }

@@ -41,6 +41,8 @@ class WBStatusCell: UITableViewCell {
             
             
             sourceLabel.text = viewModel?.status.source
+            
+            timeLabel.text = viewModel?.status.createdDate?.ll_dateDescription
         }
     }
     

@@ -78,6 +78,8 @@
 		04FC9AA21E58386700DC8BA5 /* WBStatusListDAL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FC9AA11E58386700DC8BA5 /* WBStatusListDAL.swift */; };
 		04FC9AA61E58399900DC8BA5 /* LNGSQLiteManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FC9AA41E58399900DC8BA5 /* LNGSQLiteManger.swift */; };
 		04FC9AA71E58399900DC8BA5 /* status.sql in Resources */ = {isa = PBXBuildFile; fileRef = 04FC9AA51E58399900DC8BA5 /* status.sql */; };
+		567509751E597D2B0039D3A7 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567509741E597D2B0039D3A7 /* Date+Extension.swift */; };
+		567509771E5983DC0039D3A7 /* LLEMoticonTipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567509761E5983DB0039D3A7 /* LLEMoticonTipView.swift */; };
 		56DB6B281E474D9800A551A7 /* WBUserAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56DB6B271E474D9700A551A7 /* WBUserAccount.swift */; };
 		92B612DEC031C8C61DA3C52F /* Pods_WeiboSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3258B37946EDF128A0824230 /* Pods_WeiboSwift.framework */; };
 /* End PBXBuildFile section */
@@ -181,6 +183,8 @@
 		04FC9AA51E58399900DC8BA5 /* status.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = status.sql; sourceTree = "<group>"; };
 		19845F93A62E2B7290C863F9 /* Pods-WeiboSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeiboSwift.release.xcconfig"; path = "Pods/Target Support Files/Pods-WeiboSwift/Pods-WeiboSwift.release.xcconfig"; sourceTree = "<group>"; };
 		3258B37946EDF128A0824230 /* Pods_WeiboSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeiboSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		567509741E597D2B0039D3A7 /* Date+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		567509761E5983DB0039D3A7 /* LLEMoticonTipView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLEMoticonTipView.swift; sourceTree = "<group>"; };
 		56DB6B271E474D9700A551A7 /* WBUserAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBUserAccount.swift; sourceTree = "<group>"; };
 		CC33A2535664AD5F22ABF738 /* Pods-WeiboSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeiboSwift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WeiboSwift/Pods-WeiboSwift.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -315,6 +319,7 @@
 				04F81ADB1E2F1A9600A0DECB /* UIScrollView+Extension.swift */,
 				041945D01E4997EA0069E586 /* UIImageView+WebImage.swift */,
 				04E289A41E542AFB00891F92 /* String+Extension.swift */,
+				567509741E597D2B0039D3A7 /* Date+Extension.swift */,
 			);
 			name = Extension;
 			sourceTree = "<group>";
@@ -462,6 +467,7 @@
 				04FC9A511E57FAB500DC8BA5 /* LLEmoticonToolBar.swift */,
 				04FC9A521E57FAB500DC8BA5 /* LLEmoticonCell.swift */,
 				04FC9A531E57FAB500DC8BA5 /* LLEmotictionLayout.swift */,
+				567509761E5983DB0039D3A7 /* LLEMoticonTipView.swift */,
 			);
 			name = EmoticonKeyboard;
 			sourceTree = "<group>";
@@ -732,6 +738,7 @@
 				041145691E54418B0006DF3E /* LLEmoticon.swift in Sources */,
 				04C984E71E4DD6CE00B38293 /* WBComposeTypebutton.swift in Sources */,
 				041945D71E49B56C0069E586 /* WBStatusPicture.swift in Sources */,
+				567509771E5983DC0039D3A7 /* LLEMoticonTipView.swift in Sources */,
 				04EBC5071E24DD1A007A3E13 /* WBDemoViewController.swift in Sources */,
 				04F81ADC1E2F1A9600A0DECB /* UIScrollView+Extension.swift in Sources */,
 				04EBC5001E24D4E8007A3E13 /* WBBaseViewController.swift in Sources */,
@@ -759,6 +766,7 @@
 				04E2E2DD1E2C76A10015BCB6 /* WBNetworkManager+Extension.swift in Sources */,
 				047F7DA91E2332B70042B2FF /* WBMainViewController.swift in Sources */,
 				04FC9A561E57FAB500DC8BA5 /* LLEmoticonToolBar.swift in Sources */,
+				567509751E597D2B0039D3A7 /* Date+Extension.swift in Sources */,
 				041945CF1E497AE70069E586 /* WBStatusViewModel.swift in Sources */,
 				04E289A51E542AFB00891F92 /* String+Extension.swift in Sources */,
 			);

@@ -19,7 +19,13 @@ class WBStatus: NSObject {
     
     var user: WBUser?
     
-    var created_at: String?
+    var created_at: String? {
+        didSet {
+            createdDate = Date.ll_sinaDate(string: created_at ?? "")
+        }
+    }
+    
+    var createdDate: Date?
     
     var source: String? {
         didSet {

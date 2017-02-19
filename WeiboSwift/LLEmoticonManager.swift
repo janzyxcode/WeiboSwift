@@ -27,6 +27,26 @@ class LLEmoticonManager {
         loadPackages()
     }
     
+    
+    // 添加最近使用的表情
+    func recentEmoticon(em: LLEmoticon) {
+        
+        em.times += 1
+        
+        if !packages[0].emoticons.contains(em){
+            packages[0].emoticons.append(em)
+        }
+        
+        //FIXME:添加FMDB类表
+        packages[0].emoticons.sort { (em1, em2) -> Bool in
+            return em1.times > em2.times
+        }
+        
+        // 如果表情数组超过 20，删除末尾的表情
+        if packages[0].emoticons.count > 20 {
+            packages[0].emoticons.removeSubrange(20..<packages[0].emoticons.count)
+        }
+    }
 }
 
 

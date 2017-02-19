@@ -14,8 +14,10 @@ class LLEmoticon: NSObject {
     var type = false
     var chs: String?
     var png: String?
-    
     var emoji: String?
+    
+    
+    var times: Int = 0
     
     // 表情模型所在的目录
     var directory: String?

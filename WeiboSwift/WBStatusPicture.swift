@@ -10,13 +10,13 @@ import UIKit
 
 class WBStatusPicture: NSObject {
 
-//    var thumbnail_pic: String? {
-//        didSet {
-//            thumbnail_pic = thumbnail_pic?.replacingOccurrences(of: "/thumbnail/", with: "/large/")
-//        }
-//    }
+    var thumbnail_pic: String? {
+        didSet {
+            thumbnail_pic = thumbnail_pic?.replacingOccurrences(of: "/thumbnail/", with: "/wap360/")
+        }
+    }
     
-    var thumbnail_pic: String?
+    
     
     override var description: String {
         return yy_modelDescription()

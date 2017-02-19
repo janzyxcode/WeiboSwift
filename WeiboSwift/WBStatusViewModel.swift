@@ -136,7 +136,7 @@ class WBStatusViewModel: CustomStringConvertible {
         
         // 过宽图片处理
         if size.width > maxWidth {
-            size.width = maxWidth
+            size.width = 200
             size.height = size.width * image.size.height / image.size.width
         }
         

@@ -20,6 +20,8 @@ class LLEmoticonCell: UICollectionViewCell {
     
     weak var delegate: LLEmoticonCellDelegate?
     
+    private lazy var tipView = LLEMoticonTipView()
+    
     var emoticons: [LLEmoticon]? {
         didSet {
             
@@ -53,6 +55,21 @@ class LLEmoticonCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
+    // 当视图从界面上删除，同样会调用次法官法， newWindow == nil
+    override func willMove(toWindow newWindow: UIWindow?) {
+        super.willMove(toWindow: newWindow)
+        
+        guard let w = newWindow else {
+            return
+        }
+        
+        // FIXME:why not?
+        // 将提示师徒添加到窗口上
+        // 提示：在iOS 6.0 之前，很多程序员都喜欢被控件往窗口添加
+        // 在现在开放，如果有地方，就不要用窗口
+        w.addSubview(tipView)
+    }
 
     @objc func selectedEmoticonButton(button: UIButton) {
         
@@ -65,6 +82,55 @@ class LLEmoticonCell: UICollectionViewCell {
         }
         
         delegate?.emoticonCellDidSelectedEmoticon(cell: self, em: em)
+    }
+    
+    
+    @objc func longGesture(gesture: UILongPressGestureRecognizer) {
+        
+        let location = gesture.location(in: self)
+        
+        guard let btn = buttonWithLocation(location: location) else {
+            tipView.isHidden = true
+            return
+        }
+        //FXIME:刚进来第一个cell创建的tipView一直显示
+        // 处理手势状态
+        switch gesture.state {
+        case .began, .changed:
+            tipView.isHidden = false
+            
+            // 坐标系的转换 -> 将按钮参照 cell 的坐标系，转换到window的坐标位置
+            let center = self.convert(btn.center, to: window)
+            
+            tipView.center = center
+            
+            if btn.tag < (emoticons?.count)! {
+                tipView.emoticon = emoticons?[btn.tag]
+            }
+        case .ended:
+            tipView.isHidden = true
+            selectedEmoticonButton(button: btn)
+            
+        case .cancelled, .failed:
+            tipView.isHidden = true
+        default:
+            break
+        }
+        
+        printLog("\(btn) - \(btn.tag)")
+        
+    }
+    
+    private func buttonWithLocation(location: CGPoint)->UIButton? {
+        
+        for btn in contentView.subviews as! [UIButton] {
+            if btn.frame.contains(location)
+               && !btn.isHidden {
+                return btn
+            }
+        }
+        
+        return nil
     }
     
 }
@@ -106,5 +172,9 @@ private extension LLEmoticonCell {
         removeBtn.setImage(image, for: [])
         
         
+        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(longGesture))
+        
+        longPress.minimumPressDuration = 0.1
+        addGestureRecognizer(longPress)
     }
 }
