@@ -32,7 +32,9 @@ extension Date {
     
     static func ll_sinaDate(string: String)->Date? {
         dateFormatter.dateFormat = "EEE MMM dd HH:mm:ss zzz yyyy"
-        return dateFormatter.date(from: string)
+        let date = dateFormatter.date(from: string)
+        printLog("\(string) -- \(date) -- \(dateFormatter.dateFormat)")
+        return date
     }
     
     

@@ -40,7 +40,6 @@ class LLEmoticonInputView: UIView {
         collectionView.dataSource = self
 
         
-        
         collectionView.register(LLEmoticonCell.self, forCellWithReuseIdentifier: cellId)
         
         toolbar.delegate = self

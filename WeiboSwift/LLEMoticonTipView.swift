@@ -42,7 +42,7 @@ class LLEMoticonTipView: UIImageView {
     init() {
         
         
-        let image = UIImage(named: "tabbar_compose_below_button")
+        let image = UIImage(named: "emoticon_keyboard_magnifier")
         
         super.init(image: image)
         
