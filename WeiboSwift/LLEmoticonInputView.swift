@@ -43,7 +43,26 @@ class LLEmoticonInputView: UIView {
         collectionView.register(LLEmoticonCell.self, forCellWithReuseIdentifier: cellId)
         
         toolbar.delegate = self
+        
+        
+        let bundle = LLEmoticonManager.shared.bundle
+        
+        guard let normalImage = UIImage(named: "compose_keyboard_dot_normal", in: bundle, compatibleWith: nil),
+            let selectedImage = UIImage(named: "compose_keyboard_dot_selected", in: bundle, compatibleWith: nil)
+            else {
+                return
+        }
+        
+        //        pageControl.pageIndicatorTintColor = UIColor(patternImage: normalImage)
+        //        pageControl.currentPageIndicatorTintColor = UIColor(patternImage: selectedImage)
+        
+        // 使用 看VC 设置私有成员属性
+        // 使用运行时查看 类 的私有成员变量
+        pageControl.setValue(normalImage, forKey: "_pageImage")
+        pageControl.setValue(selectedImage, forKey: "_currentPageImage")
     }
+    
+  
 }
 
 extension LLEmoticonInputView:UICollectionViewDelegate {
@@ -56,7 +75,7 @@ extension LLEmoticonInputView:UICollectionViewDelegate {
         let paths = collectionView.indexPathsForVisibleItems
         
         var targetIndexPath: IndexPath?
-        //FIXME:没完善
+        
         for indexPath in paths {
             
             let cell = collectionView.cellForItem(at: indexPath)
@@ -72,6 +91,7 @@ extension LLEmoticonInputView:UICollectionViewDelegate {
         }
         
         toolbar.selectIndex = target.section
+        
         
         pageControl.numberOfPages = collectionView.numberOfItems(inSection: target.section)
         pageControl.currentPage = target.item

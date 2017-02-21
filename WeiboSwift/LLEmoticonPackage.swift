@@ -38,6 +38,7 @@ class LLEmoticonPackage: NSObject {
         return (emoticons.count - 1) / 20 + 1
     }
     
+    var bgImageName: String?
     
     // 从懒加载的表情包中，按照 page 截取最多 20 个表情模型的数组
     func emoticon(page: Int)-> [LLEmoticon] {

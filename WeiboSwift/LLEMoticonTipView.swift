@@ -41,11 +41,13 @@ class LLEMoticonTipView: UIImageView {
     
     init() {
         
+        let bundle = LLEmoticonManager.shared.bundle
+        let image = UIImage(named: "emoticon_keyboard_magnifier", in: bundle, compatibleWith: nil)
         
-        let image = UIImage(named: "emoticon_keyboard_magnifier")
         
         super.init(image: image)
         
+        isHidden = true
         
         // 设置锚点
         layer.anchorPoint = CGPoint(x: 0.5, y: 1.2)

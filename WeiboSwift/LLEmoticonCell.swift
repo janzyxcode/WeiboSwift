@@ -8,6 +8,10 @@
 
 import UIKit
 
+/**
+ 在swift 3中，新增加了一个 fileprivate来显式的表明，这个元素的访问权限为文件内私有。过去的private对应现在的fileprivate。现在的private则是真正的私有，离开了这个类或者结构体的作用域外面就无法访问。
+ 
+ */
 
 @objc protocol LLEmoticonCellDelegate: NSObjectProtocol {
     
@@ -71,7 +75,7 @@ class LLEmoticonCell: UICollectionViewCell {
         w.addSubview(tipView)
     }
 
-    @objc func selectedEmoticonButton(button: UIButton) {
+    @objc fileprivate func selectedEmoticonButton(button: UIButton) {
         
         let tag = button.tag
         
@@ -85,7 +89,7 @@ class LLEmoticonCell: UICollectionViewCell {
     }
     
     
-    @objc func longGesture(gesture: UILongPressGestureRecognizer) {
+    @objc fileprivate func longGesture(gesture: UILongPressGestureRecognizer) {
         
         let location = gesture.location(in: self)
         
