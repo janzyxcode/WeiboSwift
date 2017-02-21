@@ -61,8 +61,8 @@ class WBVisitorView: UIView {
     
     
     
-    //FIXME: 加 private extension 不能访问
-    lazy var iconView = UIImageView(image: UIImage(named: "visitordiscover_feed_image_smallicon"))
+    
+    lazy fileprivate var iconView = UIImageView(image: UIImage(named: "visitordiscover_feed_image_smallicon"))
     
     lazy var maskIconView: UIImageView = UIImageView(image: UIImage(named:"visitordiscover_feed_mask_smallicon"))
     

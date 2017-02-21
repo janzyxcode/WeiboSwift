@@ -51,8 +51,8 @@ class WBOAuthViewController: UIViewController {
         webView.loadRequest(request)
     }
 
-    //FIXME:private
-    @objc func close() {
+    
+    @objc fileprivate func close() {
         SVProgressHUD.dismiss()
         dismiss(animated: true, completion: nil)
     }

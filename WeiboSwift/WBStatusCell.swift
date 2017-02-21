@@ -41,7 +41,7 @@ class WBStatusCell: UITableViewCell {
             
             
             sourceLabel.text = viewModel?.status.source
-            printLog(viewModel?.status.createdDate)
+            
             timeLabel.text = viewModel?.status.createdDate?.ll_dateDescription
         }
     }

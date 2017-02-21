@@ -15,6 +15,9 @@
 		041145671E543C770006DF3E /* LLEmoticonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041145661E543C770006DF3E /* LLEmoticonManager.swift */; };
 		041145691E54418B0006DF3E /* LLEmoticon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041145681E54418B0006DF3E /* LLEmoticon.swift */; };
 		0411456B1E5441ED0006DF3E /* LLEmoticonPackage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0411456A1E5441ED0006DF3E /* LLEmoticonPackage.swift */; };
+		04124AEB1E5C183200E22547 /* SDBrowserImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04124AE51E5C183200E22547 /* SDBrowserImageView.m */; };
+		04124AEC1E5C183200E22547 /* SDPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 04124AE71E5C183200E22547 /* SDPhotoBrowser.m */; };
+		04124AED1E5C183200E22547 /* SDWaitingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04124AEA1E5C183200E22547 /* SDWaitingView.m */; };
 		041945C51E496E9C0069E586 /* WBStatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041945C41E496E9C0069E586 /* WBStatusCell.swift */; };
 		041945C91E496EF40069E586 /* WBStatusNormalCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 041945C81E496EF40069E586 /* WBStatusNormalCell.xib */; };
 		041945CB1E4978350069E586 /* WBUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041945CA1E4978350069E586 /* WBUser.swift */; };
@@ -116,6 +119,13 @@
 		041145661E543C770006DF3E /* LLEmoticonManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLEmoticonManager.swift; sourceTree = "<group>"; };
 		041145681E54418B0006DF3E /* LLEmoticon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLEmoticon.swift; sourceTree = "<group>"; };
 		0411456A1E5441ED0006DF3E /* LLEmoticonPackage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLEmoticonPackage.swift; sourceTree = "<group>"; };
+		04124AE41E5C183200E22547 /* SDBrowserImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBrowserImageView.h; sourceTree = "<group>"; };
+		04124AE51E5C183200E22547 /* SDBrowserImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDBrowserImageView.m; sourceTree = "<group>"; };
+		04124AE61E5C183200E22547 /* SDPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDPhotoBrowser.h; sourceTree = "<group>"; };
+		04124AE71E5C183200E22547 /* SDPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDPhotoBrowser.m; sourceTree = "<group>"; };
+		04124AE81E5C183200E22547 /* SDPhotoBrowserConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDPhotoBrowserConfig.h; sourceTree = "<group>"; };
+		04124AE91E5C183200E22547 /* SDWaitingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWaitingView.h; sourceTree = "<group>"; };
+		04124AEA1E5C183200E22547 /* SDWaitingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWaitingView.m; sourceTree = "<group>"; };
 		041945C41E496E9C0069E586 /* WBStatusCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBStatusCell.swift; sourceTree = "<group>"; };
 		041945C81E496EF40069E586 /* WBStatusNormalCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WBStatusNormalCell.xib; sourceTree = "<group>"; };
 		041945CA1E4978350069E586 /* WBUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBUser.swift; sourceTree = "<group>"; };
@@ -299,6 +309,20 @@
 			name = Emoticon;
 			sourceTree = "<group>";
 		};
+		04124AE31E5C183200E22547 /* SDPhotoBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				04124AE41E5C183200E22547 /* SDBrowserImageView.h */,
+				04124AE51E5C183200E22547 /* SDBrowserImageView.m */,
+				04124AE61E5C183200E22547 /* SDPhotoBrowser.h */,
+				04124AE71E5C183200E22547 /* SDPhotoBrowser.m */,
+				04124AE81E5C183200E22547 /* SDPhotoBrowserConfig.h */,
+				04124AE91E5C183200E22547 /* SDWaitingView.h */,
+				04124AEA1E5C183200E22547 /* SDWaitingView.m */,
+			);
+			path = SDPhotoBrowser;
+			sourceTree = "<group>";
+		};
 		04611DE11E4C7340008016E5 /* RefreshControl */ = {
 			isa = PBXGroup;
 			children = (
@@ -417,6 +441,7 @@
 		04E2E2D71E2C64B20015BCB6 /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				04124AE31E5C183200E22547 /* SDPhotoBrowser */,
 				04E2E2D81E2C64D30015BCB6 /* WBNetworkManager.swift */,
 				56DB6B271E474D9700A551A7 /* WBUserAccount.swift */,
 				04E2E2DC1E2C76A10015BCB6 /* WBNetworkManager+Extension.swift */,
@@ -746,9 +771,12 @@
 				04FC9A541E57FAB500DC8BA5 /* LLEmoticonInputView.swift in Sources */,
 				04C984E11E4DD23300B38293 /* WBComposeTypeView.swift in Sources */,
 				047F7DB21E2334740042B2FF /* Bundle+Extension.swift in Sources */,
+				04124AEB1E5C183200E22547 /* SDBrowserImageView.m in Sources */,
+				04124AED1E5C183200E22547 /* SDWaitingView.m in Sources */,
 				040F1F1C1E232DA1008BB5E8 /* AppDelegate.swift in Sources */,
 				04FC9A581E57FAB500DC8BA5 /* LLEmotictionLayout.swift in Sources */,
 				04F81ADE1E2F385300A0DECB /* WeiboCommon.swift in Sources */,
+				04124AEC1E5C183200E22547 /* SDPhotoBrowser.m in Sources */,
 				047F7DAD1E2332F30042B2FF /* WBMeViewController.swift in Sources */,
 				04DDFC851E2DB808009F778A /* WBStatusListViewModel.swift in Sources */,
 				04FC9A5C1E57FBAB00DC8BA5 /* LLEmotionAttachment.swift in Sources */,

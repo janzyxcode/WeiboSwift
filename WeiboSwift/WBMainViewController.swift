@@ -11,8 +11,7 @@ import SVProgressHUD
 
 class WBMainViewController: UITabBarController,UITabBarControllerDelegate {
     
-    //FIXME:private
-    lazy var composeButton: UIButton = { ()->UIButton in
+    lazy fileprivate var composeButton: UIButton = { ()->UIButton in
         let btn = UIButton()
         btn.setBackgroundImage(UIImage(named:"common_button_orange"), for: .normal)
         btn.setBackgroundImage(UIImage(named:"common_button_orange_disable"), for: .highlighted)

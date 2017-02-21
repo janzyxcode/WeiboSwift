@@ -25,15 +25,20 @@ extension Date {
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         
         return dateFormatter.string(from: date)
-        //FIXME:gif
-        //add
     }
     
     
     static func ll_sinaDate(string: String)->Date? {
+        
+        //  指定本地化信息
+        dateFormatter.locale = Locale(identifier: "en_US")
+        
         dateFormatter.dateFormat = "EEE MMM dd HH:mm:ss zzz yyyy"
+        
         let date = dateFormatter.date(from: string)
+        
         printLog("\(string) -- \(date) -- \(dateFormatter.dateFormat)")
+        
         return date
     }
     

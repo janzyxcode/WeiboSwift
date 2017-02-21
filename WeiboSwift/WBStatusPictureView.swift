@@ -62,6 +62,9 @@ class WBStatusPictureView: UIView {
                     index += 1
                 }
                 iv.ll_setImage(urlString: url.thumbnail_pic, placeholderImage: nil)
+                
+               iv.subviews[0].isHidden = (((url.thumbnail_pic ?? "") as NSString).pathExtension.lowercased() != "gif")
+                
                 iv.isHidden = false
                 index += 1
             }
@@ -70,6 +73,43 @@ class WBStatusPictureView: UIView {
     }
     
     
+    @objc fileprivate func tapImageview(tap: UITapGestureRecognizer) {
+        
+        
+        guard let iv = tap.view,
+        let picURLs = viewModel?.picURLs
+            else {
+            return
+        }
+        
+        var selectedIndex = iv.tag
+        
+        if picURLs.count == 4 && selectedIndex > 1 {
+            selectedIndex -= 1
+        }
+        
+        let urls = (picURLs as NSArray).value(forKey: "thumbnail_pic") as! [String]
+        
+        var imageViewList = [UIImageView]()
+        
+        for iv in subviews as! [UIImageView] {
+            if !iv.isHidden {
+                imageViewList.append(iv)
+            }
+        }
+        
+        printLog(selectedIndex)
+        printLog(urls)
+        
+        
+        let photoBrowser = SDPhotoBrowser()
+        photoBrowser.delegate = self
+        photoBrowser.currentImageIndex = selectedIndex
+        photoBrowser.imageCount = picURLs.count
+        photoBrowser.sourceImagesContainerView = self
+        photoBrowser.show()
+    }
+    
     @IBOutlet weak var heightCons: NSLayoutConstraint!
     
     override func awakeFromNib() {
@@ -77,6 +117,22 @@ class WBStatusPictureView: UIView {
     }
     
 }
+
+
+extension WBStatusPictureView: SDPhotoBrowserDelegate {
+    
+    func photoBrowser(_ browser: SDPhotoBrowser!, placeholderImageFor index: Int) -> UIImage! {
+        
+        let imgv = subviews[index] as! UIImageView
+        return imgv.image
+    }
+    
+    func photoBrowser(_ browser: SDPhotoBrowser!, highQualityImageURLFor index: Int) -> URL! {
+       let urlStr = viewModel?.picURLs?[index].thumbnail_pic!.replacingOccurrences(of: "thumbnail", with: "bmiddle")
+        return URL(string: urlStr!)!
+    }    
+}
+
 
 
 extension WBStatusPictureView {
@@ -97,12 +153,33 @@ extension WBStatusPictureView {
             let yOffset = row * (WBStatusPictureItemWidth + WBStatusPictureViewInnerMargin)
             
             let iv = UIImageView()
+            iv.isUserInteractionEnabled = true
             iv.frame = rect.offsetBy(dx: xOffset, dy: yOffset)
             iv.contentMode = .scaleAspectFill
             iv.clipsToBounds = true
+            iv.tag = i
             addSubview(iv)
+            
+            addGifView(iv: iv)
+            
+            let tapG = UITapGestureRecognizer(target: self, action: #selector(tapImageview(tap:)))
+            iv.addGestureRecognizer(tapG)
+            
         }
         
+    }
+    
+    private func addGifView(iv: UIImageView){
+        
+        let gifImgv = UIImageView(image: UIImage(named: "timeline_image_gif"))
+        
+        iv.addSubview(gifImgv)
+        
+        // 自动布局
+         gifImgv.translatesAutoresizingMaskIntoConstraints = false
+        
+        iv.addConstraint(NSLayoutConstraint(item: gifImgv, attribute: .right, relatedBy: .equal, toItem: iv, attribute: .right, multiplier: 1.0, constant: 0))
+        iv.addConstraint(NSLayoutConstraint(item: gifImgv, attribute: .bottom, relatedBy: .equal, toItem: iv, attribute: .bottom, multiplier: 1.0, constant: 0))
     }
     
 }

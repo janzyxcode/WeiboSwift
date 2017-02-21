@@ -37,7 +37,7 @@ class LLEmoticonManager {
             packages[0].emoticons.append(em)
         }
         
-        //FIXME:添加FMDB类表
+        
         packages[0].emoticons.sort { (em1, em2) -> Bool in
             return em1.times > em2.times
         }

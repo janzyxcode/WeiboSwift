@@ -32,9 +32,7 @@ class LLRefreshControl: UIControl {
     // 刷新控件的父视图，下拉刷新控件应适用于 UITableView ／ UICollectionView
     private weak var scrollView: UIScrollView?
     
-    //FIXME:private
-//    lazy var refreshView: LLRefreshView = LLRefreshView.refreshView()
-    lazy var refreshView: JDRefreshControlView = JDRefreshControlView.refreshView()
+    lazy fileprivate var refreshView: JDRefreshControlView = JDRefreshControlView.refreshView()
     
     init() {
         super.init(frame: CGRect())

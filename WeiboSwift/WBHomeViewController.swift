@@ -15,8 +15,7 @@ private let retweetedCellId = "retweetedCellId"
 
 class WBHomeViewController: WBBaseViewController {
     
-    //FIXME: 加了private 后 extension不能访问到了
-    lazy var listViewModel = WBStatusListViewModel()
+    lazy fileprivate var listViewModel = WBStatusListViewModel()
     
     override func loadData() {
         printLog("laodata")
@@ -44,8 +43,8 @@ class WBHomeViewController: WBBaseViewController {
         setUpViews()
     }
     
-    //FIXME:为什么不能加 private
-    @objc func showFriends() {
+
+    @objc fileprivate func showFriends() {
         let vc = WBDemoViewController()
         navigationController?.pushViewController(vc, animated: true)   
     }
