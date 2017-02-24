@@ -68,8 +68,8 @@ class LLEmoticonCell: UICollectionViewCell {
             return
         }
         
-        // FIXME:why not?
-        // 将提示师徒添加到窗口上
+        
+        // 将提示视图添加到窗口上
         // 提示：在iOS 6.0 之前，很多程序员都喜欢被控件往窗口添加
         // 在现在开放，如果有地方，就不要用窗口
         w.addSubview(tipView)

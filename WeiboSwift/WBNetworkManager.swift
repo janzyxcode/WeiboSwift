@@ -25,7 +25,6 @@ enum WBHTTPMethod {
 
 class WBNetworkManager: AFHTTPSessionManager {
     
-    //FIXME:单例对网络的好处
     
     // 静态区／常量／闭包
     // 第一次访问时，执行闭包，并且将结果保存在 shared 常量中

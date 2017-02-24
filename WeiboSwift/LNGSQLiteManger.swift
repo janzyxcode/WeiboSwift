@@ -125,6 +125,12 @@ class LNGSQLiteManger {
 
 extension LNGSQLiteManger {
     
+    /**
+     原因：在 SQLite 中，如果不主动开启事务，每个数据更新操作 (INSERT / UPDATE / DELETE) 都会默认开启一个事务，数据更新结束后自动提交事务
+     总结：使用事务处理就是将所有任务执行完成以后将结果一次性提交到数据库，如果此过程出现异常则会执行回滚操作，这样节省了大量的重复提交环节所浪费的时间
+     
+
+     */
     func updateStatus(userId: String, array: [[String: AnyObject]]) {
         
         /**
@@ -146,14 +152,12 @@ extension LNGSQLiteManger {
                 }
                 
                 if db?.executeUpdate(sql, withArgumentsIn: [statusId, userId, jsonData]) == false {
-                    printLog("lll")
                     
                     rolback?.pointee = true
-                    
                     break
                 }
                 
-                //FIXME:??
+                
                 // 模拟回滚
 //                rolback?.pointee = true
 //                break

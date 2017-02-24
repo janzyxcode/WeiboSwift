@@ -166,15 +166,15 @@ public class FFLabel: UILabel {
         if selectedRange != nil {
             let text = (textStorage.string as NSString).substring(with: selectedRange!)
             labelDelegate?.labelDidSelectedLinkText!(label: self, text: text)
-          let when = DispatchTime.now() + 0.25
             
-            DispatchQueue.main.asyncAfter(deadline: when, execute: { 
+            let when = DispatchTime.now() + 0.25
+            DispatchQueue.main.asyncAfter(deadline: when, execute: {
                 self.modifySelectedAttribute(isSet: false)
             })
-//            let when = DispatchTime.now(dispatch_time_t(DISPATCH_TIME_NOW), Int64(0.25 * Double(NSEC_PER_SEC)))
-//            dispatch_after(when, dispatch_get_main_queue()) {
-//                
-//            }
+            //            let when = DispatchTime.now(dispatch_time_t(DISPATCH_TIME_NOW), Int64(0.25 * Double(NSEC_PER_SEC)))
+            //            dispatch_after(when, dispatch_get_main_queue()) {
+            //
+            //            }
         }
     }
     
