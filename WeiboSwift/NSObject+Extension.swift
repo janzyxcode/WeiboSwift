@@ -37,22 +37,22 @@ extension NSObject {
         //  获取‘类’的属性列表，返回属性列表的数组，可选项
         let list = class_copyPropertyList(self, &count)
         
-        print(count)
-        
-        for i in 0..<Int(count) {
-            
-            // 根据下标获取属性
-            // 使用 guard 语法，依次判断每一项是否有值，只要有一项为nil，就不再执行后续的代码
-            guard let pty = list?[i],
-                let cName = property_getName(pty),
-                let name = String(utf8String: cName)
-                
-                else {
-                    // 继续遍历下一个
-                    continue
-            }
-            array.append(name)
-        }
+//        print(count)
+//        
+//        for i in 0..<Int(count) {
+//            
+//            // 根据下标获取属性
+//            // 使用 guard 语法，依次判断每一项是否有值，只要有一项为nil，就不再执行后续的代码
+//            guard let pty = list?[i],
+//                let cName = property_getName(pty),
+//                let name = String(utf8String: cName)
+//                
+//                else {
+//                    // 继续遍历下一个
+//                    continue
+//            }
+//            array.append(name)
+//        }
         
         free(list)
         

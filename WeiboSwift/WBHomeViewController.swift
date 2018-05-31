@@ -14,55 +14,69 @@ private let originalCellId  = "originalCellId"
 private let retweetedCellId = "retweetedCellId"
 
 class WBHomeViewController: WBBaseViewController {
-    
-    lazy fileprivate var listViewModel = WBStatusListViewModel()
-    
+
+    var tableView: UITableView?
+    lazy private var listViewModel = WBStatusListViewModel()
+    private var isUpload = true
+
     override func loadData() {
-        printLog("laodata")
-        listViewModel.loadStatus(pullup: self.isPullup) { (isSuccess, shouldRefresh) in
+        listViewModel.loadStatus(pullup: isUpload) { (isSuccess, shouldRefresh) in
             printLog("ennloadata")
-            if self.isPullup == true {
-                self.addPageControl?.endRefreshing()
+            if self.isUpload == false {
+                self.tableView?.ngFooterEndRefreshing()
             }else {
-               self.refreshControl?.endRefreshing()
+               self.tableView?.ngHeaderEndRefreshing()
             }
-            
-            
-            self.isPullup = false
-            
+            self.isUpload = true
+
             if shouldRefresh {
                 self.tableView?.reloadData()
             }
         }
     }
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        setUpViews()
+
+    @objc func loadMore()  {
+        printLog("more")
+        loadData()
+        isUpload = false
     }
     
 
-    @objc fileprivate func showFriends() {
-        let vc = WBDemoViewController()
-        navigationController?.pushViewController(vc, animated: true)   
+    override func setupContentViews() {
+        let table = UITableView(frame: view.bounds, style: .plain)
+        view.addSubview(table)
+        tableView = table
+        tableView?.delegate = self
+        tableView?.dataSource = self
+        tableView?.contentInset = UIEdgeInsetsMake(64, 0, tabBarController?.tabBar.bounds.height ?? 49, 0)
+        // 修改指示器的缩进
+        tableView?.scrollIndicatorInsets = tableView!.contentInset
+
+        tableView?.ngHeaderRefreshAddTarget(self, action: #selector(loadData))
+        tableView?.ngFooterRefreshAddTarget(self, action: #selector(loadMore))
+
+        tableView?.register(UINib(nibName: "WBStatusNormalCell", bundle: nil), forCellReuseIdentifier: originalCellId)
+        tableView?.register(UINib(nibName: "WBStatusReweetedCell", bundle: nil), forCellReuseIdentifier: retweetedCellId)
+        tableView?.rowHeight = UITableViewAutomaticDimension
+        tableView?.estimatedRowHeight = 300
+        tableView?.separatorStyle = .none
     }
+
 }
 
 
-extension WBHomeViewController {
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+extension WBHomeViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return listViewModel.statusList.count
     }
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         let vm = listViewModel.statusList[indexPath.row]
         return vm.rowHeight
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let vm = listViewModel.statusList[indexPath.row]
         let cellId = (vm.status.retweeted_status != nil) ? retweetedCellId : originalCellId
@@ -94,31 +108,4 @@ extension WBHomeViewController: WBstatusCellDelegate {
     
 }
 
-extension WBHomeViewController {
-    override func setUpViews() {
-        super.setUpViews()
-        
-//        navItem.leftBarButtonItems = UIBarButtonItem.fixtedSpace(title: "好友", target: self, action: #selector(showFriends))
-        
-        tableView?.register(UINib(nibName: "WBStatusNormalCell", bundle: nil), forCellReuseIdentifier: originalCellId)
-        tableView?.register(UINib(nibName: "WBStatusReweetedCell", bundle: nil), forCellReuseIdentifier: retweetedCellId)
-        //        tableView?.rowHeight = UITableViewAutomaticDimension
-        tableView?.estimatedRowHeight = 300
-        tableView?.separatorStyle = .none
-        
-        setupNavTitle()
-    }
-    
-    private func setupNavTitle() {
-        
-        let title = WBNetworkManager.shared.userAccount.screen_name
-        
-        let button = WBTitleButton(title: title)
-        button.addTarget(self, action: #selector(clickTitleButton(btn:)), for: .touchUpInside)
-        navItem.titleView = button
-    }
-    
-    @objc func clickTitleButton(btn: UIButton){
-        btn.isSelected = !btn.isSelected
-    }
-}
+

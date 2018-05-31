@@ -14,18 +14,14 @@
  2、host：主机头
  3、pathComponents：路径
  4、query：查询字符串、URL中 ？ 后面所有的内容
- 
  */
 
-
-
 import UIKit
-import SVProgressHUD
 
 class WBOAuthViewController: UIViewController {
 
     private lazy var webView = UIWebView()
-    
+
     override func loadView() {
         view = webView
         
@@ -52,22 +48,21 @@ class WBOAuthViewController: UIViewController {
     }
 
     
-    @objc fileprivate func close() {
-        SVProgressHUD.dismiss()
+    @objc private func close() {
+        view.hideHUD()
         dismiss(animated: true, completion: nil)
     }
     
     @objc func autoFill() {
-       let js = "document.getElementById('userId').value = '18566663496';" + "document.getElementById('passwd').value = '';"
+       let js = "document.getElementById('userId').value = '18566663496';" + "document.getElementById('passwd').value = 'nailiao04';"
         webView.stringByEvaluatingJavaScript(from: js)
     }
 }
 
 extension WBOAuthViewController: UIWebViewDelegate {
-    
-    // html调用OC的方法
+
     func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-        
+
         if request.url?.absoluteString.hasPrefix(WBRedirectURI) == false {
             return true
         }
@@ -77,31 +72,53 @@ extension WBOAuthViewController: UIWebViewDelegate {
             return false
         }
         
-        let code = request.url?.query?.substring(from: "code=".endIndex) ?? ""
-        
-        WBNetworkManager.shared.loadAccessToken(code: code) { (isSuccess) in
-            
-            if !isSuccess {
-               SVProgressHUD.showInfo(withStatus: "网络请求失败")
-            } else {
-                SVProgressHUD.showInfo(withStatus: "登陆成功")
-                
-                NotificationCenter.default.post(name: NSNotification.Name(WBUserLoginSuccessedNotification), object: nil)
-                
-                self.close()
-            }
-        }
-        
+        let code = request.url?.query?.suffix(from: "code=".endIndex) ?? ""
+
+        let urlString = "https://api.weibo.com/oauth2/access_token"
+        let params = ["client_id": WBAppKey,
+                      "client_secret": WBAppSecret,
+                      "grant_type": "authorization_code",
+                      "code": String(code),
+                      "redirect_uri": WBRedirectURI]
+        let para = RequestParameter(method: .post, url: urlString, parameter: params)
+        HttpsRequest.requestForm(para: para, type: UserAccount.self, succeed: { (model) in
+            SingletonData.shared.userAccount = model
+            SingletonData.shared.saveUserAccount()
+            self.loadUserInfo()
+        }, failed: nil)
+
         return false
     }
-    
-    
-    func webViewDidStartLoad(_ webView: UIWebView) {
-        SVProgressHUD.show()
+
+    private func loadUserInfo()  {
+        guard let uid = SingletonData.shared.userAccount?.uid else {
+            return
+        }
+
+        let urlString = "https://api.weibo.com/2/users/show.json"
+        let params = ["uid": uid]
+
+        let para = RequestParameter(method: .get, url: urlString, parameter: params)
+
+        HttpsRequest.request(para: para, type: UserAccount.self, succeed: { (model) in
+            self.view.addStatusTextHUD("登陆成功")
+            SingletonData.shared.userAccount?.screen_name = model.screen_name
+            SingletonData.shared.userAccount?.avatar_large = model.avatar_large
+            SingletonData.shared.saveUserAccount()
+            NotificationCenter.default.post(name: NSNotification.Name(WBUserLoginSuccessedNotification), object: nil)
+            self.close()
+        }, failed: nil)
     }
     
-    // 执行 html 页面中的 js 函数（OC中webview和js交互的唯一方法）
+    func webViewDidStartLoad(_ webView: UIWebView) {
+        view.addLargeWhiteHUD()
+    }
+    
     func webViewDidFinishLoad(_ webView: UIWebView) {
-       SVProgressHUD.dismiss()
+       view.hideHUD()
+    }
+
+    func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
+        view.hideHUD()
     }
 }

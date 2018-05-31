@@ -35,12 +35,9 @@ class WBWebViewController: WBBaseViewController {
 
 extension WBWebViewController {
     
-    override func setupTableView() {
-        
+    override func setupContentViews() {
         navItem.title = "网页"
-        
-        view.insertSubview(webView, belowSubview: navigationBar)
         webView.backgroundColor = UIColor.white
-        webView.scrollView.contentInset.top = navigationBar.bounds.height
+        webView.scrollView.contentInset.top = 64
     }
 }

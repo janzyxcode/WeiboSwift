@@ -47,7 +47,7 @@ class WBStatusPictureView: UIView {
     }
     
     
-    var urls: [WBStatusPicture]? {
+    var urls: [StatusPictureModel]? {
         didSet {
             for v in subviews {
                 v.isHidden = true

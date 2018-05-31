@@ -15,13 +15,8 @@ let WBRedirectURI = "http://www.baidu.com"
 
 
 // 全局通知定义
-
 let WBUserShouldLoginNotification = "WBUserShouldLoginNotification"
-
-
 let WBUserLoginSuccessedNotification = "WBUserLoginSuccessedNotification"
-		
-
 
 
 let WBStatusPictureViewOutterMargin = CGFloat(12)
@@ -29,6 +24,8 @@ let WBStatusPictureViewInnerMargin = CGFloat(3)
 let WBStatusPictureViewWidth = UIScreen.main.bounds.width - 2 * WBStatusPictureViewOutterMargin
 let WBStatusPictureItemWidth = (WBStatusPictureViewWidth - 2 * WBStatusPictureViewInnerMargin) / 3
 
+
+let accountFile = "/userAccount.data"
 
 
 /// 自定义Log打印 -（T表示不指定日志信息参数类型）

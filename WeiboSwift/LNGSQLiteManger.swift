@@ -131,7 +131,7 @@ extension LNGSQLiteManger {
      
 
      */
-    func updateStatus(userId: String, array: [[String: AnyObject]]) {
+    func updateStatus(userId: String, array: [[String: Any]]) {
         
         /**
          重叠数据，在做数据库操作时，必须处理

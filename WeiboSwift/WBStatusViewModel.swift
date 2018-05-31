@@ -29,7 +29,7 @@ import Foundation
 class WBStatusViewModel: CustomStringConvertible {
     
     // 微博模型
-    var status: WBStatus
+    var status: StatusModel
     
     // 会员图标 － 存储型属性（用内存换 CPU）
     var memberIcon:UIImage?
@@ -46,7 +46,7 @@ class WBStatusViewModel: CustomStringConvertible {
     var pictureViewSize = CGSize()
     
     // 如果是被转发的微博，原创微博已定没有图
-    var picURLs: [WBStatusPicture]? {
+    var picURLs: [StatusPictureModel]? {
         // 如果有被转发的微博，返回被转发微博的配图
         return status.retweeted_status?.pic_urls ?? status.pic_urls
     }
@@ -54,43 +54,48 @@ class WBStatusViewModel: CustomStringConvertible {
     var rowHeight: CGFloat = 0
     
     
-    init(model: WBStatus) {
+    init(model: StatusModel) {
         self.status = model
-        
-        if (model.user?.mbrank)! > 0
-            && (model.user?.mbrank)! < 7  {
-            let imageName = "common_icon_membership_level\(model.user?.mbrank ?? 1)"
-            memberIcon = UIImage(named: imageName)
+
+        if let user = model.user {
+            if user.mbrank > 0
+                && user.mbrank < 7  {
+                let imageName = "common_icon_membership_level\(user.mbrank)"
+                memberIcon = UIImage(named: imageName)
+            }
+
+
+            switch user.verified_type {
+            case 0:
+                vipIcon = UIImage(named: "avatar_vip")
+            case 2,3,5:
+                vipIcon = UIImage(named: "avatar_enterprise_vip")
+            case 220:
+                vipIcon = UIImage(named: "avatar_grassroot")
+            default:
+                break
+            }
         }
         
-        
-        switch model.user?.verified_type ?? -1 {
-        case 0:
-            vipIcon = UIImage(named: "avatar_vip")
-        case 2,3,5:
-            vipIcon = UIImage(named: "avatar_enterprise_vip")
-        case 220:
-            vipIcon = UIImage(named: "avatar_grassroot")
-        default:
-            break
-        }
-        
-        retweetedStr = countString(count: model.resosts_count, defaultStr: "转发")
-        commentStr = countString(count: model.comments_count, defaultStr: "评论")
-        likeStr = countString(count: model.attitudes_count, defaultStr: "赞")
-        
+        retweetedStr = countString(count: model.resosts_count.value, defaultStr: "转发")
+        commentStr = countString(count: model.comments_count.value, defaultStr: "评论")
+        likeStr = countString(count: model.attitudes_count.value, defaultStr: "赞")
+
         pictureViewSize = calcPictureViewSize(count: picURLs?.count)
         
         
         let originalFont = UIFont.systemFont(ofSize: 15)
         let retweetedFont = UIFont.systemFont(ofSize: 14)
-        
+
+        let screenName = status.retweeted_status?.user?.screen_name
+        let text = status.retweeted_status?.text
+
         statusAttrText = LLEmoticonManager.shared.emoticonString(string: model.text ?? "", font: originalFont)
-        
-        let rText = "@" + (status.retweeted_status?.user?.screen_name ?? "") + ":" + (status.retweeted_status?.text ?? "")
-        
+
+        let rText = "@" + (screenName ?? "") + ":" + (text ?? "")
+
         reweetedAttrText = LLEmoticonManager.shared.emoticonString(string: rText, font: retweetedFont)
-        
+
         updateRowHeight()
     }
     
@@ -205,12 +210,12 @@ class WBStatusViewModel: CustomStringConvertible {
     
     
     /**
- 高级优化： 离屏渲染
-          栅格化： 异步绘制之后，会生成一张独立的图像
-          如果检测到cell的性能已经很好，就不需要离屏渲染，离屏渲染需要在GPU/CPU 之间快速切换，耗电会厉害
- 
- 
- */
+     高级优化： 离屏渲染
+     栅格化： 异步绘制之后，会生成一张独立的图像
+     如果检测到cell的性能已经很好，就不需要离屏渲染，离屏渲染需要在GPU/CPU 之间快速切换，耗电会厉害
+
+
+     */
     
 }
 

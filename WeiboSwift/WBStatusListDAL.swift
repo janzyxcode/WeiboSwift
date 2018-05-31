@@ -21,10 +21,9 @@ class WBStatusListDAL {
     ///   - since_id: 下拉刷新 id
     ///   - max_id: 上拉刷新 id
     ///   - completion: 完成回调
-    class func loadStatus(since_id: Int64 = 0, max_id: Int64 = 0, completion: @escaping (_ list: [[String: AnyObject]]?, _ isSuccess: Bool)->()) {
-        
-        
-        guard let userId = WBNetworkManager.shared.userAccount.uid else {
+    class func loadStatus(since_id: Int64 = 0, max_id: Int64 = 0, completion: @escaping (_ list: [StatusModel]?, _ isSuccess: Bool)->()) {
+
+        guard let userId = SingletonData.shared.userAccount?.uid else {
             return
         }
         
@@ -32,28 +31,33 @@ class WBStatusListDAL {
         
         // 判断本地返回的数组数量，有数据直接返回，否则请求网络数据
         if array.count > 0 {
-            completion(array, true)
+            let status = DecodeJsoner.decodeJsonToModel(dict: array, [StatusModel].self)
+            completion(status, true)
             return
         }
-        
-        WBNetworkManager.shared.statusList(since_id: since_id, max_id: max_id) { (list, isSuccess) in
-            
-            if !isSuccess {
+
+
+        ///   - since_id: 返回ID比since_id大的微博（即比since_id时间晚的微博），默认为0
+        ///   - max_id: 返回ID小于或等于max_id的微博，默认为0
+        let params = ["since_id": "\(since_id)",
+            "max_id": "\(max_id > 0 ? max_id - 1 : 0)"]
+        let para = RequestParameter(method: .get, url: "https://api.weibo.com/2/statuses/home_timeline.json", parameter: params)
+        HttpsRequest.request(para: para, succeed: { (response) in
+            guard let list = response["statuses"] as? [[String: Any]] else {
                 completion(nil, false)
                 return
             }
-            
-            guard let list = list else {
-                completion(nil, isSuccess)
-                return
-            }
-            
+
             // 加载完成之后，将网络数据［字典数组］，同步写入数据库
             LNGSQLiteManger.shared.updateStatus(userId: userId, array: list)
 
             // 返回网络数据
-            completion(list,isSuccess)
-        }
+            let stauts = DecodeJsoner.decodeJsonToModel(dict: list, [StatusModel].self)
+            completion(stauts, true)
+
+        }, failed: { (message) in
+            UIView.windowAdddStatusTextHUD(message)
+            completion(nil, false)
+        })
     }
-    
 }

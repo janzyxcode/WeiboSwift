@@ -68,11 +68,11 @@ public class FFLabel: UILabel {
         var range = NSRange(location: 0, length: 0)
         var attributes = attrStringM.attributes(at: 0, effectiveRange: &range)
         
-        attributes[NSFontAttributeName] = font!
-        attributes[NSForegroundColorAttributeName] = textColor
+        attributes[NSAttributedStringKey.font] = font!
+        attributes[NSAttributedStringKey.foregroundColor] = textColor
         attrStringM.addAttributes(attributes, range: range)
         
-        attributes[NSForegroundColorAttributeName] = linkTextColor
+        attributes[NSAttributedStringKey.foregroundColor] = linkTextColor
         
         for r in linkRanges {
             attrStringM.setAttributes(attributes, range: r)
@@ -83,14 +83,14 @@ public class FFLabel: UILabel {
     private let patterns = ["[a-zA-Z]*://[a-zA-Z0-9/\\.]*", "#.*?#", "@[\\u4e00-\\u9fa5a-zA-Z0-9_-]*"]
     private func regexLinkRanges(attrString: NSAttributedString) {
         linkRanges.removeAll()
-        let regexRange = NSRange(location: 0, length: attrString.string.characters.count)
+        let regexRange = NSRange(location: 0, length: attrString.string.count)
         
         for pattern in patterns {
             let regex = try! NSRegularExpression(pattern: pattern, options: NSRegularExpression.Options.dotMatchesLineSeparators)
             let results = regex.matches(in: attrString.string, options: NSRegularExpression.MatchingOptions(rawValue: 0), range: regexRange)
             
             for r in results {
-                linkRanges.append(r.rangeAt(0))
+                linkRanges.append(r.range(at: 0))
             }
         }
     }
@@ -105,7 +105,7 @@ public class FFLabel: UILabel {
         
         var range = NSRange(location: 0, length: 0)
         var attributes = attrStringM.attributes(at: 0, effectiveRange: &range)
-        var paragraphStyle = attributes[NSParagraphStyleAttributeName] as? NSMutableParagraphStyle
+        var paragraphStyle = attributes[NSAttributedStringKey.paragraphStyle] as? NSMutableParagraphStyle
         
         if paragraphStyle != nil {
             paragraphStyle!.lineBreakMode = NSLineBreakMode.byWordWrapping
@@ -113,7 +113,7 @@ public class FFLabel: UILabel {
             // iOS 8.0 can not get the paragraphStyle directly
             paragraphStyle = NSMutableParagraphStyle()
             paragraphStyle!.lineBreakMode = NSLineBreakMode.byWordWrapping
-            attributes[NSParagraphStyleAttributeName] = paragraphStyle
+            attributes[NSAttributedStringKey.paragraphStyle] = paragraphStyle
             
             attrStringM.setAttributes(attributes, range: range)
         }
@@ -181,20 +181,20 @@ public class FFLabel: UILabel {
     override public func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         modifySelectedAttribute(isSet: false)
     }
-    
+
     private func modifySelectedAttribute(isSet: Bool) {
         if selectedRange == nil {
             return
         }
         
         var attributes = textStorage.attributes(at: 0, effectiveRange: nil)
-        attributes[NSForegroundColorAttributeName] = linkTextColor
+        attributes[NSAttributedStringKey.foregroundColor] = linkTextColor
         let range = selectedRange!
         
         if isSet {
-            attributes[NSBackgroundColorAttributeName] = selectedBackgroudColor
+            attributes[NSAttributedStringKey.foregroundColor] = selectedBackgroudColor
         } else {
-            attributes[NSBackgroundColorAttributeName] = UIColor.clear
+            attributes[NSAttributedStringKey.foregroundColor] = UIColor.clear
             selectedRange = nil
         }
         

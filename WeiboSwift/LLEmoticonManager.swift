@@ -53,19 +53,20 @@ class LLEmoticonManager {
 private extension LLEmoticonManager {
     
     func loadPackages() {
-        
-        guard let path = Bundle.main.path(forResource: "HMEmoticon.bundle", ofType: nil),
-              let bundle = Bundle(path: path),
-              let plistPath = bundle.path(forResource: "emoticons.plist", ofType: nil),
-              let array = NSArray(contentsOfFile: plistPath),
-              let models = NSArray.yy_modelArray(with: LLEmoticonPackage.self, json: array) as? [LLEmoticonPackage]
-        else {
-            return
-        }
-        
-        
-        packages += models
-        
+
+        //FIXME:
+//        guard let path = Bundle.main.path(forResource: "HMEmoticon.bundle", ofType: nil),
+//              let bundle = Bundle(path: path),
+//              let plistPath = bundle.path(forResource: "emoticons.plist", ofType: nil),
+//              let array = NSArray(contentsOfFile: plistPath),
+//              let models = NSArray.yy_modelArray(with: LLEmoticonPackage.self, json: array) as? [LLEmoticonPackage]
+//        else {
+//            return
+//        }
+//
+//
+//        packages += models
+
     }
 }
 
@@ -126,7 +127,7 @@ extension LLEmoticonManager {
         // 倒序遍历
         for m in matches.reversed() {
             
-            let r = m.rangeAt(0)
+            let r = m.range(at: 0)
             
             let subStr = (attrString.string as NSString).substring(with: r)
             
@@ -137,7 +138,7 @@ extension LLEmoticonManager {
             
         }
         
-        attrString.addAttributes([NSFontAttributeName: font, NSForegroundColorAttributeName: UIColor.darkGray], range: NSRange(location: 0, length: attrString.length))
+        attrString.addAttributes([NSAttributedStringKey.font: font, NSAttributedStringKey.foregroundColor: UIColor.darkGray], range: NSRange(location: 0, length: attrString.length))
         
         return attrString
     }

@@ -8,9 +8,6 @@
 
 import UIKit
 import UserNotifications
-import SVProgressHUD
-import AFNetworking
-import SVProgressHUD
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,32 +17,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
-        
+        SingletonData.shared.getLocalUserAccount()
         setupAdditions()
         
         window = UIWindow()
         window?.backgroundColor = UIColor.white
-        
         window?.rootViewController = WBMainViewController()
-        
         window?.makeKeyAndVisible()
-        
+
+        configNaviBar()
         return true
     }
 }
 
-
+private extension AppDelegate {
+    func configNaviBar() {
+        let nav = UINavigationBar.appearance()
+        nav.barTintColor = UIColor.ColorHex(hex: "F6F6F6")
+        nav.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.darkGray]
+        nav.tintColor = UIColor.orange
+    }
+}
 
 extension AppDelegate {
     
-    func setupAdditions() {
-        // 设置 SVP 最小解除时间
-        
-//        SVProgressHUD.setMinimumDismissTimeInterval(1)
-        
-        // 设置网络加载指示器
-        AFNetworkActivityIndicatorManager.shared().isEnabled = true
-        
+    func setupAdditions() {        
         if #available(iOS 10.0, *) {
             UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .carPlay]) { (success, error) in
                 

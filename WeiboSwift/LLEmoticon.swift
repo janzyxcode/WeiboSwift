@@ -76,8 +76,5 @@ class LLEmoticon: NSObject {
         
         return NSAttributedString(attachment: attactment)
     }
-    
-    override var description: String {
-        return yy_modelDescription()
-    }
+ 
 }

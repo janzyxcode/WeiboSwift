@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SVProgressHUD
 
 /**
  通过view的背景色和 viewDidLoad里面的一样可以知道，加载视图控制器的时候，如果 XIB 和控制器同名，默认的构造函数，会优先加载 XIB
@@ -71,30 +70,46 @@ class WBCompViewController: UIViewController {
     }
 
     @IBAction func postStatus(_ sender: UIButton) {
-        
-        let text = textView.emoticonText
-        
+
+        //FIXME:312
+//        let text = textView.emoticonText
+        let text = "fsdfd"
         
 //        let image = UIImage(named: "icon_courier")
         
 
-        WBNetworkManager.shared.postStatus(text: text, image: nil) { (result, isSuccess) in
-            
-            SVProgressHUD.setDefaultMaskType(.gradient)
-            
-            let message = isSuccess ? "发布成功" : "网络不给力"
-            
-            SVProgressHUD.showInfo(withStatus: message)
-            
-            if isSuccess {
-                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1, execute: {
-                    SVProgressHUD.setDefaultMaskType(.clear)
-                    self.close()
-                })
-            }
-        }
+//        WBNetworkManager.shared.postStatus(text: text, image: nil) { (result, isSuccess) in
+//
+//            let message = isSuccess ? "发布成功" : "网络不给力"
+//            self.view.addStatusTextHUD(message)
+//
+//            if isSuccess {
+//                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1, execute: {
+//                    self.close()
+//                })
+//            }
+//        }
     }
-    
+
+//    func postStatus(text: String, image: UIImage?, completion: @escaping (_ result: [String: AnyObject]?, _ isSuccess: Bool) -> ()){
+//
+//        let urlString = image == nil ? "https://api.weibo.com/2/statuses/update.json" : "https://upload.api.weibo.com/2/statuses/upload.json"
+//
+//        let params = ["status": text]
+//
+//        var name: String?
+//        var data: Data?
+//
+//        if image != nil {
+//            name = "pic"
+//            data = UIImagePNGRepresentation(image!)
+//        }
+//
+//        tokenRequest(method: .POST, URLString: urlString, parameters: params as [String : AnyObject]?, name: name, data: data) { (json, isSuccess) in
+//            completion(json as! [String : AnyObject]?, isSuccess)
+//        }
+//
+//    }
     
     @objc private func emoticonKeyboard() {
     

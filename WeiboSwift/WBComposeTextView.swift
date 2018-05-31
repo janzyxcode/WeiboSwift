@@ -43,20 +43,20 @@ class WBComposeTextView: UITextView {
          */
         
         var result = String()
-        
-        attr.enumerateAttributes(in: NSRange(location: 0, length: attr.length), options: []) { (dict, range, _) in
-            
-            // 如果字典中包含 NSAttachment ‘Key’  说明是图片，否则是文本
-            // 下一个目标： 从 attachment 中如果能够获得 chs 就可以了
-            if let attachment = dict["NSAttachment"] as? LLEmotionAttachment {
-                result += attachment.chs ?? ""
-            }else {
-                let subStr = (attr.string as NSString).substring(with: range)
-                
-                result += subStr
-            }
-        }
-        
+
+//        attr.enumerateAttributes(in: NSRange(location: 0, length: attr.length), options: []) { (dict, range, _) in
+//
+//            // 如果字典中包含 NSAttachment ‘Key’  说明是图片，否则是文本
+//            // 下一个目标： 从 attachment 中如果能够获得 chs 就可以了
+//            if let attachment = dict["NSAttachment"] as? LLEmotionAttachment {
+//                result += attachment.chs ?? ""
+//            }else {
+//                let subStr = (attr.string as NSString).substring(with: range)
+//
+//                result += subStr
+//            }
+//        }
+
         
         return result
     }
@@ -84,7 +84,7 @@ class WBComposeTextView: UITextView {
         
         let imageText = NSMutableAttributedString(attributedString: em.imageText(font: font!))
         
-        imageText.addAttributes([NSFontAttributeName: font!], range: NSRange(location: 0, length: 1))
+        imageText.addAttributes([NSAttributedStringKey.font: font!], range: NSRange(location: 0, length: 1))
         
         // 获取当前 textView 属性文本
         let attrStrM = NSMutableAttributedString(attributedString: attributedText)

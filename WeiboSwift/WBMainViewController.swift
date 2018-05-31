@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SVProgressHUD
 
 class WBMainViewController: UITabBarController,UITabBarControllerDelegate {
     
@@ -31,8 +30,7 @@ class WBMainViewController: UITabBarController,UITabBarControllerDelegate {
         setupControllers()
         self .setupComposeButton()
         self.setupTimer()
-        
-        setupNewFeatureViews()
+
         
         delegate = self
         
@@ -40,28 +38,22 @@ class WBMainViewController: UITabBarController,UITabBarControllerDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(userLogin), name: NSNotification.Name(rawValue: WBUserShouldLoginNotification), object: nil)
     }
     
-    func userLogin(n: Notification) {
+    @objc func userLogin(n: Notification) {
         
         var when = DispatchTime.now()
         
         
         if n.object != nil {
-            SVProgressHUD.setDefaultMaskType(.gradient)
-            SVProgressHUD.showInfo(withStatus: "用户登陆已经超时，需要重新登陆")
+            view.addStatusTextHUD("用户登陆已经超时，需要重新登陆")
             
             when = DispatchTime.now() + 2
         }
         
         
         DispatchQueue.main.asyncAfter(deadline: when) {
-            printLog("test")
-            SVProgressHUD.setDefaultMaskType(.clear)
-            
             let nav = UINavigationController(rootViewController: WBOAuthViewController())
             self.present(nav, animated: true, completion: nil)
         }
-        
-        
     }
     
     deinit {
@@ -138,68 +130,33 @@ class WBMainViewController: UITabBarController,UITabBarControllerDelegate {
     }
 }
 
-
-private extension WBMainViewController {
-    
-    func setupNewFeatureViews() {
-        
-        if !WBNetworkManager.shared.userLogon {
-            return
-        }
-        
-        let v = isNewVersion ? WBNewFeatureView.newFeatureView() : WBWelcomeView.welcomeView()
-        v.frame = view.bounds
-        view.addSubview(v)
-    }
-    
-    // extension 中可以有计算机型属性，不会占用存储空间
-    /*
-     版本号
-     － 在 App Store 每次升级应用程序，只能增加
-     － 组成 主版本号、次版本号、修订版本号
-     － 主版本号：意味大的修改
-     － 次版本号：意味小的版本号
-     － 修订版本号：框架／ 程序内部 bug 的修订，不会对使用者造成任何的影响
- */
-    var isNewVersion: Bool {
-        
-        let currentVerison = (Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String) ?? ""
-        
-        let libarayPaths = NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true)
-        
-        guard let libarayPath = libarayPaths.first else {
-            return true
-        }
-        
-        let versionPath = libarayPath + "/version"
-        
-        let cacheVersion = try? String(contentsOfFile: versionPath, encoding: .utf8)
-        
-        _ = try? currentVerison.write(toFile: versionPath, atomically: true, encoding: .utf8)
-        
-        return currentVerison != cacheVersion
-    }
-}
-
 extension WBMainViewController {
     
     func setupTimer() {
-        timer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+//        timer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
     }
     
     @objc func updateTimer() {
-        
-        if !WBNetworkManager.shared.userLogon {
+        if !SingletonData.shared.userLogon {
             return
         }
-        
-        WBNetworkManager.shared.unreadCount { (count) in
-            
-            self.tabBar.items?[0].badgeValue = count > 0 ? "\(count)" : nil
-            
-            // 授权才能显示
-            UIApplication.shared.applicationIconBadgeNumber = count
+
+        guard let uid = SingletonData.shared.userAccount?.uid else {
+            return
         }
+
+        let urlString = "https://rm.api.weibo.com/2/remind/unread_count.json"
+        let params = ["uid": uid]
+
+        HttpsRequest.request(para: RequestParameter(method: .get, url: urlString, parameter: params), succeed: { (response) in
+            guard let count = response["status"] as? Int else {
+                return
+            }
+
+            self.tabBar.items?[0].badgeValue = count > 0 ? "\(count)" : nil
+            // 授权才能显示
+//            UIApplication.shared.applicationIconBadgeNumber = count
+        }, failed: nil)
     }
 }
 
@@ -270,8 +227,8 @@ extension WBMainViewController {
         vc.tabBarItem.image = UIImage(named: "tabbar_" + imageName)
         vc.tabBarItem.selectedImage = UIImage(named: "tabbar_" + imageName + "_selected")?.withRenderingMode(.alwaysOriginal)
         
-        vc.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.orange], for: .selected)
-        vc.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.darkGray], for: .normal)
+        vc.tabBarItem.setTitleTextAttributes([NSAttributedStringKey.foregroundColor: UIColor.orange], for: .selected)
+        vc.tabBarItem.setTitleTextAttributes([NSAttributedStringKey.foregroundColor: UIColor.darkGray], for: .normal)
         //        vc.tabBarItem.setTitleTextAttributes([NSFontAttributeName: UIFont.systemFont(ofSize: 18)], for: UIControlState(rawValue: 0))
         
         let nav = WBNavigationViewController(rootViewController: vc)
