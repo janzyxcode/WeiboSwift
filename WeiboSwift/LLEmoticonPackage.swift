@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LLEmoticonPackage: NSObject {
+class LLEmoticonPackage: NSObject, Codable {
 
     var groupName: String?
     var directory: String?
@@ -43,7 +43,6 @@ class LLEmoticonPackage: NSObject {
     
     // 从懒加载的表情包中，按照 page 截取最多 20 个表情模型的数组
     func emoticon(page: Int)-> [LLEmoticon] {
-    
         let count = 20
         let location = page * count
         var length = count
@@ -53,9 +52,7 @@ class LLEmoticonPackage: NSObject {
         }
         
         let range = NSRange(location: location, length: length)
-        
         let subArray = (emoticons as NSArray).subarray(with: range)
-        
         return subArray as! [LLEmoticon]
     }
     

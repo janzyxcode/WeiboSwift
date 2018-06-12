@@ -23,6 +23,7 @@ class RefreshHeaderView: UIView {
     private var headerSelector: Selector?
     /// 开始加载的时间，用来计算视图加载时间不能低于某个时间戳
     private lazy var startLoadDate = Date()
+    private var isAuto = false
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -35,6 +36,7 @@ class RefreshHeaderView: UIView {
 
     func observeContentOffset(scrollView: UIScrollView) {
         var height = -(scrollView.contentInset.top + scrollView.contentOffset.y)
+
         if #available(iOS 11.0, *) {
             height = -(scrollView.adjustedContentInset.top + scrollView.contentOffset.y)
         }
@@ -43,10 +45,10 @@ class RefreshHeaderView: UIView {
             return
         }
 
-        if scrollView.isDragging {
+        if scrollView.isDragging || isAuto {
             if height > NGHeaderRefreshOffset && (refreshView.refreshState == .normal) {
                 refreshView.refreshState = .pulling
-            } else if height <= NGHeaderRefreshOffset && refreshView.refreshState == .pulling {
+            } else if height <= NGHeaderRefreshOffset && refreshView.refreshState == .pulling && isAuto != true {
                 refreshView.refreshState = .normal
             }
         } else {
@@ -74,6 +76,32 @@ extension RefreshHeaderView {
         headerSelector = action
     }
 
+    func autoBeginRefresh() {
+        guard let scrollView = superview as? UIScrollView else {
+            return
+        }
+
+        let off = 5.cgFloatValue
+        var offpoint = scrollView.contentOffset
+        offpoint.y = -scrollView.contentInset.top - NGHeaderRefreshOffset - off
+
+        if #available(iOS 11.0, *) {
+            offpoint.y = -scrollView.adjustedContentInset.top - NGHeaderRefreshOffset - off
+        }
+
+        scrollView.isUserInteractionEnabled = false
+        isAuto = true
+        UIView.animate(withDuration: 0.3, animations: {
+            scrollView.contentOffset = offpoint
+        }, completion: { (_) in
+            scrollView.isUserInteractionEnabled = true
+            self.isAuto = false
+            offpoint.y += off
+            scrollView.contentOffset = offpoint
+        })
+
+    }
+
     private func beginRefreshing() {
         guard let scrollView = superview as? UIScrollView else {
             return
@@ -82,7 +110,7 @@ extension RefreshHeaderView {
         if refreshView.refreshState == .willRefresh {
             return
         }
-         startLoadDate = Date()
+        startLoadDate = Date()
         refreshView.refreshState = .willRefresh
 
         var inset = scrollView.contentInset

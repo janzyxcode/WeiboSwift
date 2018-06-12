@@ -52,8 +52,8 @@ class WBStatusListDAL {
             LNGSQLiteManger.shared.updateStatus(userId: userId, array: list)
 
             // 返回网络数据
-            let stauts = DecodeJsoner.decodeJsonToModel(dict: list, [StatusModel].self)
-            completion(stauts, true)
+            let status = DecodeJsoner.decodeJsonToModel(dict: list, [StatusModel].self)
+            completion(status, true)
 
         }, failed: { (message) in
             UIView.windowAdddStatusTextHUD(message)

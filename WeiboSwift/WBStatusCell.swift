@@ -9,13 +9,7 @@
 import UIKit
 import FFLabel
 
-/**
- 如果需要设置可选协议方法
- － 需要遵守 NSOBbjectProtcol 协议
- － 协议需要是 @objc 的
- － 方法需要 @objc optional
- 
- */
+
 @objc protocol WBstatusCellDelegate: NSObjectProtocol {
     
    @objc optional func statusCellDidSelectedURLString(cell: WBStatusCell, urlString: String)
@@ -25,24 +19,24 @@ class WBStatusCell: UITableViewCell {
     
     var viewModel: WBStatusViewModel? {
         didSet {
-            statusLabel?.attributedText = viewModel?.statusAttrText
-            retweetedLabel?.attributedText = viewModel?.reweetedAttrText
-            
-            nameLabel.text = viewModel?.status.user?.screen_name
-            memberIconView.image = viewModel?.memberIcon
-            vipIconView.image = viewModel?.vipIcon
-            
-            iconView.ll_setImage(urlString: viewModel?.status.user?.profile_image_url, placeholderImage: UIImage(named: "avatar_default_big"), isAvatar: true)
-            
-            toolBar.viewModel = viewModel
-            
-            // 配图视图模型
-            pictureView.viewModel = viewModel
-            
-            
-            sourceLabel.text = viewModel?.status.source
-            
-            timeLabel.text = viewModel?.status.createdDate?.ll_dateDescription
+//            statusLabel?.attributedText = viewModel?.statusAttrText
+//            retweetedLabel?.attributedText = viewModel?.reweetedAttrText
+//
+//            nameLabel.text = viewModel?.status.user?.screen_name
+//            memberIconView.image = viewModel?.memberIcon
+//            vipIconView.image = viewModel?.vipIcon
+//
+//            iconView.setImage(urlString: viewModel?.status.user?.profile_image_url, placeholderImage: UIImage(named: "avatar_default_big"), isAvatar: true)
+//
+//            toolBar.viewModel = viewModel
+//
+//            // 配图视图模型
+//            pictureView.viewModel = viewModel
+//
+//
+//            sourceLabel.text = viewModel?.status.source
+//
+////            timeLabel.text = viewModel?.status.createdDate?.ll_dateDescription
         }
     }
     

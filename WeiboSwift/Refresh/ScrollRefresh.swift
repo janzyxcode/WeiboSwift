@@ -24,6 +24,12 @@ extension UIScrollView {
         }
     }
 
+    func ngBeginRefreshing() {
+        if let headerView = ngRefreshHeaderView() {
+            headerView.autoBeginRefresh()
+        }
+    }
+
     func ngHeaderEndRefreshing() {
         if let headerView = ngRefreshHeaderView() {
             headerView.endRefreshing()

@@ -65,16 +65,13 @@
 		567509771E5983DC0039D3A7 /* LLEMoticonTipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567509761E5983DB0039D3A7 /* LLEMoticonTipView.swift */; };
 		56DB6B281E474D9800A551A7 /* UserAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56DB6B271E474D9700A551A7 /* UserAccount.swift */; };
 		92B612DEC031C8C61DA3C52F /* Pods_WeiboSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3258B37946EDF128A0824230 /* Pods_WeiboSwift.framework */; };
+		CE786CA820CFB4CA0002F996 /* StatusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE786CA720CFB4CA0002F996 /* StatusViewModel.swift */; };
+		CE786CAA20CFD4940002F996 /* NSMutableAttributedString+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE786CA920CFD4940002F996 /* NSMutableAttributedString+Extensions.swift */; };
 		CE8B33B520BFCD0A001A78F4 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8B33B420BFCD09001A78F4 /* UIView+Extensions.swift */; };
 		CE8B33B920C00708001A78F4 /* StatusModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8B33B820C00708001A78F4 /* StatusModel.swift */; };
 		CE8B33BB20C007B0001A78F4 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8B33BA20C007B0001A78F4 /* UserModel.swift */; };
 		CE8B33BD20C0083B001A78F4 /* StatusPictureModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8B33BC20C0083B001A78F4 /* StatusPictureModel.swift */; };
 		CE8B33C120C00C34001A78F4 /* Optional+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8B33C020C00C34001A78F4 /* Optional+Extensions.swift */; };
-		CEBDE97020BE7CE0009399D9 /* RefreshFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBDE96B20BE7CE0009399D9 /* RefreshFooterView.swift */; };
-		CEBDE97120BE7CE0009399D9 /* RefreshHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBDE96C20BE7CE0009399D9 /* RefreshHeaderView.swift */; };
-		CEBDE97220BE7CE0009399D9 /* RefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBDE96D20BE7CE0009399D9 /* RefreshView.swift */; };
-		CEBDE97320BE7CE0009399D9 /* RefreshView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEBDE96E20BE7CE0009399D9 /* RefreshView.xib */; };
-		CEBDE97420BE7CE0009399D9 /* ScrollRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBDE96F20BE7CE0009399D9 /* ScrollRefresh.swift */; };
 		CEBDE97620BE7DB1009399D9 /* UIScrollView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBDE97520BE7DB1009399D9 /* UIScrollView+Extensions.swift */; };
 		CEBDE98220BE7ED5009399D9 /* StoryboardBased.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBDE97A20BE7ED5009399D9 /* StoryboardBased.swift */; };
 		CEBDE98320BE7ED5009399D9 /* StoryboardSceneBased.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBDE97B20BE7ED5009399D9 /* StoryboardSceneBased.swift */; };
@@ -92,6 +89,17 @@
 		CEBDE99920BE9732009399D9 /* SucceedStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBDE99320BE9731009399D9 /* SucceedStatusView.swift */; };
 		CEBDE99A20BE9732009399D9 /* UIView+HUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBDE99420BE9731009399D9 /* UIView+HUD.swift */; };
 		CEBDE99C20BEA6C6009399D9 /* SingletonData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBDE99B20BEA6C6009399D9 /* SingletonData.swift */; };
+		CEEF36CB20CF7D1700D8D148 /* RefreshView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEEF36C620CF7D1600D8D148 /* RefreshView.xib */; };
+		CEEF36CC20CF7D1700D8D148 /* RefreshFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEF36C720CF7D1600D8D148 /* RefreshFooterView.swift */; };
+		CEEF36CD20CF7D1700D8D148 /* RefreshHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEF36C820CF7D1700D8D148 /* RefreshHeaderView.swift */; };
+		CEEF36CE20CF7D1700D8D148 /* ScrollRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEF36C920CF7D1700D8D148 /* ScrollRefresh.swift */; };
+		CEEF36CF20CF7D1700D8D148 /* RefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEF36CA20CF7D1700D8D148 /* RefreshView.swift */; };
+		CEEF36D120CF969700D8D148 /* StatusNormalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEF36D020CF969700D8D148 /* StatusNormalCell.swift */; };
+		CEEF36D320CF993B00D8D148 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEF36D220CF993B00D8D148 /* Common.swift */; };
+		CEEF36D520CF9CB700D8D148 /* Int+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEF36D420CF9CB700D8D148 /* Int+Extensions.swift */; };
+		CEEF36D720CF9DBF00D8D148 /* StatusLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEF36D620CF9DBF00D8D148 /* StatusLayout.swift */; };
+		CEEF36D920CF9EF100D8D148 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEF36D820CF9EF100D8D148 /* Constant.swift */; };
+		CEEF36DB20CF9F7300D8D148 /* CGRect+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEF36DA20CF9F7300D8D148 /* CGRect+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -183,16 +191,13 @@
 		567509761E5983DB0039D3A7 /* LLEMoticonTipView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLEMoticonTipView.swift; sourceTree = "<group>"; };
 		56DB6B271E474D9700A551A7 /* UserAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAccount.swift; sourceTree = "<group>"; };
 		CC33A2535664AD5F22ABF738 /* Pods-WeiboSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeiboSwift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WeiboSwift/Pods-WeiboSwift.debug.xcconfig"; sourceTree = "<group>"; };
+		CE786CA720CFB4CA0002F996 /* StatusViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusViewModel.swift; sourceTree = "<group>"; };
+		CE786CA920CFD4940002F996 /* NSMutableAttributedString+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Extensions.swift"; sourceTree = "<group>"; };
 		CE8B33B420BFCD09001A78F4 /* UIView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		CE8B33B820C00708001A78F4 /* StatusModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusModel.swift; sourceTree = "<group>"; };
 		CE8B33BA20C007B0001A78F4 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		CE8B33BC20C0083B001A78F4 /* StatusPictureModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusPictureModel.swift; sourceTree = "<group>"; };
 		CE8B33C020C00C34001A78F4 /* Optional+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Optional+Extensions.swift"; sourceTree = "<group>"; };
-		CEBDE96B20BE7CE0009399D9 /* RefreshFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshFooterView.swift; sourceTree = "<group>"; };
-		CEBDE96C20BE7CE0009399D9 /* RefreshHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshHeaderView.swift; sourceTree = "<group>"; };
-		CEBDE96D20BE7CE0009399D9 /* RefreshView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshView.swift; sourceTree = "<group>"; };
-		CEBDE96E20BE7CE0009399D9 /* RefreshView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RefreshView.xib; sourceTree = "<group>"; };
-		CEBDE96F20BE7CE0009399D9 /* ScrollRefresh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollRefresh.swift; sourceTree = "<group>"; };
 		CEBDE97520BE7DB1009399D9 /* UIScrollView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Extensions.swift"; sourceTree = "<group>"; };
 		CEBDE97A20BE7ED5009399D9 /* StoryboardBased.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardBased.swift; sourceTree = "<group>"; };
 		CEBDE97B20BE7ED5009399D9 /* StoryboardSceneBased.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardSceneBased.swift; sourceTree = "<group>"; };
@@ -210,6 +215,17 @@
 		CEBDE99320BE9731009399D9 /* SucceedStatusView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SucceedStatusView.swift; sourceTree = "<group>"; };
 		CEBDE99420BE9731009399D9 /* UIView+HUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+HUD.swift"; sourceTree = "<group>"; };
 		CEBDE99B20BEA6C6009399D9 /* SingletonData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingletonData.swift; sourceTree = "<group>"; };
+		CEEF36C620CF7D1600D8D148 /* RefreshView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RefreshView.xib; sourceTree = "<group>"; };
+		CEEF36C720CF7D1600D8D148 /* RefreshFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshFooterView.swift; sourceTree = "<group>"; };
+		CEEF36C820CF7D1700D8D148 /* RefreshHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshHeaderView.swift; sourceTree = "<group>"; };
+		CEEF36C920CF7D1700D8D148 /* ScrollRefresh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollRefresh.swift; sourceTree = "<group>"; };
+		CEEF36CA20CF7D1700D8D148 /* RefreshView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshView.swift; sourceTree = "<group>"; };
+		CEEF36D020CF969700D8D148 /* StatusNormalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusNormalCell.swift; sourceTree = "<group>"; };
+		CEEF36D220CF993B00D8D148 /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
+		CEEF36D420CF9CB700D8D148 /* Int+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+Extensions.swift"; sourceTree = "<group>"; };
+		CEEF36D620CF9DBF00D8D148 /* StatusLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusLayout.swift; sourceTree = "<group>"; };
+		CEEF36D820CF9EF100D8D148 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		CEEF36DA20CF9F7300D8D148 /* CGRect+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -335,7 +351,10 @@
 			isa = PBXGroup;
 			children = (
 				CE8B33C020C00C34001A78F4 /* Optional+Extensions.swift */,
+				CEEF36D420CF9CB700D8D148 /* Int+Extensions.swift */,
 				CE8B33B420BFCD09001A78F4 /* UIView+Extensions.swift */,
+				CEEF36DA20CF9F7300D8D148 /* CGRect+Extensions.swift */,
+				CE786CA920CFD4940002F996 /* NSMutableAttributedString+Extensions.swift */,
 				CEBDE97520BE7DB1009399D9 /* UIScrollView+Extensions.swift */,
 				04EBC50A1E24E7CC007A3E13 /* UIColor+Extension.swift */,
 				047F7DAF1E2334740042B2FF /* NSObject+Extension.swift */,
@@ -371,6 +390,7 @@
 				041945C41E496E9C0069E586 /* WBStatusCell.swift */,
 				041945C81E496EF40069E586 /* WBStatusNormalCell.xib */,
 				04CB13F71E4AB20A002A3771 /* WBStatusReweetedCell.xib */,
+				CEEF36D020CF969700D8D148 /* StatusNormalCell.swift */,
 				041945D21E49ADA90069E586 /* WBStatusToolBar.swift */,
 				041945D41E49B44C0069E586 /* WBStatusPictureView.swift */,
 				04D3BC721E557E1B00615446 /* WBWebViewController.swift */,
@@ -383,6 +403,7 @@
 			children = (
 				56DB6B271E474D9700A551A7 /* UserAccount.swift */,
 				CE8B33B820C00708001A78F4 /* StatusModel.swift */,
+				CEEF36D620CF9DBF00D8D148 /* StatusLayout.swift */,
 				CE8B33BA20C007B0001A78F4 /* UserModel.swift */,
 				CE8B33BC20C0083B001A78F4 /* StatusPictureModel.swift */,
 			);
@@ -405,6 +426,7 @@
 				04DDFC841E2DB808009F778A /* WBStatusListViewModel.swift */,
 				041945CE1E497AE70069E586 /* WBStatusViewModel.swift */,
 				04FC9AA11E58386700DC8BA5 /* WBStatusListDAL.swift */,
+				CE786CA720CFB4CA0002F996 /* StatusViewModel.swift */,
 			);
 			name = ViewModel;
 			sourceTree = "<group>";
@@ -489,6 +511,8 @@
 				CEBDE98C20BE9712009399D9 /* HttpsRequest.swift */,
 				CEBDE98920BE85FF009399D9 /* JsonModel */,
 				CEBDE99B20BEA6C6009399D9 /* SingletonData.swift */,
+				CEEF36D220CF993B00D8D148 /* Common.swift */,
+				CEEF36D820CF9EF100D8D148 /* Constant.swift */,
 			);
 			name = CustomTool;
 			sourceTree = "<group>";
@@ -506,11 +530,11 @@
 		CEBDE96A20BE7CE0009399D9 /* Refresh */ = {
 			isa = PBXGroup;
 			children = (
-				CEBDE96B20BE7CE0009399D9 /* RefreshFooterView.swift */,
-				CEBDE96C20BE7CE0009399D9 /* RefreshHeaderView.swift */,
-				CEBDE96D20BE7CE0009399D9 /* RefreshView.swift */,
-				CEBDE96E20BE7CE0009399D9 /* RefreshView.xib */,
-				CEBDE96F20BE7CE0009399D9 /* ScrollRefresh.swift */,
+				CEEF36C720CF7D1600D8D148 /* RefreshFooterView.swift */,
+				CEEF36C820CF7D1700D8D148 /* RefreshHeaderView.swift */,
+				CEEF36CA20CF7D1700D8D148 /* RefreshView.swift */,
+				CEEF36C620CF7D1600D8D148 /* RefreshView.xib */,
+				CEEF36C920CF7D1700D8D148 /* ScrollRefresh.swift */,
 			);
 			path = Refresh;
 			sourceTree = "<group>";
@@ -705,7 +729,7 @@
 				040F1F231E232DA1008BB5E8 /* Assets.xcassets in Resources */,
 				04C984E51E4DD6C400B38293 /* WBComposeTypebutton.xib in Resources */,
 				04FC9AA71E58399900DC8BA5 /* status.sql in Resources */,
-				CEBDE97320BE7CE0009399D9 /* RefreshView.xib in Resources */,
+				CEEF36CB20CF7D1700D8D148 /* RefreshView.xib in Resources */,
 				04CB13F81E4AB20A002A3771 /* WBStatusReweetedCell.xib in Resources */,
 				04D3BC751E55859300615446 /* WBCompViewController.xib in Resources */,
 			);
@@ -820,17 +844,20 @@
 				CEBDE98B20BE85FF009399D9 /* DecodeJsoner.swift in Sources */,
 				04FC9AA21E58386700DC8BA5 /* WBStatusListDAL.swift in Sources */,
 				041945D31E49ADA90069E586 /* WBStatusToolBar.swift in Sources */,
+				CEEF36D320CF993B00D8D148 /* Common.swift in Sources */,
 				CEBDE99620BE9732009399D9 /* ProgressHUD+Layout.swift in Sources */,
 				047F7DB11E2334740042B2FF /* NSObject+Extension.swift in Sources */,
 				041945D51E49B44C0069E586 /* WBStatusPictureView.swift in Sources */,
 				04FC9A571E57FAB500DC8BA5 /* LLEmoticonCell.swift in Sources */,
 				04EB351D1E28CFBF0069D2C4 /* WBVisitorView.swift in Sources */,
+				CE786CAA20CFD4940002F996 /* NSMutableAttributedString+Extensions.swift in Sources */,
 				04FC9AA61E58399900DC8BA5 /* LNGSQLiteManger.swift in Sources */,
 				56DB6B281E474D9800A551A7 /* UserAccount.swift in Sources */,
+				CEEF36CD20CF7D1700D8D148 /* RefreshHeaderView.swift in Sources */,
 				CE8B33B920C00708001A78F4 /* StatusModel.swift in Sources */,
-				CEBDE97020BE7CE0009399D9 /* RefreshFooterView.swift in Sources */,
 				047F7DBD1E23640D0042B2FF /* WBDiscoverViewController.swift in Sources */,
 				04D3BC731E557E1B00615446 /* WBWebViewController.swift in Sources */,
+				CEEF36D720CF9DBF00D8D148 /* StatusLayout.swift in Sources */,
 				CEBDE99520BE9732009399D9 /* CircleProgressView.swift in Sources */,
 				CEBDE99920BE9732009399D9 /* SucceedStatusView.swift in Sources */,
 				041145671E543C770006DF3E /* LLEmoticonManager.swift in Sources */,
@@ -838,10 +865,12 @@
 				CEBDE98620BE7ED5009399D9 /* Reusable.swift in Sources */,
 				041145691E54418B0006DF3E /* LLEmoticon.swift in Sources */,
 				04C984E71E4DD6CE00B38293 /* WBComposeTypebutton.swift in Sources */,
+				CEEF36D920CF9EF100D8D148 /* Constant.swift in Sources */,
 				567509771E5983DC0039D3A7 /* LLEMoticonTipView.swift in Sources */,
 				04F81ADC1E2F1A9600A0DECB /* UIScrollView+Extension.swift in Sources */,
 				CEBDE97620BE7DB1009399D9 /* UIScrollView+Extensions.swift in Sources */,
 				04EBC5001E24D4E8007A3E13 /* WBBaseViewController.swift in Sources */,
+				CEEF36CF20CF7D1700D8D148 /* RefreshView.swift in Sources */,
 				CE8B33B520BFCD0A001A78F4 /* UIView+Extensions.swift in Sources */,
 				04F81AE01E2F3F0C00A0DECB /* WBOAuthViewController.swift in Sources */,
 				CE8B33BD20C0083B001A78F4 /* StatusPictureModel.swift in Sources */,
@@ -854,21 +883,23 @@
 				CEBDE99820BE9732009399D9 /* RotationView.swift in Sources */,
 				CEBDE98320BE7ED5009399D9 /* StoryboardSceneBased.swift in Sources */,
 				047F7DB21E2334740042B2FF /* Bundle+Extension.swift in Sources */,
+				CEEF36D520CF9CB700D8D148 /* Int+Extensions.swift in Sources */,
 				04124AEB1E5C183200E22547 /* SDBrowserImageView.m in Sources */,
 				04124AED1E5C183200E22547 /* SDWaitingView.m in Sources */,
 				040F1F1C1E232DA1008BB5E8 /* AppDelegate.swift in Sources */,
 				04FC9A581E57FAB500DC8BA5 /* LLEmotictionLayout.swift in Sources */,
 				04F81ADE1E2F385300A0DECB /* WeiboCommon.swift in Sources */,
 				CEBDE98520BE7ED5009399D9 /* NibOwnerLoadable.swift in Sources */,
+				CE786CA820CFB4CA0002F996 /* StatusViewModel.swift in Sources */,
 				04124AEC1E5C183200E22547 /* SDPhotoBrowser.m in Sources */,
+				CEEF36CE20CF7D1700D8D148 /* ScrollRefresh.swift in Sources */,
+				CEEF36CC20CF7D1700D8D148 /* RefreshFooterView.swift in Sources */,
 				047F7DAD1E2332F30042B2FF /* WBMeViewController.swift in Sources */,
-				CEBDE97220BE7CE0009399D9 /* RefreshView.swift in Sources */,
 				04DDFC851E2DB808009F778A /* WBStatusListViewModel.swift in Sources */,
-				CEBDE97420BE7CE0009399D9 /* ScrollRefresh.swift in Sources */,
 				04FC9A5C1E57FBAB00DC8BA5 /* LLEmotionAttachment.swift in Sources */,
 				04D4F46C1E5699EF00354A45 /* WBComposeTextView.swift in Sources */,
 				041945D11E4997EA0069E586 /* UIImageView+WebImage.swift in Sources */,
-				CEBDE97120BE7CE0009399D9 /* RefreshHeaderView.swift in Sources */,
+				CEEF36DB20CF9F7300D8D148 /* CGRect+Extensions.swift in Sources */,
 				04EBC50B1E24E7CC007A3E13 /* UIColor+Extension.swift in Sources */,
 				CEBDE98820BE7ED5009399D9 /* UITableView+Reusable.swift in Sources */,
 				047F7DB91E2363910042B2FF /* WBMessageViewController.swift in Sources */,
@@ -883,6 +914,7 @@
 				567509751E597D2B0039D3A7 /* Date+Extension.swift in Sources */,
 				CEBDE98D20BE9712009399D9 /* HttpsRequest.swift in Sources */,
 				041945CF1E497AE70069E586 /* WBStatusViewModel.swift in Sources */,
+				CEEF36D120CF969700D8D148 /* StatusNormalCell.swift in Sources */,
 				04E289A51E542AFB00891F92 /* String+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

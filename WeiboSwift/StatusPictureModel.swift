@@ -16,5 +16,4 @@ class StatusPictureModel: NSObject, Codable {
 //            thumbnail_pic = thumbnail_pic?.replacingOccurrences(of: "/thumbnail/", with: "/wap360/")
 //        }
 //    }
-
 }

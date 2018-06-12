@@ -8,23 +8,19 @@
 
 import Foundation
 import SDWebImage
+import Kingfisher
 
 extension UIImageView {
-    
-    func ll_setImage(urlString: String?, placeholderImage: UIImage?, isAvatar: Bool = false) {
-        
+
+    func setImage(urlString: String?, placeholderImage: UIImage?, isAvatar: Bool = false) {
         guard let urlString = urlString,
             let url = URL(string: urlString)
-        else {
-            image = placeholderImage
-            return
+            else {
+                image = placeholderImage
+                return
         }
-        
-        sd_setImage(with: url, placeholderImage: placeholderImage, options: [], progress: nil) { (image, _, _, _) in
-            if isAvatar {
-                self.image = image?.ll_avatarImage(size: self.bounds.size, lineWidth: 0.5)
-            }
-        }
+
+        kf.setImage(with: url, placeholder: placeholderImage, options: [], progressBlock: nil, completionHandler: nil)
     }
     
 }

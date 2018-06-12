@@ -12,9 +12,9 @@ class WBStatusToolBar: UIView {
 
     var viewModel: WBStatusViewModel? {
         didSet {
-            retweetedButton.setTitle(viewModel?.retweetedStr, for: [])
-            commentButton.setTitle(viewModel?.commentStr, for: [])
-            likeButton.setTitle(viewModel?.likeStr, for: [])
+//            retweetedButton.setTitle(viewModel?.retweetedStr, for: [])
+//            commentButton.setTitle(viewModel?.commentStr, for: [])
+//            likeButton.setTitle(viewModel?.likeStr, for: [])
         }
     }
     

@@ -12,7 +12,6 @@ class LLEmoticonManager {
     
     // 为了便于表情的复用，建立一个单例，只加载一次表情数据
     static let shared = LLEmoticonManager()
-    
     lazy var packages = [LLEmoticonPackage]()
     
     lazy var bundle: Bundle = {
@@ -37,7 +36,6 @@ class LLEmoticonManager {
             packages[0].emoticons.append(em)
         }
         
-        
         packages[0].emoticons.sort { (em1, em2) -> Bool in
             return em1.times > em2.times
         }
@@ -53,20 +51,17 @@ class LLEmoticonManager {
 private extension LLEmoticonManager {
     
     func loadPackages() {
-
         //FIXME:
-//        guard let path = Bundle.main.path(forResource: "HMEmoticon.bundle", ofType: nil),
-//              let bundle = Bundle(path: path),
-//              let plistPath = bundle.path(forResource: "emoticons.plist", ofType: nil),
-//              let array = NSArray(contentsOfFile: plistPath),
+        guard let path = Bundle.main.path(forResource: "HMEmoticon.bundle", ofType: nil),
+              let bundle = Bundle(path: path),
+              let plistPath = bundle.path(forResource: "emoticons.plist", ofType: nil),
+              let array = NSArray(contentsOfFile: plistPath),
+                let models = DecodeJsoner.decodeJsonToModel(dict: array, [LLEmoticonPackage].self)
 //              let models = NSArray.yy_modelArray(with: LLEmoticonPackage.self, json: array) as? [LLEmoticonPackage]
-//        else {
-//            return
-//        }
-//
-//
-//        packages += models
-
+        else {
+            return
+        }
+        packages += models
     }
 }
 
@@ -111,7 +106,6 @@ extension LLEmoticonManager {
     
     func emoticonString(string: String, font: UIFont) -> NSAttributedString {
         
-        
         let attrString = NSMutableAttributedString(string: string)
         
         // 建立正则表达式，过滤所有的表情文字
@@ -126,21 +120,14 @@ extension LLEmoticonManager {
         
         // 倒序遍历
         for m in matches.reversed() {
-            
             let r = m.range(at: 0)
-            
             let subStr = (attrString.string as NSString).substring(with: r)
-            
             if let em = LLEmoticonManager.shared.findEmoticon(string: subStr) {
-                
                 attrString.replaceCharacters(in: r, with: em.imageText(font: font))
             }
-            
         }
         
         attrString.addAttributes([NSAttributedStringKey.font: font, NSAttributedStringKey.foregroundColor: UIColor.darkGray], range: NSRange(location: 0, length: attrString.length))
-        
         return attrString
     }
-
 }
