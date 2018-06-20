@@ -16,6 +16,8 @@ class SingletonData: NSObject {
     }
 
     var userAccount: UserAccount?
+    lazy var formatter = DateFormatter()
+    lazy var calendar = Calendar(identifier: Calendar.Identifier.gregorian)
 
     var userLogon: Bool {
         return userAccount?.access_token != nil

@@ -6,11 +6,11 @@
 //  Copyright © 2018年 nailiao. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 extension NSMutableAttributedString {
     static func singleLineSize(fontSize: CGFloat, _ text: String? = nil) -> CGSize {
-        var str = text ?? "哈"
+        let str = text ?? "哈"
         let size = (str as NSString).size(withAttributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: fontSize)])
         return size
     }

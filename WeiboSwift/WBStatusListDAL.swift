@@ -6,7 +6,7 @@
 //  Copyright © 2017年 nailiao. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 /// DAL - Data Access Layer 数据访问层
 // 使命：负责处理数据库和网络数据， 给 ListViewModel 返回微博的［字典数组］
@@ -31,6 +31,7 @@ class WBStatusListDAL {
         
         // 判断本地返回的数组数量，有数据直接返回，否则请求网络数据
         if array.count > 0 {
+            printLog(array)
             let status = DecodeJsoner.decodeJsonToModel(dict: array, [StatusModel].self)
             completion(status, true)
             return

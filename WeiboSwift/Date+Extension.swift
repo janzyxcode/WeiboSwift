@@ -8,83 +8,56 @@
 
 import Foundation
 
-// 日期格式化器 - 不要频繁的释放和创建，会影响性能
-private let dateFormatter = DateFormatter()
-
-// 当前日历对象
-private let calendar = Calendar.current
-
 extension Date {
     
     // 计算与当前系统时间偏差 delta 秒数的日期字符串
     // 在 swift 中，如果要定义结构体的 ‘类’函数，使用 static 修饰 -> 静态函数
     static func ll_dateString(delta: TimeInterval) -> String {
-        
+        let formatter = SingletonData.shared.formatter
         let date = Date(timeIntervalSinceNow: delta)
-        
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        
-        return dateFormatter.string(from: date)
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        return formatter.string(from: date)
     }
-    
-    
-    static func ll_sinaDate(string: String)->Date? {
-        
-        //  指定本地化信息
-        dateFormatter.locale = Locale(identifier: "en_US")
-        
-        dateFormatter.dateFormat = "EEE MMM dd HH:mm:ss zzz yyyy"
-        
-        let date = dateFormatter.date(from: string)
-        
-        printLog("\(string) -- \(date) -- \(dateFormatter.dateFormat)")
-        
-        return date
-    }
-    
-    
-    /**
-     刚刚（一分钟内）
-     X分钟前（一小时内）
-     X小时前（当天）
-     昨天 HH:mm（昨天）
-     MM-dd HH:mm（一年内）
-     yyyy-MM-dd HH:mm（更早期)
-     
-     */
-    var ll_dateDescription: String {
-        
-        if calendar.isDateInToday(self) {
-            let delta = -Int(self.timeIntervalSinceNow)
-            if delta < 60 {
+
+    //FIXME:是否影响加载速度3
+    static func createdAtDeal(_ dateStr: String?) -> String? {
+        guard let dateStr = dateStr else {
+            return nil
+        }
+
+        let formatter = SingletonData.shared.formatter
+        formatter.locale = Locale(identifier: "en_US")
+        formatter.dateFormat = "EEE MMM dd HH:mm:ss zzz yyyy"
+
+
+        guard let createdAtDate = formatter.date(from: dateStr) else {
+            return nil
+        }
+
+
+        let calender = SingletonData.shared.calendar
+        if calender.isDateInToday(createdAtDate) {
+            let seconds = -Int(createdAtDate.timeIntervalSinceNow)
+            if seconds < 60 {
                 return "刚刚"
+            } else if seconds < 3600 {
+                return "\(seconds/60)分钟前"
+            } else {
+                return "\(seconds/3600)小时前"
             }
-            
-            if delta < 3600 {
-                return "\(delta / 60) 分钟前"
+        } else if calender.isDateInYesterday(createdAtDate) {
+            formatter.dateFormat = "昨天 HH:mm"
+            return formatter.string(from: createdAtDate)
+        } else {
+            let thisYear = calender.component(.year, from: Date())
+            let dateYear = calender.component(.year, from: createdAtDate)
+            if thisYear == dateYear {
+                formatter.dateFormat = "MM-dd HH:mm"
+                return formatter.string(from: createdAtDate)
+            } else {
+                formatter.dateFormat = "yyyy-MM-dd HH:mm"
+                return formatter.string(from: createdAtDate)
             }
-            
-            return "\(delta / 3600) 小时前"
         }
-        
-        var fmt = " HH:mm"
-        
-        if calendar.isDateInYesterday(self) {
-            fmt = "昨天" + fmt
-        }else {
-            fmt = "MM-dd" + fmt
-            
-            let year = calendar.component(.year, from: self)
-            let thiseYear = calendar.component(.year, from: Date())
-            
-            if year != thiseYear {
-                fmt = "yyyy-" + fmt
-            }
-            
-        }
-        
-        dateFormatter.dateFormat = fmt
-        
-        return dateFormatter.string(from: self)
     }
 }

@@ -6,7 +6,7 @@
 //  Copyright © 2018年 nailiao. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 extension CGRect {
 

@@ -15,8 +15,6 @@ target 'WeiboSwift' do
     #  pod "Reachability"   , '~> 3.2'
     # SwiftLint autocorrect
 
-    pod "pop"
-    pod "SDWebImage"
     pod "FMDB"
     pod "FFLabel"
 

@@ -78,12 +78,3 @@ extension WBHomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension WBHomeViewController: WBstatusCellDelegate {
-    func statusCellDidSelectedURLString(cell: WBStatusCell, urlString: String) {
-        let vc = WBWebViewController()
-        vc.urlString = urlString
-        navigationController?.pushViewController(vc, animated: true)
-    }
-}
-
-

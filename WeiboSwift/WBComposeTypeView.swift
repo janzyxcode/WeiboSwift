@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import pop
-
 
 private let buttonsInfo = [["imageName": "tabbar_compose_idea", "title": "文字", "clsName": "WBCompViewController"],
                            ["imageName": "tabbar_compose_photo", "title": "照片／视频"],
@@ -85,27 +83,27 @@ class WBComposeTypeView: UIView {
         
         let page = Int(scrollView.contentOffset.x / scrollView.bounds.width)
         let v = scrollView.subviews[page]
-        
-        for (i, btn) in v.subviews.enumerated() {
-            let anim: POPBasicAnimation = POPBasicAnimation(propertyNamed: kPOPViewScaleXY)
-            let scale = (btn == selectedButton) ? 2 : 0.2
-            anim.toValue = NSValue(cgPoint: CGPoint(x: scale, y: scale))
-            anim.duration = 0.5
-            btn.pop_add(anim, forKey: nil)
-            
-            
-            let alphaAnim: POPBasicAnimation = POPBasicAnimation(propertyNamed: kPOPViewAlpha)
-            alphaAnim.toValue = 0.2
-            alphaAnim.duration = 0.5
-            btn.pop_add(alphaAnim, forKey: nil)
-            
-            if i == 0 {
-                alphaAnim.completionBlock = { _, _ in
-                                        self.completionBlock!(selectedButton.clsName)
-                }
-            }
-            
-        }
+//
+//        for (i, btn) in v.subviews.enumerated() {
+//            let anim: POPBasicAnimation = POPBasicAnimation(propertyNamed: kPOPViewScaleXY)
+//            let scale = (btn == selectedButton) ? 2 : 0.2
+//            anim.toValue = NSValue(cgPoint: CGPoint(x: scale, y: scale))
+//            anim.duration = 0.5
+//            btn.pop_add(anim, forKey: nil)
+//
+//
+//            let alphaAnim: POPBasicAnimation = POPBasicAnimation(propertyNamed: kPOPViewAlpha)
+//            alphaAnim.toValue = 0.2
+//            alphaAnim.duration = 0.5
+//            btn.pop_add(alphaAnim, forKey: nil)
+//
+//            if i == 0 {
+//                alphaAnim.completionBlock = { _, _ in
+//                                        self.completionBlock!(selectedButton.clsName)
+//                }
+//            }
+//
+//        }
     }
     
     @objc private func clickMore() {
@@ -141,28 +139,28 @@ private extension WBComposeTypeView {
     
     func showCurrentView () {
         
-        let anim: POPBasicAnimation = POPBasicAnimation(propertyNamed: kPOPViewAlpha)
-        anim.fromValue = 0
-        anim.toValue = 1
-        anim.duration = 0.5
-        pop_add(anim, forKey: nil)
-        
+//        let anim: POPBasicAnimation = POPBasicAnimation(propertyNamed: kPOPViewAlpha)
+//        anim.fromValue = 0
+//        anim.toValue = 1
+//        anim.duration = 0.5
+//        pop_add(anim, forKey: nil)
+
         showButtons()
     }
     
     private func showButtons() {
         
-        let v = scrollView.subviews[0]
-        for (i, btn) in v.subviews.enumerated() {
-            
-            let  anim: POPSpringAnimation = POPSpringAnimation(propertyNamed: kPOPLayerPositionY)
-            anim.fromValue = btn.center.y + 300
-            anim.toValue = btn.center.y
-            anim.springBounciness = 8
-            anim.springSpeed = 8
-            anim.beginTime = CACurrentMediaTime() + CFTimeInterval(i) * 0.025
-            btn.pop_add(anim, forKey: nil)
-        }
+//        let v = scrollView.subviews[0]
+//        for (i, btn) in v.subviews.enumerated() {
+//
+//            let  anim: POPSpringAnimation = POPSpringAnimation(propertyNamed: kPOPLayerPositionY)
+//            anim.fromValue = btn.center.y + 300
+//            anim.toValue = btn.center.y
+//            anim.springBounciness = 8
+//            anim.springSpeed = 8
+//            anim.beginTime = CACurrentMediaTime() + CFTimeInterval(i) * 0.025
+//            btn.pop_add(anim, forKey: nil)
+//        }
     }
 }
 
@@ -171,36 +169,36 @@ private extension WBComposeTypeView {
     
     func hideButtons() {
         
-        let page = Int(scrollView.contentOffset.x / scrollView.bounds.width)
-        let v = scrollView.subviews[page]
-        
-        for (i, btn) in v.subviews.enumerated().reversed() {
-            
-            let anim: POPSpringAnimation = POPSpringAnimation(propertyNamed: kPOPLayerPositionY)
-            anim.fromValue = btn.center.y
-            anim.toValue = btn.center.y + 350
-            anim.beginTime = CACurrentMediaTime() + CFTimeInterval(v.subviews.count - i) * 0.025
-            btn.layer.pop_add(anim, forKey: nil)
-            
-            if i == 0 {
-                anim.completionBlock = { _, _ in
-                    self.hideCurrentView()
-                }
-            }
-        }
+//        let page = Int(scrollView.contentOffset.x / scrollView.bounds.width)
+//        let v = scrollView.subviews[page]
+
+//        for (i, btn) in v.subviews.enumerated().reversed() {
+//
+//            let anim: POPSpringAnimation = POPSpringAnimation(propertyNamed: kPOPLayerPositionY)
+//            anim.fromValue = btn.center.y
+//            anim.toValue = btn.center.y + 350
+//            anim.beginTime = CACurrentMediaTime() + CFTimeInterval(v.subviews.count - i) * 0.025
+//            btn.layer.pop_add(anim, forKey: nil)
+//
+//            if i == 0 {
+//                anim.completionBlock = { _, _ in
+//                    self.hideCurrentView()
+//                }
+//            }
+//        }
     }
     
     
     private func hideCurrentView() {
         
-        let anim: POPBasicAnimation = POPBasicAnimation(propertyNamed: kPOPViewAlpha)
-        anim.fromValue =  1
-        anim.toValue = 0
-        anim.duration = 0.25
-        pop_add(anim, forKey: nil)
-        anim.completionBlock = { _, _ in
-            self.removeFromSuperview()
-        }
+//        let anim: POPBasicAnimation = POPBasicAnimation(propertyNamed: kPOPViewAlpha)
+//        anim.fromValue =  1
+//        anim.toValue = 0
+//        anim.duration = 0.25
+//        pop_add(anim, forKey: nil)
+//        anim.completionBlock = { _, _ in
+//            self.removeFromSuperview()
+//        }
         
     }
     

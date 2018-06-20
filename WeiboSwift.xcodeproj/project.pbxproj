@@ -15,14 +15,8 @@
 		041145671E543C770006DF3E /* LLEmoticonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041145661E543C770006DF3E /* LLEmoticonManager.swift */; };
 		041145691E54418B0006DF3E /* LLEmoticon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041145681E54418B0006DF3E /* LLEmoticon.swift */; };
 		0411456B1E5441ED0006DF3E /* LLEmoticonPackage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0411456A1E5441ED0006DF3E /* LLEmoticonPackage.swift */; };
-		04124AEB1E5C183200E22547 /* SDBrowserImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04124AE51E5C183200E22547 /* SDBrowserImageView.m */; };
-		04124AEC1E5C183200E22547 /* SDPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 04124AE71E5C183200E22547 /* SDPhotoBrowser.m */; };
-		04124AED1E5C183200E22547 /* SDWaitingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04124AEA1E5C183200E22547 /* SDWaitingView.m */; };
-		041945C51E496E9C0069E586 /* WBStatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041945C41E496E9C0069E586 /* WBStatusCell.swift */; };
-		041945C91E496EF40069E586 /* WBStatusNormalCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 041945C81E496EF40069E586 /* WBStatusNormalCell.xib */; };
 		041945CF1E497AE70069E586 /* WBStatusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041945CE1E497AE70069E586 /* WBStatusViewModel.swift */; };
 		041945D11E4997EA0069E586 /* UIImageView+WebImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041945D01E4997EA0069E586 /* UIImageView+WebImage.swift */; };
-		041945D31E49ADA90069E586 /* WBStatusToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041945D21E49ADA90069E586 /* WBStatusToolBar.swift */; };
 		041945D51E49B44C0069E586 /* WBStatusPictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041945D41E49B44C0069E586 /* WBStatusPictureView.swift */; };
 		047F7DA91E2332B70042B2FF /* WBMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047F7DA81E2332B70042B2FF /* WBMainViewController.swift */; };
 		047F7DAD1E2332F30042B2FF /* WBMeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047F7DAC1E2332F30042B2FF /* WBMeViewController.swift */; };
@@ -35,7 +29,6 @@
 		04C984E31E4DD24100B38293 /* WBComposeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04C984E21E4DD24100B38293 /* WBComposeView.xib */; };
 		04C984E51E4DD6C400B38293 /* WBComposeTypebutton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04C984E41E4DD6C400B38293 /* WBComposeTypebutton.xib */; };
 		04C984E71E4DD6CE00B38293 /* WBComposeTypebutton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C984E61E4DD6CE00B38293 /* WBComposeTypebutton.swift */; };
-		04CB13F81E4AB20A002A3771 /* WBStatusReweetedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04CB13F71E4AB20A002A3771 /* WBStatusReweetedCell.xib */; };
 		04D3BC731E557E1B00615446 /* WBWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D3BC721E557E1B00615446 /* WBWebViewController.swift */; };
 		04D3BC751E55859300615446 /* WBCompViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D3BC741E55859300615446 /* WBCompViewController.xib */; };
 		04D4F46C1E5699EF00354A45 /* WBComposeTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D4F46B1E5699EF00354A45 /* WBComposeTextView.swift */; };
@@ -49,7 +42,6 @@
 		04EBC5091E24DE88007A3E13 /* UIBarButtonItem+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EBC5081E24DE88007A3E13 /* UIBarButtonItem+Extension.swift */; };
 		04EBC50B1E24E7CC007A3E13 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EBC50A1E24E7CC007A3E13 /* UIColor+Extension.swift */; };
 		04F81ADC1E2F1A9600A0DECB /* UIScrollView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F81ADB1E2F1A9600A0DECB /* UIScrollView+Extension.swift */; };
-		04F81ADE1E2F385300A0DECB /* WeiboCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F81ADD1E2F385300A0DECB /* WeiboCommon.swift */; };
 		04F81AE01E2F3F0C00A0DECB /* WBOAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F81ADF1E2F3F0C00A0DECB /* WBOAuthViewController.swift */; };
 		04FA30E41E29C1A8002F6151 /* main.json in Resources */ = {isa = PBXBuildFile; fileRef = 04FA30E31E29C1A8002F6151 /* main.json */; };
 		04FC9A541E57FAB500DC8BA5 /* LLEmoticonInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FC9A4F1E57FAB500DC8BA5 /* LLEmoticonInputView.swift */; };
@@ -134,18 +126,8 @@
 		041145661E543C770006DF3E /* LLEmoticonManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLEmoticonManager.swift; sourceTree = "<group>"; };
 		041145681E54418B0006DF3E /* LLEmoticon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLEmoticon.swift; sourceTree = "<group>"; };
 		0411456A1E5441ED0006DF3E /* LLEmoticonPackage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLEmoticonPackage.swift; sourceTree = "<group>"; };
-		04124AE41E5C183200E22547 /* SDBrowserImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBrowserImageView.h; sourceTree = "<group>"; };
-		04124AE51E5C183200E22547 /* SDBrowserImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDBrowserImageView.m; sourceTree = "<group>"; };
-		04124AE61E5C183200E22547 /* SDPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDPhotoBrowser.h; sourceTree = "<group>"; };
-		04124AE71E5C183200E22547 /* SDPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDPhotoBrowser.m; sourceTree = "<group>"; };
-		04124AE81E5C183200E22547 /* SDPhotoBrowserConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDPhotoBrowserConfig.h; sourceTree = "<group>"; };
-		04124AE91E5C183200E22547 /* SDWaitingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWaitingView.h; sourceTree = "<group>"; };
-		04124AEA1E5C183200E22547 /* SDWaitingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWaitingView.m; sourceTree = "<group>"; };
-		041945C41E496E9C0069E586 /* WBStatusCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBStatusCell.swift; sourceTree = "<group>"; };
-		041945C81E496EF40069E586 /* WBStatusNormalCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WBStatusNormalCell.xib; sourceTree = "<group>"; };
 		041945CE1E497AE70069E586 /* WBStatusViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBStatusViewModel.swift; sourceTree = "<group>"; };
 		041945D01E4997EA0069E586 /* UIImageView+WebImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+WebImage.swift"; sourceTree = "<group>"; };
-		041945D21E49ADA90069E586 /* WBStatusToolBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBStatusToolBar.swift; sourceTree = "<group>"; };
 		041945D41E49B44C0069E586 /* WBStatusPictureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBStatusPictureView.swift; sourceTree = "<group>"; };
 		047F7DA81E2332B70042B2FF /* WBMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBMainViewController.swift; sourceTree = "<group>"; };
 		047F7DAC1E2332F30042B2FF /* WBMeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBMeViewController.swift; sourceTree = "<group>"; };
@@ -159,7 +141,6 @@
 		04C984E21E4DD24100B38293 /* WBComposeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WBComposeView.xib; sourceTree = "<group>"; };
 		04C984E41E4DD6C400B38293 /* WBComposeTypebutton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WBComposeTypebutton.xib; sourceTree = "<group>"; };
 		04C984E61E4DD6CE00B38293 /* WBComposeTypebutton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBComposeTypebutton.swift; sourceTree = "<group>"; };
-		04CB13F71E4AB20A002A3771 /* WBStatusReweetedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WBStatusReweetedCell.xib; sourceTree = "<group>"; };
 		04D3BC721E557E1B00615446 /* WBWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBWebViewController.swift; sourceTree = "<group>"; };
 		04D3BC741E55859300615446 /* WBCompViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WBCompViewController.xib; sourceTree = "<group>"; };
 		04D4F46B1E5699EF00354A45 /* WBComposeTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBComposeTextView.swift; sourceTree = "<group>"; };
@@ -173,7 +154,6 @@
 		04EBC5081E24DE88007A3E13 /* UIBarButtonItem+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Extension.swift"; sourceTree = "<group>"; };
 		04EBC50A1E24E7CC007A3E13 /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		04F81ADB1E2F1A9600A0DECB /* UIScrollView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Extension.swift"; sourceTree = "<group>"; };
-		04F81ADD1E2F385300A0DECB /* WeiboCommon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeiboCommon.swift; sourceTree = "<group>"; };
 		04F81ADF1E2F3F0C00A0DECB /* WBOAuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBOAuthViewController.swift; sourceTree = "<group>"; };
 		04FA30E31E29C1A8002F6151 /* main.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = main.json; sourceTree = "<group>"; };
 		04FC9A4F1E57FAB500DC8BA5 /* LLEmoticonInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLEmoticonInputView.swift; sourceTree = "<group>"; };
@@ -290,9 +270,6 @@
 				041145631E543C400006DF3E /* Emoticon */,
 				04C984DF1E4DD21A00B38293 /* Compose */,
 				04D72E271E495F4A005FDF44 /* Home */,
-				04DDFC831E2DB7EB009F778A /* ViewModel */,
-				04DDFC7F1E2DB479009F778A /* Model */,
-				04E2E2D71E2C64B20015BCB6 /* Tool */,
 				04EB351B1E28B93E0069D2C4 /* Base */,
 				04EB351A1E28B9360069D2C4 /* Me */,
 				04EB35191E28B92B0069D2C4 /* Discover */,
@@ -331,20 +308,6 @@
 				0411456A1E5441ED0006DF3E /* LLEmoticonPackage.swift */,
 			);
 			name = Emoticon;
-			sourceTree = "<group>";
-		};
-		04124AE31E5C183200E22547 /* SDPhotoBrowser */ = {
-			isa = PBXGroup;
-			children = (
-				04124AE41E5C183200E22547 /* SDBrowserImageView.h */,
-				04124AE51E5C183200E22547 /* SDBrowserImageView.m */,
-				04124AE61E5C183200E22547 /* SDPhotoBrowser.h */,
-				04124AE71E5C183200E22547 /* SDPhotoBrowser.m */,
-				04124AE81E5C183200E22547 /* SDPhotoBrowserConfig.h */,
-				04124AE91E5C183200E22547 /* SDWaitingView.h */,
-				04124AEA1E5C183200E22547 /* SDWaitingView.m */,
-			);
-			path = SDPhotoBrowser;
 			sourceTree = "<group>";
 		};
 		047F7DAE1E2334640042B2FF /* Extensions */ = {
@@ -386,12 +349,10 @@
 		04D72E271E495F4A005FDF44 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				CEFEF87F20D9EF13006AEDD1 /* Views */,
+				04DDFC7F1E2DB479009F778A /* Model */,
+				04DDFC831E2DB7EB009F778A /* ViewModel */,
 				04EBC5011E24D938007A3E13 /* WBHomeViewController.swift */,
-				041945C41E496E9C0069E586 /* WBStatusCell.swift */,
-				041945C81E496EF40069E586 /* WBStatusNormalCell.xib */,
-				04CB13F71E4AB20A002A3771 /* WBStatusReweetedCell.xib */,
-				CEEF36D020CF969700D8D148 /* StatusNormalCell.swift */,
-				041945D21E49ADA90069E586 /* WBStatusToolBar.swift */,
 				041945D41E49B44C0069E586 /* WBStatusPictureView.swift */,
 				04D3BC721E557E1B00615446 /* WBWebViewController.swift */,
 			);
@@ -429,15 +390,6 @@
 				CE786CA720CFB4CA0002F996 /* StatusViewModel.swift */,
 			);
 			name = ViewModel;
-			sourceTree = "<group>";
-		};
-		04E2E2D71E2C64B20015BCB6 /* Tool */ = {
-			isa = PBXGroup;
-			children = (
-				04124AE31E5C183200E22547 /* SDPhotoBrowser */,
-				04F81ADD1E2F385300A0DECB /* WeiboCommon.swift */,
-			);
-			name = Tool;
 			sourceTree = "<group>";
 		};
 		04EB35181E28B9230069D2C4 /* Message */ = {
@@ -599,6 +551,14 @@
 			path = ../../../../UploadTool/UploadTool/UploadTool/CustomView/ProgressHUD;
 			sourceTree = "<group>";
 		};
+		CEFEF87F20D9EF13006AEDD1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CEEF36D020CF969700D8D148 /* StatusNormalCell.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		DA714BDE44C33F8CC5008889 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -686,11 +646,13 @@
 					};
 					040F1F2B1E232DA2008BB5E8 = {
 						CreatedOnToolsVersion = 8.2.1;
+						LastSwiftMigration = 0940;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 040F1F171E232DA1008BB5E8;
 					};
 					040F1F361E232DA2008BB5E8 = {
 						CreatedOnToolsVersion = 8.2.1;
+						LastSwiftMigration = 0940;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 040F1F171E232DA1008BB5E8;
 					};
@@ -721,7 +683,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				041945C91E496EF40069E586 /* WBStatusNormalCell.xib in Resources */,
 				04FA30E41E29C1A8002F6151 /* main.json in Resources */,
 				04C984E31E4DD24100B38293 /* WBComposeView.xib in Resources */,
 				041145651E543C540006DF3E /* HMEmoticon.bundle in Resources */,
@@ -730,7 +691,6 @@
 				04C984E51E4DD6C400B38293 /* WBComposeTypebutton.xib in Resources */,
 				04FC9AA71E58399900DC8BA5 /* status.sql in Resources */,
 				CEEF36CB20CF7D1700D8D148 /* RefreshView.xib in Resources */,
-				04CB13F81E4AB20A002A3771 /* WBStatusReweetedCell.xib in Resources */,
 				04D3BC751E55859300615446 /* WBCompViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -810,9 +770,7 @@
 				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
-				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
-				"${BUILT_PRODUCTS_DIR}/pop/pop.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -821,9 +779,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMDB.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/pop.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -843,7 +799,6 @@
 				CEBDE99720BE9732009399D9 /* ProgressHUD.swift in Sources */,
 				CEBDE98B20BE85FF009399D9 /* DecodeJsoner.swift in Sources */,
 				04FC9AA21E58386700DC8BA5 /* WBStatusListDAL.swift in Sources */,
-				041945D31E49ADA90069E586 /* WBStatusToolBar.swift in Sources */,
 				CEEF36D320CF993B00D8D148 /* Common.swift in Sources */,
 				CEBDE99620BE9732009399D9 /* ProgressHUD+Layout.swift in Sources */,
 				047F7DB11E2334740042B2FF /* NSObject+Extension.swift in Sources */,
@@ -884,14 +839,10 @@
 				CEBDE98320BE7ED5009399D9 /* StoryboardSceneBased.swift in Sources */,
 				047F7DB21E2334740042B2FF /* Bundle+Extension.swift in Sources */,
 				CEEF36D520CF9CB700D8D148 /* Int+Extensions.swift in Sources */,
-				04124AEB1E5C183200E22547 /* SDBrowserImageView.m in Sources */,
-				04124AED1E5C183200E22547 /* SDWaitingView.m in Sources */,
 				040F1F1C1E232DA1008BB5E8 /* AppDelegate.swift in Sources */,
 				04FC9A581E57FAB500DC8BA5 /* LLEmotictionLayout.swift in Sources */,
-				04F81ADE1E2F385300A0DECB /* WeiboCommon.swift in Sources */,
 				CEBDE98520BE7ED5009399D9 /* NibOwnerLoadable.swift in Sources */,
 				CE786CA820CFB4CA0002F996 /* StatusViewModel.swift in Sources */,
-				04124AEC1E5C183200E22547 /* SDPhotoBrowser.m in Sources */,
 				CEEF36CE20CF7D1700D8D148 /* ScrollRefresh.swift in Sources */,
 				CEEF36CC20CF7D1700D8D148 /* RefreshFooterView.swift in Sources */,
 				047F7DAD1E2332F30042B2FF /* WBMeViewController.swift in Sources */,
@@ -904,7 +855,6 @@
 				CEBDE98820BE7ED5009399D9 /* UITableView+Reusable.swift in Sources */,
 				047F7DB91E2363910042B2FF /* WBMessageViewController.swift in Sources */,
 				CEBDE99C20BEA6C6009399D9 /* SingletonData.swift in Sources */,
-				041945C51E496E9C0069E586 /* WBStatusCell.swift in Sources */,
 				04EBC5091E24DE88007A3E13 /* UIBarButtonItem+Extension.swift in Sources */,
 				CEBDE98720BE7ED5009399D9 /* UICollectionView+Reusable.swift in Sources */,
 				047F7DBF1E2368ED0042B2FF /* UIImage+Extension.swift in Sources */,
@@ -1108,7 +1058,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = nailiao.WeiboSwiftTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WeiboSwift.app/WeiboSwift";
 			};
 			name = Debug;
@@ -1122,7 +1073,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = nailiao.WeiboSwiftTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WeiboSwift.app/WeiboSwift";
 			};
 			name = Release;
@@ -1135,7 +1087,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = nailiao.WeiboSwiftUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = WeiboSwift;
 			};
 			name = Debug;
@@ -1148,7 +1101,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = nailiao.WeiboSwiftUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = WeiboSwift;
 			};
 			name = Release;

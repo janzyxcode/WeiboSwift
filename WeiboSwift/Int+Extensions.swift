@@ -6,7 +6,7 @@
 //  Copyright © 2018年 NG. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 extension Int {
     var boolValue: Bool {
