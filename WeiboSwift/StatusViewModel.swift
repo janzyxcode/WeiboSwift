@@ -22,7 +22,6 @@ class StatusViewModel {
     var statusSource: String?
     var statusCreatedAt: String?
 
-    var memberIconName: String?
     var vipIconName: String?
 
     var retweetedStr: String?
@@ -44,11 +43,13 @@ class StatusViewModel {
             setUserInfo(user)
         }
 
+        statusCreatedAt = Date.createdAtDeal(status.created_at)
+        layout.updateTimeLayout(timeStr: statusCreatedAt)
         if let sourceTuple = sourceHref(status.source) {
             statusSource = "来自" + sourceTuple.text
+            layout.updateSourceLayout(sourceStr: statusSource)
         }
-        statusCreatedAt = Date.createdAtDeal(status.created_at)
-        
+
         retweetedStr = countString(count: status.resosts_count.value, defaultStr: "转发")
         commentStr = countString(count: status.comments_count.value, defaultStr: "评论")
         likeStr = countString(count: status.attitudes_count.value, defaultStr: "赞")
@@ -57,12 +58,6 @@ class StatusViewModel {
     }
 
     private func setUserInfo(_ user: UserModel) {
-        if user.mbrank > 0
-            && user.mbrank < 7  {
-            let imageName = "common_icon_membership_level\(user.mbrank)"
-            memberIconName = imageName
-        }
-
         switch user.verified_type {
         case 0:
             vipIconName = "avatar_vip"
@@ -107,9 +102,18 @@ class StatusViewModel {
         }
 
         for item in pictureUrls.enumerated() {
+            let tag = item.offset + 10
+            let heroid = "showImage" + tag.description
+
             let imgv = UIImageView()
-            imgv.tag = item.offset
+            imgv.hero.id = heroid
+            imgv.tag = tag
+            imgv.isUserInteractionEnabled = true
             pictureViews.append(imgv)
+
+            let tapGr = UITapGestureRecognizer(target: self, action: #selector(imageShow))
+            imgv.addGestureRecognizer(tapGr)
+
             if item.offset == picturesLimitCount - 1 {
                 break
             }
@@ -134,6 +138,25 @@ class StatusViewModel {
             pictureViewSize = CGSize(width: statusContentWidth, height: height)
             layout.updateStatusTextLayoutWith(pictureViewsize: pictureViewSize)
         }
+    }
+
+    @objc private func imageShow(tapGr: UITapGestureRecognizer) {
+        guard let tag = tapGr.view?.tag,
+            let pictureUrls = picURLs else {
+                return
+        }
+
+        var list = [ImageNameModel]()
+        for item in pictureUrls.enumerated() {
+            if let url = item.element.thumbnail_pic {
+                list.append(ImageNameModel(name: url, type: .url, heroID: "showImage" + (item.offset + 10).description, nil))
+            }
+        }
+
+        let vc = ImageViewController.instantiate()
+        vc.imageLibrary = list
+        vc.selectedIndex = IndexPath(row: tag - 10, section: 0)
+        tapGr.view?.viewController?.present(vc, animated: true, completion: nil)
     }
 
     func updateSingleImageSize(_ imageSize: CGSize, _ imageView: UIImageView) {

@@ -12,16 +12,16 @@ class WBHomeViewController: WBBaseViewController {
 
     var tableView: UITableView?
     lazy private var listViewModel = WBStatusListViewModel()
-    private var isUpload = true
+    private var isPullup = false
 
     override func loadData() {
-        listViewModel.loadStatus(pullup: isUpload) { (isSuccess, shouldRefresh) in
-            if self.isUpload == false {
+        listViewModel.loadStatus(pullup: isPullup) { (shouldRefresh) in
+            if self.isPullup {
                 self.tableView?.ngFooterEndRefreshing()
             }else {
-               self.tableView?.ngHeaderEndRefreshing()
+                self.tableView?.ngHeaderEndRefreshing()
             }
-            self.isUpload = true
+            self.isPullup = false
 
             if shouldRefresh {
                 self.tableView?.reloadData()
@@ -31,31 +31,29 @@ class WBHomeViewController: WBBaseViewController {
 
     @objc func loadMore()  {
         printLog("more")
+        isPullup = true
         loadData()
-        isUpload = false
     }
 
     override func setupContentViews() {
-        let table = UITableView(frame: view.bounds, style: .plain)
+        let table = UITableView(frame: CGRect(x: 0, y: 64, width: view.width, height: view.height - 64 - 49), style: .plain)
         view.addSubview(table)
         tableView = table
         tableView?.delegate = self
         tableView?.dataSource = self
-        tableView?.contentInset = UIEdgeInsetsMake(64, 0, tabBarController?.tabBar.bounds.height ?? 49, 0)
-        // 修改指示器的缩进
-        tableView?.scrollIndicatorInsets = tableView!.contentInset
 
         tableView?.ngHeaderRefreshAddTarget(self, action: #selector(loadData))
         tableView?.ngFooterRefreshAddTarget(self, action: #selector(loadMore))
 
         tableView?.register(cellType: StatusNormalCell.self)
-//        tableView?.register(UINib(nibName: "WBStatusNormalCell", bundle: nil), forCellReuseIdentifier: originalCellId)
-//        tableView?.register(UINib(nibName: "WBStatusReweetedCell", bundle: nil), forCellReuseIdentifier: retweetedCellId)
         tableView?.rowHeight = UITableViewAutomaticDimension
         tableView?.estimatedRowHeight = 300
         tableView?.separatorStyle = .none
-    }
 
+//        HttpsRequest.request(para: RequestParameter(method: .get, url: "https://api.weibo.com/2/emotions.json", parameter: nil), succeed: { (result) in
+//            printLog(result)
+//        }, failed: nil)
+    }
 }
 
 
@@ -71,10 +69,13 @@ extension WBHomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let model = listViewModel.statusList[indexPath.row]
-//        let cellId = (vm.status.retweeted_status != nil) ? retweetedCellId : originalCellId
         let cell = tableView.dequeueReusableCell(for: indexPath) as StatusNormalCell
         cell.setStatus(model)
         return cell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 

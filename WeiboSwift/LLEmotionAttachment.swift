@@ -9,6 +9,5 @@
 import UIKit
 
 class LLEmotionAttachment: NSTextAttachment {
-//FIXME:OC 和 swift 单例的对比
     var chs: String?
 }

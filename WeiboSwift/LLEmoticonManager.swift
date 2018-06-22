@@ -9,41 +9,35 @@
 import UIKit
 
 class LLEmoticonManager {
-    
-    // 为了便于表情的复用，建立一个单例，只加载一次表情数据
+
     static let shared = LLEmoticonManager()
     lazy var packages = [LLEmoticonPackage]()
     
     lazy var bundle: Bundle = {
         let path = Bundle.main.path(forResource: "HMEmoticon.bundle", ofType: nil)
-          return Bundle(path: path!)!
+        return Bundle(path: path!)!
     }()
-    
-    
-    // 构造函数，如果在 init 之前增加 private 修饰符，可以要求调用者必须通过 shared 访问对象
-    // OC 要重写 allocWithZone 方法
+
     private init() {
         loadPackages()
     }
     
-    
-    // 添加最近使用的表情
+
     func recentEmoticon(em: LLEmoticon) {
         
-        em.times += 1
-        
-        if !packages[0].emoticons.contains(em){
-            packages[0].emoticons.append(em)
-        }
-        
-        packages[0].emoticons.sort { (em1, em2) -> Bool in
-            return em1.times > em2.times
-        }
-        
-        // 如果表情数组超过 20，删除末尾的表情
-        if packages[0].emoticons.count > 20 {
-            packages[0].emoticons.removeSubrange(20..<packages[0].emoticons.count)
-        }
+        //        em.times.value += 1
+        //
+        //        if !packages[0].emoticons.contains(em){
+        //            packages[0].emoticons.append(em)
+        //        }
+        //
+        //        packages[0].emoticons.sort { (em1, em2) -> Bool in
+        //            return em1.times > em2.times
+        //        }
+        //
+        //        if packages[0].emoticons.count > 20 {
+        //            packages[0].emoticons.removeSubrange(20..<packages[0].emoticons.count)
+        //        }
     }
 }
 
@@ -51,52 +45,44 @@ class LLEmoticonManager {
 private extension LLEmoticonManager {
     
     func loadPackages() {
-        //FIXME:
         guard let path = Bundle.main.path(forResource: "HMEmoticon.bundle", ofType: nil),
-              let bundle = Bundle(path: path),
-              let plistPath = bundle.path(forResource: "emoticons.plist", ofType: nil),
-              let array = NSArray(contentsOfFile: plistPath),
-                let models = DecodeJsoner.decodeJsonToModel(dict: array, [LLEmoticonPackage].self)
-//              let models = NSArray.yy_modelArray(with: LLEmoticonPackage.self, json: array) as? [LLEmoticonPackage]
-        else {
-            return
+            let bundle = Bundle(path: path),
+            let plistPath = bundle.path(forResource: "emoticons.plist", ofType: nil),
+            let array = NSArray(contentsOfFile: plistPath)
+            ,let models = DecodeJsoner.decodeJsonToModel(dict: array, [LLEmoticonPackage].self)
+            else {
+                return
         }
         packages += models
+
+        for item in packages {
+            guard let plistPath = bundle.path(forResource: "info.plist", ofType: nil, inDirectory: item.emoticon_group_path),
+                let dict = NSDictionary(contentsOfFile: plistPath),
+                let array = dict["emoticon_group_emoticons"],
+                let models = DecodeJsoner.decodeJsonToModel(dict: array, [LLEmoticon].self)
+                else {
+                    continue
+            }
+
+            for m in models {
+                m.directory = item.emoticon_group_path
+            }
+
+            item.emoticons += models
+        }
     }
 }
 
 extension LLEmoticonManager {
     
     func findEmoticon(string: String) -> LLEmoticon? {
-        
         for p in packages {
-            
-            // 在表情数组中过滤 string
-            // 方法1
-//            let result = p.emoticons.filter({ (em) -> Bool in
-//                return em.chs == string
-//            })
-            
-            // 方法2 尾随闭包
-//            let result = p.emoticons.filter(){ (em) -> Bool in
-//                return em.chs == string
-//            }
-            
-            // 方法3 － 如果闭包中只有一句，并且是返回，闭包格式定义可以省略，参数省略后，使用 $0, $1... 依次替代原有的参数
-//            let result = p.emoticons.filter(){
-//                return $0.chs == string
-//            }
-            
-            // 方法4 － 如果闭包中只有一句，并且是返回，闭包格式定义可以省略，参数省略后，使用 $0, $1... 依次替代原有的参数，return 也可以省略
             let result = p.emoticons.filter(){ $0.chs == string }
-            
-            // 判断结果数组的数量
             if result.count == 1 {
                 return result[0]
             }
         }
-        
-        
+//        printLog(string)
         return nil
     }
 }
@@ -107,9 +93,7 @@ extension LLEmoticonManager {
     func emoticonString(string: String, font: UIFont) -> NSAttributedString {
         
         let attrString = NSMutableAttributedString(string: string)
-        
-        // 建立正则表达式，过滤所有的表情文字
-        // [] () 都是正则表达式的关键字，如果要参与匹配，需要转义
+
         let pattern = "\\[.*?\\]"
         
         guard let regx = try? NSRegularExpression(pattern: pattern, options: []) else {
@@ -123,7 +107,8 @@ extension LLEmoticonManager {
             let r = m.range(at: 0)
             let subStr = (attrString.string as NSString).substring(with: r)
             if let em = LLEmoticonManager.shared.findEmoticon(string: subStr) {
-                attrString.replaceCharacters(in: r, with: em.imageText(font: font))
+                let imgText =  em.imageText(font: font)
+                attrString.replaceCharacters(in: r, with: imgText)
             }
         }
         

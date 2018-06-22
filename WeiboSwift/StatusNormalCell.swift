@@ -10,7 +10,6 @@ import UIKit
 
 class StatusNormalCell: UITableViewCell, Reusable {
     private var topContainerView: UIView!
-    private var topLineView: UIView!
     private var headerImgv: UIImageView!
 //    private var headerMaskImgv: UIImageView!
     private var nameL: UILabel!
@@ -18,11 +17,9 @@ class StatusNormalCell: UITableViewCell, Reusable {
     private var timeL: UILabel!
     private var sourceL: UILabel!
     private var statusL: UILabel!
-    private var toolBarView: UIView!
+    private var toolBarView: StatusToolBarView!
     private var retweetedStatusL: UILabel!
     private var retweetedView: UIView!
-
-    //    var memberIconView: UIImageView!
     var picturesView: StatusPicturesView!
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -31,10 +28,6 @@ class StatusNormalCell: UITableViewCell, Reusable {
         //
         topContainerView = UIView()
         contentView.addSubview(topContainerView)
-
-        topLineView = UIView()
-        topLineView.backgroundColor = rgba(238, 238, 238)
-        topContainerView.addSubview(topLineView)
 
         headerImgv = UIImageView()
         topContainerView.addSubview(headerImgv)
@@ -74,13 +67,13 @@ class StatusNormalCell: UITableViewCell, Reusable {
         retweetedView.addSubview(retweetedStatusL)
 
         //
-        toolBarView = UIView()
-        toolBarView.backgroundColor = UIColor.lightGray
+        toolBarView = StatusToolBarView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 35))
         contentView.addSubview(toolBarView)
 
         picturesView = StatusPicturesView(frame: CGRect.zero)
         contentView.addSubview(picturesView)
 
+        selectionStyle = .gray
         // 离屏渲染 － 异步绘制
         self.layer.drawsAsynchronously = true
         // 栅格话 － 异步会址之后，会生出一张独立的图像，cell在屏幕上滚动的时候，本质上滚动的是这张图片
@@ -97,7 +90,6 @@ class StatusNormalCell: UITableViewCell, Reusable {
 
     func setStatus(_ statusViewModel: StatusViewModel) {
         topContainerView.frame = statusViewModel.layout.topContainerViewLayout
-        topLineView.frame = statusViewModel.layout.topLineLayout
         headerImgv.frame = statusViewModel.layout.headerImgvLayout
 //        headerMaskImgv.frame = headerImgv.frame
         vipIconImgv.frame = statusViewModel.layout.vipIconImgvLayout
@@ -111,28 +103,27 @@ class StatusNormalCell: UITableViewCell, Reusable {
         retweetedView.frame = statusViewModel.layout.retweetedLayout
 
         statusL.attributedText = statusViewModel.layout.statusTextAttr
-        //        retweetedLabel?.attributedText = viewModel?.reweetedAttrText
         nameL.text = statusViewModel.status.user?.screen_name
         retweetedStatusL.attributedText = statusViewModel.layout.retweetedStatusTextAttr
         
         if let vipconName = statusViewModel.vipIconName {
             vipIconImgv.image = UIImage(named: vipconName)
         }
-        //        memberIconView.image = viewModel?.memberIcon
 
         headerImgv.setImage(urlString: statusViewModel.status.user?.profile_image_url, placeholderImage: UIImage(named: "avatar_default_big"), true)
         
 
-        //        toolBar.viewModel = viewModel
-
-        // 配图视图模型
-        //        pictureView.viewModel = viewModel
-
+        toolBarView.setContent(retweetedStr: statusViewModel.commentStr, commentStr: statusViewModel.commentStr, likeStr: statusViewModel.likeStr)
         sourceL.text = statusViewModel.statusSource
         timeL.text = statusViewModel.statusCreatedAt
 
         picturesView.setPictures(statusViewModel.picURLs, statusViewModel.pictureViews)
     }
+//
+//    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+//        super.setHighlighted(highlighted, animated: animated)
+//        printLog("-----")
+//    }
 }
 
 
@@ -150,7 +141,7 @@ class StatusPicturesView: UIView {
 
         for item in imageviews.enumerated() {
             addSubview(item.element)
-            let url = pictures[item.offset].thumbnail_pic
+            let url = pictures[item.offset].thumbnailWap369Pic
             item.element.setImage(urlString: url, placeholderImage: nil)
         }
     }

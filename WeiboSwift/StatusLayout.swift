@@ -18,7 +18,6 @@ var statusTimeFontSize: CGFloat = 10
 class StatusLayout {
     var status: StatusModel!
     var topContainerViewLayout = CGRect.zero
-    var topLineLayout = CGRect.zero
     var headerImgvLayout = CGRect.zero
     var nameLLayout = CGRect.zero
     var vipIconImgvLayout = CGRect.zero
@@ -38,15 +37,10 @@ class StatusLayout {
     init(status: StatusModel) {
         self.status = status
         updateLayout()
-        updateRetweetedLayout()
     }
 
     func updateStatusTextLayoutWith(pictureViewsize: CGSize) {
-        printLog(status.user?.screen_name)
-        printLog(status.text)
-        printLog(status.pic_urls?.count)
-        printLog(pictureViewsize)
-
+        
         if status.retweeted_status == nil {
             picturesViewLayout = CGRect(x: statusMargin, y: topContainerViewLayout.bottom, width: pictureViewsize.width, height: pictureViewsize.height)
         } else {
@@ -59,28 +53,32 @@ class StatusLayout {
     private func updateLayout() {
         updateTopLayout()
         picturesViewLayout = CGRect(x: 0, y: topContainerViewLayout.bottom, width: screenWidth, height: 0)
+        updateRetweetedLayout()
         updateBottomLayout()
+    }
+
+    func updateTimeLayout(timeStr: String?) {
+        let timeSize = NSMutableAttributedString.singleLineSize(fontSize: statusTimeFontSize, timeStr)
+        timeLLayout = CGRect(x: nameLLayout.x, y: nameLLayout.bottom + 6, width: timeSize.width, height: timeSize.height)
+    }
+
+    func updateSourceLayout(sourceStr: String?) {
+        let sourceSize = NSMutableAttributedString.singleLineSize(fontSize: statusTimeFontSize, sourceStr)
+        sourceLLayout = CGRect(x: timeLLayout.trailing + statusMargin, y: timeLLayout.y, width: sourceSize.width, height: sourceSize.height)
     }
 
     private func updateTopLayout() {
         // top
-        topLineLayout = CGRect(x: 0, y: 0, width: screenWidth, height: 12)
-        headerImgvLayout = CGRect(x: statusMargin, y: topLineLayout.bottom + statusMargin, width: 40, height: 40)
+        headerImgvLayout = CGRect(x: statusMargin, y: statusMargin, width: 40, height: 40)
         vipIconImgvLayout = CGRect(x: headerImgvLayout.trailing - vipIconWidth, y: headerImgvLayout.bottom - vipIconWidth, width: vipIconWidth, height: vipIconWidth)
 
         let nameSize = NSMutableAttributedString.singleLineSize(fontSize: statusNameFontSize, status.user?.screen_name)
-        nameLLayout = CGRect(x: headerImgvLayout.trailing + statusMargin, y: headerImgvLayout.y, width: nameSize.width, height: nameSize.height)
-
-        let timeSize = NSMutableAttributedString.singleLineSize(fontSize: statusTimeFontSize, "2018-11-11")
-        timeLLayout = CGRect(x: nameLLayout.x, y: nameLLayout.bottom + statusMargin, width: timeSize.width, height: timeSize.height)
-
-        let sourceSize = NSMutableAttributedString.singleLineSize(fontSize: statusTimeFontSize, status.source)
-        sourceLLayout = CGRect(x: timeLLayout.trailing + statusMargin, y: timeLLayout.y, width: sourceSize.width, height: sourceSize.height)
+        nameLLayout = CGRect(x: headerImgvLayout.trailing + statusMargin, y: headerImgvLayout.y + 3, width: nameSize.width, height: nameSize.height)
 
         // text
-//         statusAttrText = LLEmoticonManager.shared.emoticonString(string: statusText, font: originalFont)
         if let statusText = status.text {
-            let statusTuple = setStatusTextAttr(text: statusText, fontSize: 15, textColor: rgba(48, 48, 48))
+//            let attr = LLEmoticonManager.shared.emoticonString(string: statusText, font: UIFont.systemFont(ofSize: 15))
+            let statusTuple = setStatusTextAttr(attr: statusText, textColor: rgba(48, 48, 48), fontsize: 15)
             statusTextAttr = statusTuple.attr
             statusTextLayout = CGRect(x: statusMargin, y: headerImgvLayout.bottom + statusMargin, width: statusContentWidth, height: statusTuple.size.height)
         }
@@ -91,54 +89,51 @@ class StatusLayout {
     private func updateRetweetedLayout() {
         if status.retweeted_status != nil {
             if let retweetedStatusText = status.retweeted_status?.text {
+
                 let screenName = status.retweeted_status?.user?.screen_name ?? ""
                 let rText = "@" + screenName + ":" + retweetedStatusText
-                let retweetedStatusTuple = setStatusTextAttr(text: rText, fontSize: 14, textColor: rgba(97, 97, 97))
+                
+//                let attr = LLEmoticonManager.shared.emoticonString(string: rText, font: UIFont.systemFont(ofSize: 14))
+                let retweetedStatusTuple = setStatusTextAttr(attr: rText, textColor: rgba(97, 97, 97), fontsize: 14)
 
                 retweetedStatusTextAttr = retweetedStatusTuple.attr
                 retweetedStatusTextLayout = CGRect(x: statusMargin, y: statusMargin, width: statusContentWidth, height: retweetedStatusTuple.size.height)
-                retweetedLayout = CGRect(x: 0, y: topContainerViewLayout.bottom, width: screenWidth, height: retweetedStatusTuple.size.height)
+                retweetedLayout = CGRect(x: 0, y: topContainerViewLayout.bottom, width: screenWidth, height: retweetedStatusTuple.size.height + 2*statusMargin)
+                printLog("\(rText)   \(retweetedStatusTuple)")
             }
         }
     }
 
     private func updateBottomLayout() {
-//        printLog(status.user?.screen_name)
-//        printLog(retweetedLayout)
-//        printLog(statusTextLayout)
-//        printLog(retweetedStatusTextLayout)
-//        printLog(status.text)
-
         if status.retweeted_status != nil {
-            toolBarViewLayout = CGRect(x: 0, y: retweetedLayout.bottom, width: screenWidth, height: 35)
-            printLog("--2")
+            toolBarViewLayout = CGRect(x: 0, y: retweetedLayout.height + topContainerViewLayout.bottom, width: screenWidth, height: 35.5 + statusMargin)
         } else {
             let y = picturesViewLayout.bottom + (picturesViewLayout.height == 0 ? 0 : statusMargin)
-            toolBarViewLayout = CGRect(x: 0, y: y, width: screenWidth, height: 35)
-            printLog("--3")
+            toolBarViewLayout = CGRect(x: 0, y: y, width: screenWidth, height: 35.5 + statusMargin)
         }
 
         rowHeight = toolBarViewLayout.bottom
     }
 
-    private func setStatusTextAttr(text: String, fontSize: CGFloat, textColor: UIColor) -> (attr: NSAttributedString, size: CGSize){
-        let statusAttr = NSMutableAttributedString(string: text)
+    private func setStatusTextAttr(attr: String, textColor: UIColor, fontsize: CGFloat) -> (attr: NSAttributedString, size: CGSize){
 
+//        let statusAttr = NSMutableAttributedString(attributedString: attr)
+let statusAttr = NSMutableAttributedString(string: attr)
         let paraStyle = NSMutableParagraphStyle()
         paraStyle.lineSpacing = 5
 
         let attributes = [NSAttributedStringKey.paragraphStyle: paraStyle,
-                          NSAttributedStringKey.font: UIFont.systemFont(ofSize: fontSize),
-                          NSAttributedStringKey.foregroundColor: textColor]
+                          NSAttributedStringKey.foregroundColor: textColor,
+                          NSAttributedStringKey.font: UIFont.systemFont(ofSize: fontsize)]
 
         for key in attributes.keys {
             if let value = attributes[key] {
-                statusAttr.addAttribute(key, value: value, range: NSRange(location: 0, length: text.count))
+                statusAttr.addAttribute(key, value: value, range: NSRange(location: 0, length: attr.count))
             }
         }
 
         let width = statusContentWidth
-        let statusTextSize = (text as NSString).boundingRect(with: CGSize(width: width, height: 1000), options: .usesLineFragmentOrigin, attributes: attributes, context: nil).size
+        let statusTextSize = (attr as NSString).boundingRect(with: CGSize(width: width, height: 1000), options: .usesLineFragmentOrigin, attributes: attributes, context: nil).size
         return (statusAttr, CGSize(width: width, height: statusTextSize.height))
     }
 }

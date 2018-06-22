@@ -10,38 +10,15 @@ import UIKit
 
 class LLEmoticonPackage: NSObject, Codable {
 
-    var groupName: String?
-    var directory: String?
-//    {
-        //FIXME:
-//        didSet {
-//            guard let path = Bundle.main.path(forResource: "HMEmoticon.bundle", ofType: nil),
-//                let bundle = Bundle(path: path),
-//                let plistPath = bundle.path(forResource: "info.plist", ofType: nil, inDirectory: directory),
-//                let array = NSArray(contentsOfFile: plistPath),
-//                let models = NSArray.yy_modelArray(with: LLEmoticon.self, json: array) as? [LLEmoticon]
-//                else {
-//                    return
-//            }
-//
-//            for m in models {
-//                m.directory = directory
-//            }
-//
-//            emoticons += models
-//        }
-//    }
+    var emoticon_group_name: String?
+    var emoticon_group_path: String?
 
     lazy var emoticons = [LLEmoticon]()
-    
-    // 表情页面数量
+
     var numberOfPages: Int {
         return (emoticons.count - 1) / 20 + 1
     }
-    
-    var bgImageName: String?
-    
-    // 从懒加载的表情包中，按照 page 截取最多 20 个表情模型的数组
+
     func emoticon(page: Int)-> [LLEmoticon] {
         let count = 20
         let location = page * count

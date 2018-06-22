@@ -8,17 +8,19 @@
 
 import UIKit
 
-class LLEmoticon: NSObject {
+class LLEmoticon: NSObject, Codable {
 
     // true: emoji     fasle: 表情图片
-    var type = false
+    var type: String?
     var chs: String?
     var png: String?
     var emoji: String?
+    var gif: String?
+    var cht: String?
     
-    
-    var times: Int = 0
-    
+    //FIXME:
+//    var times: Int = 0
+
     // 表情模型所在的目录
     var directory: String?
     
@@ -44,10 +46,10 @@ class LLEmoticon: NSObject {
     
     // 图片表情对应的图像
     var image: UIImage? {
-        if type {
+        if type == "1"{
             return nil
         }
-        
+
         guard let directory = directory,
             let png = png,
             let path = Bundle.main.path(forResource: "HMEmoticon.bundle", ofType: nil),

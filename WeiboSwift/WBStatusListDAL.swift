@@ -18,12 +18,13 @@ class WBStatusListDAL {
     /// tips：参数之所以参照网络接口，就是为了保障队原有代码的最小化调整
     ///
     /// - Parameters:
-    ///   - since_id: 下拉刷新 id
-    ///   - max_id: 上拉刷新 id
+    ///   - since_id: 最新的 id
+    ///   - max_id: 最早的 id
     ///   - completion: 完成回调
-    class func loadStatus(since_id: Int64 = 0, max_id: Int64 = 0, completion: @escaping (_ list: [StatusModel]?, _ isSuccess: Bool)->()) {
+    class func loadStatus(since_id: Int64 = 0, max_id: Int64 = 0, completion: @escaping (_ list: [StatusModel]?)->()) {
 
         guard let userId = SingletonData.shared.userAccount?.uid else {
+            completion(nil)
             return
         }
         
@@ -33,19 +34,17 @@ class WBStatusListDAL {
         if array.count > 0 {
             printLog(array)
             let status = DecodeJsoner.decodeJsonToModel(dict: array, [StatusModel].self)
-            completion(status, true)
+            completion(status)
             return
         }
 
 
-        ///   - since_id: 返回ID比since_id大的微博（即比since_id时间晚的微博），默认为0
-        ///   - max_id: 返回ID小于或等于max_id的微博，默认为0
         let params = ["since_id": "\(since_id)",
             "max_id": "\(max_id > 0 ? max_id - 1 : 0)"]
         let para = RequestParameter(method: .get, url: "https://api.weibo.com/2/statuses/home_timeline.json", parameter: params)
         HttpsRequest.request(para: para, succeed: { (response) in
             guard let list = response["statuses"] as? [[String: Any]] else {
-                completion(nil, false)
+                completion(nil)
                 return
             }
 
@@ -54,11 +53,11 @@ class WBStatusListDAL {
 
             // 返回网络数据
             let status = DecodeJsoner.decodeJsonToModel(dict: list, [StatusModel].self)
-            completion(status, true)
+            completion(status)
 
         }, failed: { (message) in
             UIView.windowAdddStatusTextHUD(message)
-            completion(nil, false)
+            completion(nil)
         })
     }
 }

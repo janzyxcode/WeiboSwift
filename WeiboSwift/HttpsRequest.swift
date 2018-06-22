@@ -122,7 +122,10 @@ struct HttpsRequest {
         }
 
         var tokenPara = para
-        let dict = para.parameter
+        var dict = para.parameter
+        if para.parameter == nil {
+            dict = [String: Any]()
+        }
         if var dict = dict {
             dict["access_token"] = token
             tokenPara.parameter = dict

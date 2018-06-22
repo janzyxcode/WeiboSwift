@@ -201,19 +201,15 @@ extension LNGSQLiteManger {
         return result
     }
     
-    
-    
     /// 从数据库加载微博数据数组
     ///
     ///   - since_id: 返回ID比since_id大的微博（即比since_id时间晚的微博），默认为0
     ///   - max_id: 返回ID小于或等于max_id的微博，默认为0
-    
     func loadStatus(userId: String, since_id: Int64 = 0, max_id: Int64 = 0) -> [[String: AnyObject]] {
         
         var sql = "SELECT statusId, userId, status FROM T_Status \n"
         sql += "WHERE userId = \(userId) \n"
-        
-        
+
         if since_id > 0 {
             sql += "AND statusId > \(since_id) \n"
         }else if max_id > 0 {
@@ -225,7 +221,6 @@ extension LNGSQLiteManger {
         printLog(sql)
         
         let array = execRecordSet(sql: sql)
-        
         var reslut = [[String: AnyObject]]()
         
         for dict in array {
@@ -235,21 +230,16 @@ extension LNGSQLiteManger {
              else {
                 continue
             }
-            
             reslut.append(json ?? [:])
         
         }
-        
        return reslut
     }
 }
 
 
 private extension LNGSQLiteManger {
-    
-    
     func createTable() {
-        
         guard let path = Bundle.main.path(forResource: "status.sql", ofType: nil),
             let sql = try? String(contentsOfFile: path)
             else {
@@ -270,5 +260,4 @@ private extension LNGSQLiteManger {
             }
         }
     }
-    
 }

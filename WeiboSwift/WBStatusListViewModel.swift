@@ -14,30 +14,27 @@ private let maxPullupTryTimes = 3
 class WBStatusListViewModel {
     lazy var statusList = [StatusViewModel]()
 
-    // 上次刷新错误次数
     private var pullupErrorTimes = 0
 
-    func loadStatus(pullup: Bool, completion: @escaping (_ isSuccess: Bool, _ shouldRefresh: Bool)->()) {
+    func loadStatus(pullup: Bool, completion: @escaping (_ shouldRefresh: Bool)->()) {
+
         if pullup && pullupErrorTimes > maxPullupTryTimes {
-            completion(false, false)
+            completion(false)
             return
         }
-        
-        // 取出数组中第一条微博的 ID
+
+        // 大于0获取最新的
         let since_id = pullup ? 0 : (self.statusList.first?.status.id ?? 0)
-        // 上拉刷新，取出数组的最后一条微博 ID
+        // 大于0获取更早的
         let max_id = !pullup ? 0 : (self.statusList.last?.status.id ?? 0)
 
-        WBStatusListDAL.loadStatus(since_id: since_id, max_id: max_id) { (list, isSuccess) in
-
-            if !isSuccess {
-                completion(false, false)
-                return
-            }
+        WBStatusListDAL.loadStatus(since_id: since_id, max_id: max_id) { (list) in
 
             guard let list = list else {
+                completion(false)
                 return
             }
+
             var array = [StatusViewModel]()
             
             for status in list {
@@ -47,23 +44,25 @@ class WBStatusListViewModel {
             
             printLog("刷新到\(array.count)条")
 
-            if pullup {
-                self.statusList += array
-            }else {
-                self.statusList = array + self.statusList
-            }
-            
             if pullup && array.count == 0 {
                 self.pullupErrorTimes += 1
-                completion(isSuccess, false)
+                completion(false)
             } else {
-                self.cacheSingleImage(list: array, finished: completion)
+                self.cacheSingleImage(list: array, finished: {
+                    if pullup {
+                        self.statusList += array
+                    }else {
+                        self.statusList = array + self.statusList
+                    }
+                    completion(true)
+                })
             }
         }
     }
 
-    private func cacheSingleImage(list: [StatusViewModel], finished: @escaping (_ isSuccess: Bool, _ shouldRefresh: Bool)->()) {
+    private func cacheSingleImage(list: [StatusViewModel], finished: @escaping ()->()) {
 
+        // 优化算法时间
         let group = DispatchGroup()
         for vm in list {
             guard let pictureUrls = vm.picURLs else {
@@ -84,7 +83,7 @@ class WBStatusListViewModel {
         }
 
         group.notify(queue: DispatchQueue.main) {
-            finished(true, true)
+            finished()
         }
     }
 }
