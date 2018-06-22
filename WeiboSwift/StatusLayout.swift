@@ -77,8 +77,7 @@ class StatusLayout {
 
         // text
         if let statusText = status.text {
-//            let attr = LLEmoticonManager.shared.emoticonString(string: statusText, font: UIFont.systemFont(ofSize: 15))
-            let statusTuple = setStatusTextAttr(attr: statusText, textColor: rgba(48, 48, 48), fontsize: 15)
+            let statusTuple = LLEmoticonManager.shared.emoticonString(content: statusText, fontSize: 15, textColor: rgba(48, 48, 48))
             statusTextAttr = statusTuple.attr
             statusTextLayout = CGRect(x: statusMargin, y: headerImgvLayout.bottom + statusMargin, width: statusContentWidth, height: statusTuple.size.height)
         }
@@ -89,17 +88,13 @@ class StatusLayout {
     private func updateRetweetedLayout() {
         if status.retweeted_status != nil {
             if let retweetedStatusText = status.retweeted_status?.text {
-
                 let screenName = status.retweeted_status?.user?.screen_name ?? ""
                 let rText = "@" + screenName + ":" + retweetedStatusText
-                
-//                let attr = LLEmoticonManager.shared.emoticonString(string: rText, font: UIFont.systemFont(ofSize: 14))
-                let retweetedStatusTuple = setStatusTextAttr(attr: rText, textColor: rgba(97, 97, 97), fontsize: 14)
 
+                let retweetedStatusTuple = LLEmoticonManager.shared.emoticonString(content: rText, fontSize: 14, textColor: rgba(48, 48, 48))
                 retweetedStatusTextAttr = retweetedStatusTuple.attr
                 retweetedStatusTextLayout = CGRect(x: statusMargin, y: statusMargin, width: statusContentWidth, height: retweetedStatusTuple.size.height)
                 retweetedLayout = CGRect(x: 0, y: topContainerViewLayout.bottom, width: screenWidth, height: retweetedStatusTuple.size.height + 2*statusMargin)
-                printLog("\(rText)   \(retweetedStatusTuple)")
             }
         }
     }
@@ -113,27 +108,5 @@ class StatusLayout {
         }
 
         rowHeight = toolBarViewLayout.bottom
-    }
-
-    private func setStatusTextAttr(attr: String, textColor: UIColor, fontsize: CGFloat) -> (attr: NSAttributedString, size: CGSize){
-
-//        let statusAttr = NSMutableAttributedString(attributedString: attr)
-let statusAttr = NSMutableAttributedString(string: attr)
-        let paraStyle = NSMutableParagraphStyle()
-        paraStyle.lineSpacing = 5
-
-        let attributes = [NSAttributedStringKey.paragraphStyle: paraStyle,
-                          NSAttributedStringKey.foregroundColor: textColor,
-                          NSAttributedStringKey.font: UIFont.systemFont(ofSize: fontsize)]
-
-        for key in attributes.keys {
-            if let value = attributes[key] {
-                statusAttr.addAttribute(key, value: value, range: NSRange(location: 0, length: attr.count))
-            }
-        }
-
-        let width = statusContentWidth
-        let statusTextSize = (attr as NSString).boundingRect(with: CGSize(width: width, height: 1000), options: .usesLineFragmentOrigin, attributes: attributes, context: nil).size
-        return (statusAttr, CGSize(width: width, height: statusTextSize.height))
     }
 }

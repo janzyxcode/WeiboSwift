@@ -90,18 +90,36 @@ extension LLEmoticonManager {
 
 extension LLEmoticonManager {
     
-    func emoticonString(string: String, font: UIFont) -> NSAttributedString {
+    func emoticonString(content: String, fontSize: CGFloat, textColor: UIColor) -> (attr: NSAttributedString, size: CGSize) {
         
-        let attrString = NSMutableAttributedString(string: string)
+        let attrString = NSMutableAttributedString(string: content)
+
+        let paraStyle = NSMutableParagraphStyle()
+        paraStyle.lineSpacing = 5
+
+        let font = UIFont.systemFont(ofSize: fontSize)
+
+        let attributes = [NSAttributedStringKey.paragraphStyle: paraStyle,
+                          NSAttributedStringKey.foregroundColor: textColor,
+                          NSAttributedStringKey.font: font]
+
+        for key in attributes.keys {
+            if let value = attributes[key] {
+                attrString.addAttribute(key, value: value, range: NSRange(location: 0, length: content.count))
+            }
+        }
+
+        let width = statusContentWidth
+        let statusTextSize = (content as NSString).boundingRect(with: CGSize(width: width, height: 1000), options: .usesLineFragmentOrigin, attributes: attributes, context: nil).size
 
         let pattern = "\\[.*?\\]"
-        
+
         guard let regx = try? NSRegularExpression(pattern: pattern, options: []) else {
-            return attrString
+            return (attrString, CGSize(width: width, height: statusTextSize.height))
         }
-        
-        let matches = regx.matches(in: string, options: [], range: NSRange(location: 0, length: attrString.length))
-        
+
+        let matches = regx.matches(in: content, options: [], range: NSRange(location: 0, length: attrString.length))
+
         // 倒序遍历
         for m in matches.reversed() {
             let r = m.range(at: 0)
@@ -111,8 +129,6 @@ extension LLEmoticonManager {
                 attrString.replaceCharacters(in: r, with: imgText)
             }
         }
-        
-        attrString.addAttributes([NSAttributedStringKey.font: font, NSAttributedStringKey.foregroundColor: UIColor.darkGray], range: NSRange(location: 0, length: attrString.length))
-        return attrString
+        return (attrString, CGSize(width: width, height: statusTextSize.height))
     }
 }
