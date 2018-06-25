@@ -34,15 +34,13 @@ class WBStatusListViewModel {
                 completion(false)
                 return
             }
+            printLog("刷新到\(list.count)条")
 
             var array = [StatusViewModel]()
-            
             for status in list {
                 let viewModel = StatusViewModel(status: status)
                 array.append(viewModel)
             }
-            
-            printLog("刷新到\(array.count)条")
 
             if pullup && array.count == 0 {
                 self.pullupErrorTimes += 1

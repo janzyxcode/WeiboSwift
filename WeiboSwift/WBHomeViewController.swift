@@ -16,6 +16,7 @@ class WBHomeViewController: WBBaseViewController {
 
     override func loadData() {
         listViewModel.loadStatus(pullup: isPullup) { (shouldRefresh) in
+            printLog("finished")
             if self.isPullup {
                 self.tableView?.ngFooterEndRefreshing()
             }else {

@@ -82,40 +82,18 @@ extension LLEmoticonManager {
                 return result[0]
             }
         }
-//        printLog(string)
+        //        printLog(string)
         return nil
     }
 }
 
 
 extension LLEmoticonManager {
-    
-    func emoticonString(content: String, fontSize: CGFloat, textColor: UIColor) -> (attr: NSAttributedString, size: CGSize) {
-        
-        let attrString = NSMutableAttributedString(string: content)
-
-        let paraStyle = NSMutableParagraphStyle()
-        paraStyle.lineSpacing = 5
-
-        let font = UIFont.systemFont(ofSize: fontSize)
-
-        let attributes = [NSAttributedStringKey.paragraphStyle: paraStyle,
-                          NSAttributedStringKey.foregroundColor: textColor,
-                          NSAttributedStringKey.font: font]
-
-        for key in attributes.keys {
-            if let value = attributes[key] {
-                attrString.addAttribute(key, value: value, range: NSRange(location: 0, length: content.count))
-            }
-        }
-
-        let width = statusContentWidth
-        let statusTextSize = (content as NSString).boundingRect(with: CGSize(width: width, height: 1000), options: .usesLineFragmentOrigin, attributes: attributes, context: nil).size
-
+    func replaceEmoticon(_ attrString: NSMutableAttributedString, _ content: String, _ font: UIFont) {
         let pattern = "\\[.*?\\]"
 
         guard let regx = try? NSRegularExpression(pattern: pattern, options: []) else {
-            return (attrString, CGSize(width: width, height: statusTextSize.height))
+            return
         }
 
         let matches = regx.matches(in: content, options: [], range: NSRange(location: 0, length: attrString.length))
@@ -129,6 +107,5 @@ extension LLEmoticonManager {
                 attrString.replaceCharacters(in: r, with: imgText)
             }
         }
-        return (attrString, CGSize(width: width, height: statusTextSize.height))
     }
 }
