@@ -113,7 +113,7 @@ class StatusNormalCell: UITableViewCell, Reusable {
         headerImgv.setImage(urlString: statusViewModel.status.user?.profile_image_url, placeholderImage: UIImage(named: "avatar_default_big"), true)
         
 
-        toolBarView.setContent(retweetedStr: statusViewModel.commentStr, commentStr: statusViewModel.commentStr, likeStr: statusViewModel.likeStr)
+        toolBarView.setContent(retweetedStr: statusViewModel.retweetedStr, commentStr: statusViewModel.commentStr, likeStr: statusViewModel.likeStr)
         sourceL.text = statusViewModel.statusSource
         timeL.text = statusViewModel.statusCreatedAt
 
@@ -141,7 +141,7 @@ class StatusPicturesView: UIView {
 
         for item in imageviews.enumerated() {
             addSubview(item.element)
-            let url = pictures[item.offset].thumbnailWap369Pic
+            let url = pictures[item.offset].bmiddle_pic
             item.element.setImage(urlString: url, placeholderImage: nil)
         }
     }

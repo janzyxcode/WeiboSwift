@@ -82,7 +82,7 @@ extension ImageViewController {
         let imageCell = (collectionView.dequeueReusableCell(withReuseIdentifier: "item", for: indexPath) as? ScrollingImageCell)!
         var model = imageLibrary[indexPath.item]
         imageCell.imageView.hero.id = model.heroID
-        printLog(model.heroID)
+
         imageCell.imageView.hero.modifiers = [.position(CGPoint(x: view.bounds.width/2,
                                                                 y: view.bounds.height+view.bounds.width/2)),
                                               .scale(0.6),
@@ -94,8 +94,6 @@ extension ImageViewController {
         case .name:
             imageCell.image = UIImage(named: model.name)
         case .url:
-            printLog("---\(selectedIndex?.row)   \(selectedIndex?.section)")
-            printLog(model.name)
             let url = URL(string: model.name)
             imageCell.imageView.kf.setImage(with: url, placeholder: nil,
                                             options: [KingfisherOptionsInfoItem.forceRefresh],

@@ -11,7 +11,11 @@ import UIKit
 class StatusPictureModel: NSObject, Codable {
     var thumbnail_pic: String?
 
-    var thumbnailWap369Pic: String? {
-        return thumbnail_pic?.replacingOccurrences(of: "/thumbnail/", with: "/wap360/")
+    var bmiddle_pic: String? {
+        return thumbnail_pic?.replacingOccurrences(of: "/thumbnail/", with: "/bmiddle/")
+    }
+
+    var original_pic: String? {
+        return thumbnail_pic?.replacingOccurrences(of: "/thumbnail/", with: "/large/")
     }
 }

@@ -59,7 +59,6 @@ class WBStatusListViewModel {
     }
 
     private func cacheSingleImage(list: [StatusViewModel], finished: @escaping ()->()) {
-
         // 优化算法时间
         let group = DispatchGroup()
         for vm in list {
@@ -68,7 +67,7 @@ class WBStatusListViewModel {
             }
 
             if pictureUrls.count == 1 {
-                if let firstUrl = pictureUrls[0].thumbnail_pic {
+                if let firstUrl = pictureUrls[0].bmiddle_pic {
                     group.enter()
                     vm.pictureViews[0].waitAndGetImageSize(firstUrl) { (singleSize) in
                         if singleSize.equalTo(CGSize.zero) == false {

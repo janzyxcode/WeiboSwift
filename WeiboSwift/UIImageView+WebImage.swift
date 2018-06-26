@@ -36,7 +36,6 @@ extension UIImageView {
         kf.setImage(with: URL(string: urlStr), placeholder: nil, options: [], progressBlock: nil) { (downImage, _, _, _) in
             if let downImage = downImage {
                 imgvsize = downImage.size
-
             }
             group.leave()
         }

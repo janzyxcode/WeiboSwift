@@ -16,10 +16,12 @@ class WBHomeViewController: WBBaseViewController {
 
     override func loadData() {
         listViewModel.loadStatus(pullup: isPullup) { (shouldRefresh) in
-            printLog("finished")
+
             if self.isPullup {
+                printLog("finished11")
                 self.tableView?.ngFooterEndRefreshing()
             }else {
+                printLog("finished22")
                 self.tableView?.ngHeaderEndRefreshing()
             }
             self.isPullup = false

@@ -13,7 +13,6 @@ let statusPictureMargin: CGFloat = 5
 private let rowPictureLimitCount = 3
 var statusPictureItemWidth = (statusContentWidth - 2*statusPictureMargin) / rowPictureLimitCount.cgFloatValue
 
-
 class StatusViewModel {
 
     var status: StatusModel
@@ -28,8 +27,9 @@ class StatusViewModel {
     var commentStr: String?
     var likeStr: String?
 
-    var pictureViews = [UIImageView]()
+    var pictureViews = [StatusPictureImageView]()
     var pictureViewSize = CGSize.zero
+    var isLongPicture = false
 
     var picURLs: [StatusPictureModel]? {
         return status.retweeted_status?.pic_urls ?? status.pic_urls
@@ -103,12 +103,9 @@ class StatusViewModel {
 
         for item in pictureUrls.enumerated() {
             let tag = item.offset + 10
-            let heroid = "showImage" + tag.description
 
-            let imgv = UIImageView()
-            imgv.hero.id = heroid
+            let imgv = StatusPictureImageView(frame: CGRect.zero)
             imgv.tag = tag
-            imgv.isUserInteractionEnabled = true
             pictureViews.append(imgv)
 
             let tapGr = UITapGestureRecognizer(target: self, action: #selector(imageShow))
@@ -148,8 +145,9 @@ class StatusViewModel {
 
         var list = [ImageNameModel]()
         for item in pictureUrls.enumerated() {
-            if let url = item.element.thumbnail_pic {
-                list.append(ImageNameModel(name: url, type: .url, heroID: "showImage" + (item.offset + 10).description, nil))
+            if let url = item.element.original_pic {
+                pictureViews[item.offset].hero.id = url
+                list.append(ImageNameModel(name: url, type: .url, heroID: url, nil))
             }
         }
 
@@ -159,19 +157,35 @@ class StatusViewModel {
         tapGr.view?.viewController?.present(vc, animated: true, completion: nil)
     }
 
-    func updateSingleImageSize(_ imageSize: CGSize, _ imageView: UIImageView) {
+    func updateSingleImageSize(_ imageSize: CGSize, _ imageView: StatusPictureImageView) {
+printLog("\(status.text)  \(imageSize)")
+        isLongPicture = imageSize.width / imageSize.height < 0.4
+
         var size = imageSize
-        let maxWidth: CGFloat = 300
-        let minWidth: CGFloat = 40
+        if !isLongPicture {
 
-        if size.width > maxWidth {
-            size.width = 200
-            size.height = size.width * imageSize.height / imageSize.width
-        }
+            var imageScale = imageSize.width / imageSize.height
+            if imageScale < 1 {
+                printLog("---11  \(imageScale)")
+                let maxWidth = (screenWidth - statusMargin * 3) * 0.5
+                imageScale = imageScale < 0.6 ? 1.2 : imageScale
+                size = CGSize(width: maxWidth, height: maxWidth / imageScale)
+            } else if imageScale < 1 {
+                printLog("---33  \(imageScale)")
+                let maxWidth = screenWidth - statusMargin * 2
+                let maxHeight = (screenWidth - statusMargin * 3 ) * 0.5
+                imageScale = imageScale > 1.2 ? 1.2 : imageScale
+                let maxScale = maxWidth / maxHeight
+                imageScale = imageScale > maxHeight ? imageScale : maxScale
+                size = CGSize(width: maxWidth, height: maxWidth / imageScale)
+            }
 
-        if size.width < minWidth {
-            size.width = minWidth
-            size.height = size.width * imageSize.height / imageSize.width / 4
+        } else {
+            printLog("---22")
+            imageView.isLongPicture = true
+            let width = (screenWidth - statusMargin*3) * 0.4
+            let height = width * 1.2
+            size = CGSize(width: width, height: height)
         }
 
         imageView.frame = CGRect.originFromRect(size)

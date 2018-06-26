@@ -130,6 +130,7 @@
 		CECC56A920DB844400923F02 /* HeroTransitionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECC567820DB844300923F02 /* HeroTransitionState.swift */; };
 		CECC5ED320DBA07C00923F02 /* HMEmoticon.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CECC5ED220DBA07B00923F02 /* HMEmoticon.bundle */; };
 		CECC76CC20E0DFC7008CBBD6 /* NSRange+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECC76CB20E0DFC7008CBBD6 /* NSRange+Extensions.swift */; };
+		CECC76CE20E24792008CBBD6 /* StatusPictureImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECC76CD20E24792008CBBD6 /* StatusPictureImageView.swift */; };
 		CEEF36CB20CF7D1700D8D148 /* RefreshView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEEF36C620CF7D1600D8D148 /* RefreshView.xib */; };
 		CEEF36CC20CF7D1700D8D148 /* RefreshFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEF36C720CF7D1600D8D148 /* RefreshFooterView.swift */; };
 		CEEF36CD20CF7D1700D8D148 /* RefreshHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEF36C820CF7D1700D8D148 /* RefreshHeaderView.swift */; };
@@ -294,6 +295,7 @@
 		CECC567820DB844300923F02 /* HeroTransitionState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeroTransitionState.swift; sourceTree = "<group>"; };
 		CECC5ED220DBA07B00923F02 /* HMEmoticon.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = HMEmoticon.bundle; sourceTree = "<group>"; };
 		CECC76CB20E0DFC7008CBBD6 /* NSRange+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSRange+Extensions.swift"; sourceTree = "<group>"; };
+		CECC76CD20E24792008CBBD6 /* StatusPictureImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusPictureImageView.swift; sourceTree = "<group>"; };
 		CEEF36C620CF7D1600D8D148 /* RefreshView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RefreshView.xib; sourceTree = "<group>"; };
 		CEEF36C720CF7D1600D8D148 /* RefreshFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshFooterView.swift; sourceTree = "<group>"; };
 		CEEF36C820CF7D1700D8D148 /* RefreshHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshHeaderView.swift; sourceTree = "<group>"; };
@@ -776,6 +778,7 @@
 			children = (
 				CEEF36D020CF969700D8D148 /* StatusNormalCell.swift */,
 				CECC563C20DB454F00923F02 /* StatusToolBarView.swift */,
+				CECC76CD20E24792008CBBD6 /* StatusPictureImageView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1129,6 +1132,7 @@
 				CECC567F20DB844400923F02 /* HeroDefaultAnimator.swift in Sources */,
 				04FC9A561E57FAB500DC8BA5 /* LLEmoticonToolBar.swift in Sources */,
 				CECC569420DB844400923F02 /* Lexer.swift in Sources */,
+				CECC76CE20E24792008CBBD6 /* StatusPictureImageView.swift in Sources */,
 				567509751E597D2B0039D3A7 /* Date+Extension.swift in Sources */,
 				CECC569A20DB844400923F02 /* ConditionalPreprocessor.swift in Sources */,
 				CEBDE98D20BE9712009399D9 /* HttpsRequest.swift in Sources */,
