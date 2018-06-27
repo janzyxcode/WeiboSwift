@@ -95,8 +95,8 @@ extension ImageViewController {
             imageCell.image = UIImage(named: model.name)
         case .url:
             let url = URL(string: model.name)
-            imageCell.imageView.kf.setImage(with: url, placeholder: nil,
-                                            options: [KingfisherOptionsInfoItem.forceRefresh],
+            imageCell.imageView.kf.setImage(with: url, placeholder: model.placeholder,
+                                            options: [],
                                             progressBlock: nil,
                                             completionHandler: { (image, _, _, _) in
                 image.flatMap {imageCell.image = $0}

@@ -12,13 +12,13 @@ class StatusNormalCell: UITableViewCell, Reusable {
     private var topContainerView: UIView!
     private var headerImgv: UIImageView!
 //    private var headerMaskImgv: UIImageView!
-    private var nameL: UILabel!
+    private var nameL: YYLabel!
     private var vipIconImgv: UIImageView!
-    private var timeL: UILabel!
-    private var sourceL: UILabel!
-    private var statusL: UILabel!
+    private var timeL: YYLabel!
+    private var sourceL: YYLabel!
+    private var statusL: YYLabel!
     private var toolBarView: StatusToolBarView!
-    private var retweetedStatusL: UILabel!
+    private var retweetedStatusL: YYLabel!
     private var retweetedView: UIView!
     var picturesView: StatusPicturesView!
 
@@ -38,23 +38,32 @@ class StatusNormalCell: UITableViewCell, Reusable {
         vipIconImgv = UIImageView()
         topContainerView.addSubview(vipIconImgv)
 
-        nameL = UILabel()
+        nameL = YYLabel()
+        nameL.displaysAsynchronously = true
+        nameL.fadeOnHighlight = false
+        nameL.fadeOnAsynchronouslyDisplay = false
         nameL.font = UIFont.systemFont(ofSize: statusNameFontSize)
         nameL.textColor = rgba(48, 48, 48)
         topContainerView.addSubview(nameL)
 
-        timeL = UILabel()
+        timeL = YYLabel()
+        timeL.displaysAsynchronously = true
+        timeL.fadeOnHighlight = false
+        timeL.fadeOnAsynchronouslyDisplay = false
         timeL.font = UIFont.systemFont(ofSize: statusTimeFontSize)
         timeL.textColor = rgba(152, 152, 152)
         topContainerView.addSubview(timeL)
 
-        sourceL = UILabel()
+        sourceL = YYLabel()
+        sourceL.displaysAsynchronously = true
+        sourceL.fadeOnHighlight = false
+        sourceL.fadeOnAsynchronouslyDisplay = false
         sourceL.font = UIFont.systemFont(ofSize: statusTimeFontSize)
         sourceL.textColor = rgba(130, 130, 130)
         topContainerView.addSubview(sourceL)
 
         //
-        statusL = UILabel()
+        statusL = YYLabel()
         statusL.numberOfLines = 0
         topContainerView.addSubview(statusL)
 
@@ -62,7 +71,7 @@ class StatusNormalCell: UITableViewCell, Reusable {
         retweetedView.backgroundColor = rgba(247, 247, 247)
         contentView.addSubview(retweetedView)
 
-        retweetedStatusL = UILabel()
+        retweetedStatusL = YYLabel()
         retweetedStatusL.numberOfLines = 0
         retweetedView.addSubview(retweetedStatusL)
 
@@ -74,14 +83,15 @@ class StatusNormalCell: UITableViewCell, Reusable {
         contentView.addSubview(picturesView)
 
         selectionStyle = .gray
-        // 离屏渲染 － 异步绘制
-        self.layer.drawsAsynchronously = true
-        // 栅格话 － 异步会址之后，会生出一张独立的图像，cell在屏幕上滚动的时候，本质上滚动的是这张图片
-        // cell 优化，要尽量减少图层的数量，相当于就只有一层
-        // 停止滚动之后，可以接收监听
-        self.layer.shouldRasterize = true
-        // 使用 ‘栅格化’ 必须注意指定分辨率
-        self.layer.rasterizationScale = UIScreen.main.scale
+
+//        // 离屏渲染 － 异步绘制
+//        self.layer.drawsAsynchronously = true
+//        // 栅格话 － 异步会址之后，会生出一张独立的图像，cell在屏幕上滚动的时候，本质上滚动的是这张图片
+//        // cell 优化，要尽量减少图层的数量，相当于就只有一层
+//        // 停止滚动之后，可以接收监听
+//        self.layer.shouldRasterize = true
+//        // 使用 ‘栅格化’ 必须注意指定分辨率
+//        self.layer.rasterizationScale = UIScreen.main.scale
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -118,6 +128,8 @@ class StatusNormalCell: UITableViewCell, Reusable {
         timeL.text = statusViewModel.statusCreatedAt
 
         picturesView.setPictures(statusViewModel.picURLs, statusViewModel.pictureViews)
+
+        statusViewModel.layout.delegate = self
     }
 //
 //    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
@@ -129,24 +141,58 @@ class StatusNormalCell: UITableViewCell, Reusable {
 
 class StatusPicturesView: UIView {
 
+    var pictureUrls: [StatusPictureModel]?
+    var imageViews: [StatusPictureImageView]?
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
 
-    func setPictures(_ pictures: [StatusPictureModel]?, _ imageviews: [UIImageView]) {
+    func setPictures(_ pictures: [StatusPictureModel]?, _ imageviews: [StatusPictureImageView]) {
+        pictureUrls = pictures
+        self.imageViews = imageviews
         removeAllSubViews()
         guard let pictures = pictures else {
             return
         }
 
         for item in imageviews.enumerated() {
+            let tapGr = UITapGestureRecognizer(target: self, action: #selector(imageShow))
+            item.element.addGestureRecognizer(tapGr)
             addSubview(item.element)
-            let url = pictures[item.offset].bmiddle_pic
+            let url = pictures[item.offset].isGif ? pictures[item.offset].thumbnail_pic : pictures[item.offset].bmiddle_pic
             item.element.setImage(urlString: url, placeholderImage: nil)
         }
     }
 
+    @objc private func imageShow(tapGr: UITapGestureRecognizer) {
+        guard let tag = tapGr.view?.tag,
+            let pictureUrls = pictureUrls else {
+                return
+        }
+
+        var list = [ImageNameModel]()
+        for item in pictureUrls.enumerated() {
+            if let url = item.element.original_pic {
+                self.imageViews?[item.offset].hero.id = url
+                list.append(ImageNameModel(name: url, type: .url, heroID: url, nil, self.imageViews?[item.offset].image))
+            }
+        }
+
+        let vc = ImageViewController.instantiate()
+        vc.imageLibrary = list
+        vc.selectedIndex = IndexPath(row: tag - 10, section: 0)
+        tapGr.view?.viewController?.present(vc, animated: true, completion: nil)
+    }
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+}
+
+extension StatusNormalCell: StatusLayoutDelegate {
+    func StatusLayoutDidClickUrl(urlStr: String) {
+        let vc = WKWebViewVC()
+        vc.urlStr = urlStr
+        viewController?.navigationController?.pushViewController(vc, animated: true)
     }
 }

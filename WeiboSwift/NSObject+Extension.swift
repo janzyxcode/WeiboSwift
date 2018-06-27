@@ -86,4 +86,16 @@ extension NSObject {
         
         return array
     }
+
+
+    /// 对某行为锁定
+    ///
+    /// - Parameters:
+    ///   - lock: 锁定的主体
+    ///   - closure: 锁定的行为
+    func synchronized(lock: AnyObject, closure: @escaping () -> Void) {
+        objc_sync_enter(lock)
+        closure()
+        objc_sync_exit(lock)
+    }
 }

@@ -21,7 +21,12 @@ let retweetedSingleLineHeight = NSMutableAttributedString.singleLineSize(fontSiz
 
 let elementTextColor = rgba(93, 118, 154)
 
+@objc protocol StatusLayoutDelegate: NSObjectProtocol {
+    @objc optional func StatusLayoutDidClickUrl(urlStr: String)
+}
+
 class StatusLayout {
+    weak var delegate: StatusLayoutDelegate?
     var status: StatusModel!
     var topContainerViewLayout = CGRect.zero
     var headerImgvLayout = CGRect.zero
@@ -103,10 +108,6 @@ class StatusLayout {
                 retweetedStatusTextAttr = retweetedStatusTuple.attr
                 retweetedStatusTextLayout = CGRect(x: statusMargin, y: statusMargin, width: statusContentWidth, height: retweetedStatusTuple.size.height)
                 retweetedLayout = CGRect(x: 0, y: topContainerViewLayout.bottom, width: screenWidth, height: retweetedStatusTuple.size.height + 2*statusMargin)
-                if retweetedStatusText.contains("小集团队") {
-                    printLog(retweetedLayout)
-                    printLog(retweetedStatusTextLayout)
-                }
             }
         }
     }
@@ -138,27 +139,28 @@ extension StatusLayout {
 
         layout.textAttrbutes.removeAll()
         layout.textAttrbuteRanges.removeAll()
-//        let fullText = searchFullTextIndex(content, layout: layout)
-//        let attrString = searchUrls(fullText, layout: layout)
-//        let attr = NSMutableAttributedString(string: attrString)
-//        searchTopics(attr, layout: layout)
 
         let urlTuple = searchUrls(content, layout: layout)
-        let fullTexttuple = searchFullTextIndex(urlTuple.str, layout: layout)
-        let attr = fullTexttuple.attr
-        let attrString = attr.string
+        let fullTexttuple = searchFullTextIndex(urlTuple.str, content, layout: layout)
+        let attrString = fullTexttuple.str
+        let attr = NSMutableAttributedString(string: attrString)
+
 
         let eleDict = [NSAttributedStringKey.foregroundColor: elementTextColor]
         if fullTexttuple.isChanged {
-            layout.addAttributes(attr: eleDict, range: fullTexttuple.range)
+            layout.addAttributes(attr: eleDict, range: fullTexttuple.value.range)
+            attr.setTextHighlight(fullTexttuple.value.range, color: elementTextColor, backgroundColor: elementTextColor.withAlphaComponent(0.4)) { (_, _, _, _) in
+                printLog("--- \(attr.string.subString(range: fullTexttuple.value.range))  \(fullTexttuple.value.url)")
+            }
         }
+
         for item in urlTuple.ranges {
             if fullTexttuple.isChanged {
-                if item.location < fullTexttuple.range.location {
-                    layout.addAttributes(attr: eleDict, range: item)
+                if item.range.location < fullTexttuple.value.range.location {
+                    urlAddAction(item.range, item.url, attr)
                 }
             } else {
-                layout.addAttributes(attr: eleDict, range: item)
+                urlAddAction(item.range, item.url, attr)
             }
         }
 
@@ -185,102 +187,46 @@ extension StatusLayout {
             attr.addAttributes(item.element, range: range)
         }
 
-        let width = statusContentWidth
-        if content.contains("小集团队") {
 
-        }
+        let width = statusContentWidth
         let statusTextSize = (attrString as NSString).boundingRect(with: CGSize(width: width, height: 1000), options: .usesLineFragmentOrigin, attributes: attributes, context: nil).size
         offset = statusTextSize.height > statusSingleLineHeight ? 0 : offset
         attr.addAttributes([NSAttributedStringKey.baselineOffset: offset], range: NSRange(location: 0, length: attrString.count))
         LLEmoticonManager.shared.replaceEmoticon(attr, attrString, font)
-        if content.contains("小集团队") {
-            printLog(offset)
-            printLog(attrString)
-            printLog(attr)
-        }
+
         return (attr, CGSize(width: width, height: statusTextSize.height))
     }
 
-//    // 全文
-//    private func searchFullTextIndex(_ content: String, layout: StatusLayout) -> String {
-//        let pattern = "...全文： "
-//        guard let rr = content.range(of: pattern) else {
-//            return content
-//        }
-//
-//        let range = NSRange(location: 0, length: rr.upperBound.encodedOffset)
-//
-//        let changeContent = content.subString(range: NSRange(location: 0, length: range.length - 2))
-//
-//        //        let urlRange = NSRange(location: range.length, length: content.count - range.length - 1)
-//        //        printLog(content.subString(range: urlRange))
-//
-//        let fullTextRange = NSRange(location: range.length - pattern.count + 3, length: 2)
-//
-//                layout.addAttributes(attr: [NSAttributedStringKey.foregroundColor: elementTextColor], range: fullTextRange)
-//        return content
-//    }
-//
-//    private func searchUrls(_ content: String, layout: StatusLayout) -> String {
-//        let pattern = "((http[s]{0,1}|ftp)://[a-zA-Z0-9\\.\\-]+\\.([a-zA-Z]{2,4})(:\\d+)?(/[a-zA-Z0-9\\.\\-~!@#$%^&*+?:_/=<>]*)?)|(www.[a-zA-Z0-9\\.\\-]+\\.([a-zA-Z]{2,4})(:\\d+)?(/[a-zA-Z0-9\\.\\-~!@#$%^&*+?:_/=<>]*)?)"
-//        guard let regx = try? NSRegularExpression(pattern: pattern, options: []) else {
-//            return content
-//        }
-//
-//        let array = regx.matches(in: content, options: [], range: content.fullRange)
-//        var str = content
-//        var reduceArray = [Int]()
-//
-//        for item in array.reversed() {
-//            let range = item.range
-//            let subStr = content.subString(range: range)
-//            reduceArray.insert(subStr.count - 4, at: 0)
-//        }
-//
-//        for item in array.enumerated().reversed() {
-//            let range = item.element.range
-//            str = (str as NSString).replacingCharacters(in: range, with: "网页链接")
-//            var reduce = 0
-//            if item.offset > 0 {
-//                for i in 0...item.offset - 1 {
-//                    reduce += reduceArray[i]
-//                }
-//            }
-//            for item in reduceArray.enumerated() {
-//                if item.offset - 1 > item.offset {
-//                    reduce += item.element
-//                }
-//            }
-//            layout.addAttributes(attr: [NSAttributedStringKey.foregroundColor: elementTextColor], range: NSRange(location: range.location - reduce, length: 4))
-//        }
-//        return str
-//    }
+
+    private func urlAddAction(_ range: NSRange, _ url: String, _ attr: NSMutableAttributedString) {
+        attr.setTextHighlight(range, color: elementTextColor, backgroundColor: elementTextColor.withAlphaComponent(0.4)) { (_, _, _, _) in
+            printLog("--- \(attr.string.subString(range: range))  \(url)")
+            self.delegate?.StatusLayoutDidClickUrl?(urlStr: url)
+        }
+    }
 
     // 全文
-    private func searchFullTextIndex(_ content: String, layout: StatusLayout) -> (attr: NSMutableAttributedString, range: NSRange, isChanged: Bool) {
-
-        var attr = NSMutableAttributedString(string: content)
+    private func searchFullTextIndex(_ attrString: String, _ content: String , layout: StatusLayout) -> (str: String, value: (range: NSRange, url: String), isChanged: Bool) {
         let pattern = "...全文： "
 
-        guard let rr = content.range(of: pattern) else {
-            return (attr, content.fullRange, false)
+        guard let rr = attrString.range(of: pattern) else {
+            return (attrString, (attrString.fullRange, ""), false)
         }
 
         let range = NSRange(location: 0, length: rr.upperBound.encodedOffset)
-
-        let changeContent = content.subString(range: NSRange(location: 0, length: range.length - 2))
-        attr = NSMutableAttributedString(string: changeContent)
-
-        //        let urlRange = NSRange(location: range.length, length: content.count - range.length - 1)
-        //        printLog(content.subString(range: urlRange))
-
+        let changeContent = attrString.subString(range: NSRange(location: 0, length: range.length - 2))
         let fullTextRange = NSRange(location: range.length - pattern.count + 3, length: 2)
-        //        let attrDict = [NSAttributedStringKey.foregroundColor: elementTextColor]
-        //        layout.addAttributes(attr: attrDict, range: fullTextRange)
-        return (attr, fullTextRange, true)
+
+        guard let urlrr = content.range(of: pattern) else {
+            return (attrString, (attrString.fullRange, ""), false)
+        }
+        let urlBeforeRange = NSRange(location: 0, length: urlrr.upperBound.encodedOffset)
+        let urlRange = NSRange(location: urlBeforeRange.length, length: content.count - urlBeforeRange.length - 1)
+
+        return (changeContent, (fullTextRange, content.subString(range: urlRange)), true)
     }
 
-    private func searchUrls(_ content: String, layout: StatusLayout) -> (str: String, ranges: [NSRange], isChange: Bool) {
+    private func searchUrls(_ content: String, layout: StatusLayout) -> (str: String, ranges: [(range: NSRange, url: String)], isChange: Bool) {
         let pattern = "((http[s]{0,1}|ftp)://[a-zA-Z0-9\\.\\-]+\\.([a-zA-Z]{2,4})(:\\d+)?(/[a-zA-Z0-9\\.\\-~!@#$%^&*+?:_/=<>]*)?)|(www.[a-zA-Z0-9\\.\\-]+\\.([a-zA-Z]{2,4})(:\\d+)?(/[a-zA-Z0-9\\.\\-~!@#$%^&*+?:_/=<>]*)?)"
         guard let regx = try? NSRegularExpression(pattern: pattern, options: []) else {
             return (content, [], false)
@@ -296,9 +242,10 @@ extension StatusLayout {
             reduceArray.insert(subStr.count - 4, at: 0)
         }
 
-        var rangeList = [NSRange]()
+        var rangeList = [(range: NSRange, url: String)]()
         for item in array.enumerated().reversed() {
             let range = item.element.range
+            let url = content.subString(range: range)
             str = (str as NSString).replacingCharacters(in: range, with: "网页链接")
             var reduce = 0
             if item.offset > 0 {
@@ -311,8 +258,9 @@ extension StatusLayout {
                     reduce += item.element
                 }
             }
-            rangeList.append(NSRange(location: range.location - reduce, length: 4))
+            rangeList.append((NSRange(location: range.location - reduce, length: 4), url))
         }
+
         return (str,rangeList, true)
     }
 

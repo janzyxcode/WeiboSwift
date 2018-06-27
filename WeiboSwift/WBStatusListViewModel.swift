@@ -16,10 +16,10 @@ class WBStatusListViewModel {
 
     private var pullupErrorTimes = 0
 
-    func loadStatus(pullup: Bool, completion: @escaping (_ shouldRefresh: Bool)->()) {
+    func loadStatus(pullup: Bool, completion: @escaping (_ shouldRefresh: Bool, _ count: Int)->()) {
 
         if pullup && pullupErrorTimes > maxPullupTryTimes {
-            completion(false)
+            completion(false, 0)
             return
         }
 
@@ -31,7 +31,7 @@ class WBStatusListViewModel {
         WBStatusListDAL.loadStatus(since_id: since_id, max_id: max_id) { (list) in
 
             guard let list = list else {
-                completion(false)
+                completion(false, 0)
                 return
             }
             printLog("刷新到\(list.count)条")
@@ -44,7 +44,7 @@ class WBStatusListViewModel {
 
             if pullup && array.count == 0 {
                 self.pullupErrorTimes += 1
-                completion(false)
+                completion(false, array.count)
             } else {
                 self.cacheSingleImage(list: array, finished: {
                     if pullup {
@@ -52,7 +52,7 @@ class WBStatusListViewModel {
                     }else {
                         self.statusList = array + self.statusList
                     }
-                    completion(true)
+                    completion(true, array.count)
                 })
             }
         }
@@ -67,7 +67,8 @@ class WBStatusListViewModel {
             }
 
             if pictureUrls.count == 1 {
-                if let firstUrl = pictureUrls[0].bmiddle_pic {
+                let url = pictureUrls[0].isGif ? pictureUrls[0].thumbnail_pic : pictureUrls[0].bmiddle_pic
+                if let firstUrl = url {
                     group.enter()
                     vm.pictureViews[0].waitAndGetImageSize(firstUrl) { (singleSize) in
                         if singleSize.equalTo(CGSize.zero) == false {

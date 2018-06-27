@@ -19,12 +19,14 @@ struct ImageNameModel {
     var heroID: String            // hero转场标识，如果为空，无效果
     var haveLoaded = false
     var image: UIImage?
-
-    init(name: String, type: ImageViewerNameType = .name, heroID: String, _ image: UIImage? = nil) {
+    var placeholder: UIImage?
+    
+    init(name: String, type: ImageViewerNameType = .name, heroID: String, _ image: UIImage? = nil, _ placeholder: UIImage? = nil) {
         self.name = name
         self.type = type
         self.heroID = heroID
         self.image = image
+        self.placeholder = placeholder
     }
 
     mutating func setLoad(_ loaded: Bool) {

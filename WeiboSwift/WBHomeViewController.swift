@@ -15,13 +15,14 @@ class WBHomeViewController: WBBaseViewController {
     private var isPullup = false
 
     override func loadData() {
-        listViewModel.loadStatus(pullup: isPullup) { (shouldRefresh) in
-
+        listViewModel.loadStatus(pullup: isPullup) { (shouldRefresh, count) in
             if self.isPullup {
-                printLog("finished11")
-                self.tableView?.ngFooterEndRefreshing()
+                if count == 0 {
+                    self.tableView?.ngFooterLoadedEndPage()
+                } else {
+                    self.tableView?.ngFooterEndRefreshing()
+                }
             }else {
-                printLog("finished22")
                 self.tableView?.ngHeaderEndRefreshing()
             }
             self.isPullup = false
@@ -33,7 +34,6 @@ class WBHomeViewController: WBBaseViewController {
     }
 
     @objc func loadMore()  {
-        printLog("more")
         isPullup = true
         loadData()
     }
@@ -52,10 +52,11 @@ class WBHomeViewController: WBBaseViewController {
         tableView?.rowHeight = UITableViewAutomaticDimension
         tableView?.estimatedRowHeight = 300
         tableView?.separatorStyle = .none
+        
 
-//        HttpsRequest.request(para: RequestParameter(method: .get, url: "https://api.weibo.com/2/emotions.json", parameter: nil), succeed: { (result) in
-//            printLog(result)
-//        }, failed: nil)
+        //        HttpsRequest.request(para: RequestParameter(method: .get, url: "https://api.weibo.com/2/emotions.json", parameter: nil), succeed: { (result) in
+        //            printLog(result)
+        //        }, failed: nil)
     }
 }
 

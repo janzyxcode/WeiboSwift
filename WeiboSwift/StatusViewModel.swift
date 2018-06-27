@@ -106,10 +106,8 @@ class StatusViewModel {
 
             let imgv = StatusPictureImageView(frame: CGRect.zero)
             imgv.tag = tag
+            imgv.isGif = item.element.isGif
             pictureViews.append(imgv)
-
-            let tapGr = UITapGestureRecognizer(target: self, action: #selector(imageShow))
-            imgv.addGestureRecognizer(tapGr)
 
             if item.offset == picturesLimitCount - 1 {
                 break
@@ -137,28 +135,7 @@ class StatusViewModel {
         }
     }
 
-    @objc private func imageShow(tapGr: UITapGestureRecognizer) {
-        guard let tag = tapGr.view?.tag,
-            let pictureUrls = picURLs else {
-                return
-        }
-
-        var list = [ImageNameModel]()
-        for item in pictureUrls.enumerated() {
-            if let url = item.element.original_pic {
-                pictureViews[item.offset].hero.id = url
-                list.append(ImageNameModel(name: url, type: .url, heroID: url, nil))
-            }
-        }
-
-        let vc = ImageViewController.instantiate()
-        vc.imageLibrary = list
-        vc.selectedIndex = IndexPath(row: tag - 10, section: 0)
-        tapGr.view?.viewController?.present(vc, animated: true, completion: nil)
-    }
-
     func updateSingleImageSize(_ imageSize: CGSize, _ imageView: StatusPictureImageView) {
-printLog("\(status.text)  \(imageSize)")
         isLongPicture = imageSize.width / imageSize.height < 0.4
 
         var size = imageSize
@@ -166,30 +143,33 @@ printLog("\(status.text)  \(imageSize)")
 
             var imageScale = imageSize.width / imageSize.height
             if imageScale < 1 {
-                printLog("---11  \(imageScale)")
                 let maxWidth = (screenWidth - statusMargin * 3) * 0.5
-                imageScale = imageScale < 0.6 ? 1.2 : imageScale
+                imageScale = imageScale < 0.9 ? 0.9 : imageScale
                 size = CGSize(width: maxWidth, height: maxWidth / imageScale)
-            } else if imageScale < 1 {
-                printLog("---33  \(imageScale)")
+                printLog("\(imageScale)    \(size)    ")
+            } else if imageScale > 1 {
                 let maxWidth = screenWidth - statusMargin * 2
-                let maxHeight = (screenWidth - statusMargin * 3 ) * 0.5
-                imageScale = imageScale > 1.2 ? 1.2 : imageScale
-                let maxScale = maxWidth / maxHeight
-                imageScale = imageScale > maxHeight ? imageScale : maxScale
-                size = CGSize(width: maxWidth, height: maxWidth / imageScale)
+                let maxHeight = (screenWidth - statusMargin * 3) * 0.5
+                let width = maxHeight * imageScale
+                if width > maxWidth {
+                    size = CGSize(width: maxWidth, height: maxWidth / imageScale)
+                } else if width <= maxWidth {
+                    size = CGSize(width: maxHeight * imageScale, height: maxHeight)
+                }
+            } else if imageScale == 1 {
+                let maxWidth = (screenWidth - statusMargin * 2) * 0.6
+                size = CGSize(width: maxWidth, height: maxWidth)
             }
 
         } else {
-            printLog("---22")
             imageView.isLongPicture = true
             let width = (screenWidth - statusMargin*3) * 0.4
             let height = width * 1.2
             size = CGSize(width: width, height: height)
         }
 
-        imageView.frame = CGRect.originFromRect(size)
         size.height += statusMargin
+        imageView.frame = CGRect.originFromRect(size)
         pictureViewSize = size
         layout.updateStatusTextLayoutWith(pictureViewsize: pictureViewSize)
     }

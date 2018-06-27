@@ -14,3 +14,28 @@ let mainScreenBounds = UIScreen.main.bounds
 let screenWidth = mainScreenBounds.size.width
 /// 屏幕高度
 let screenHeight = mainScreenBounds.size.height
+
+
+/// 状态栏高度
+var statusBarHeight: CGFloat {
+    return isIphoneX ? 44 : 20
+}
+
+/// 导航栏高度
+var navigationBarHeight: CGFloat = 44
+
+/// 状态栏和导航栏的高度
+var statusNaviBarHeight: CGFloat {
+    return statusBarHeight + navigationBarHeight
+}
+
+/// 标签栏高度
+var tabBarHeight: CGFloat {
+    return isIphoneX ? 83 : 49
+}
+
+/// 是否是iPhoneX
+var isIphoneX: Bool {
+    return screenHeight == 812
+}
+

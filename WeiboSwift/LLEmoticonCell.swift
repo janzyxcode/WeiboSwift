@@ -120,9 +120,6 @@ class LLEmoticonCell: UICollectionViewCell {
         default:
             break
         }
-        
-        printLog("\(btn) - \(btn.tag)")
-        
     }
     
     private func buttonWithLocation(location: CGPoint)->UIButton? {

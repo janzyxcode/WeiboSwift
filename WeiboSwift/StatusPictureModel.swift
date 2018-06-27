@@ -18,4 +18,19 @@ class StatusPictureModel: NSObject, Codable {
     var original_pic: String? {
         return thumbnail_pic?.replacingOccurrences(of: "/thumbnail/", with: "/large/")
     }
+
+    var isGif: Bool {
+        if let url = thumbnail_pic {
+            return (url as NSString).pathExtension.lowercased() == "gif"
+        }
+        return false
+    }
+
+    var gifToPngBmiddle_pic: String? {
+        if isGif {
+            return bmiddle_pic?.replacingOccurrences(of: ".gif", with: ".png")
+        }
+        return bmiddle_pic
+    }
+
 }
